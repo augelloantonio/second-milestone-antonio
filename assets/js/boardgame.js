@@ -1,9 +1,10 @@
 // Scripted By Adam Khoury in connection with the following video tutorial:
 // http://www.youtube.com/watch?v=c_ohDPWmsM0
-var memory_array = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F'];
+var memory_array = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H', 'I', 'I'];
 var memory_values = [];
 var memory_card_ids = [];
 var card_flipped = 0;
+
 Array.prototype.memory_card_shuffle = function() {
     var i = this.length,
         j, temp;
@@ -15,9 +16,21 @@ Array.prototype.memory_card_shuffle = function() {
     }
 }
 
+//.................................Starting Game BTN//
+function startGame() {
+    var x = document.getElementById("boardgame");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    }
+    document.getElementById("startBtn").onclick = function() { newBoard()};
+    document.getElementById("boardgame").style.display = "block";
+}
+
+//.................................Startin Game new level//
 function newBoard() {
     card_flipped = 0;
     var output = '';
+    memory_array.length = [12];
     memory_array.memory_card_shuffle();
     for (var i = 0; i < memory_array.length; i++) {
         output += '<div id="card_' + i + '" onclick="memoryFlipCard(this,\'' + memory_array[i] + '\')"></div>';
@@ -28,16 +41,7 @@ function newBoard() {
 function levelTwoBoard() {
     card_flipped = 0;
     var output = '';
-    memory_array.memory_card_shuffle();
-    for (var i = 0; i < memory_array.length; i++) {
-        output += '<div id="card_' + i + '" onclick="memoryFlipCard(this,\'' + memory_array[i] + '\')"></div>';
-    }
-    document.getElementById('boardgame').innerHTML = output;
-}
-
-function levelThreeBoard() {
-    card_flipped = 0;
-    var output = '';
+    memory_array.length = [16];
     memory_array.memory_card_shuffle();
     for (var i = 0; i < memory_array.length; i++) {
         output += '<div id="card_' + i + '" onclick="memoryFlipCard(this,\'' + memory_array[i] + '\')"></div>';
@@ -64,9 +68,19 @@ function memoryFlipCard(card, val) {
                 memory_card_ids = [];
                 // Check to see if the whole board is cleared
                 if (card_flipped == memory_array.length) {
-                    alert("Board cleared... generating new board");
+                    alert("Well done! Level Two Starting!");
                     document.getElementById('boardgame').innerHTML = "";
-                    newBoard();
+                    levelTwoBoard();
+                }
+                if (card_flipped == memory_array.length) {
+                    alert("Well done! Level Three Starting!");
+                    document.getElementById('boardgame').innerHTML = "";
+                    levelThreeBoard();
+                }
+                if (card_flipped == memory_array.length) {
+                    alert("WINNER");
+                    document.getElementById('boardgame').innerHTML = "";
+                    levelThreeBoard();
                 }
             }
             else {
@@ -86,8 +100,8 @@ function memoryFlipCard(card, val) {
             }
         }
     }
-    
-    
+
+
 }
 
 window.addEventListener(newBoard());
