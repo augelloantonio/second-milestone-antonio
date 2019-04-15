@@ -6,10 +6,9 @@ body {
 div#boardgame {
 	background: #CCC;
 	border: #999 1px solid;
-	min-width: 800px;
+	max-width: 800px;
 	padding: 24px;
 	margin: 0px auto;
-	display: none;
 }
 
 div#boardgame>div {
@@ -18,8 +17,8 @@ div#boardgame>div {
 	background-repeat: no-repeat;
 	background-position: center;
 	border: #000 1px solid;
-	width: 150px;
-	height: 200px;
+	width: 100px;
+	height: 150px;
 	float: left;
 	margin: 10px;
 	padding: 20px;
@@ -35,4 +34,10 @@ div#boardgame>div {
 	width: 200px;
 	height: 50px;
 	font-size: 20px;
+}
+
+
+.boardgame{
+display: none;
+	
 }

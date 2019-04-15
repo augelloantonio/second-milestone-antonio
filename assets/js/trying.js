@@ -10,3 +10,14 @@ function gameLoad() {
         levelThreeBoard();
     }
 }
+
+
+//.................................Starting Game BTN//
+function startGame() {
+    var x = document.getElementById("boardgame");
+    if (x.style.display === "none") {
+        x.style.display = "block";
+    }
+    document.getElementById("startBtn").onclick = function() { newBoard()};
+    document.getElementById("loadGame").style.display = "block";
+}
