@@ -18,7 +18,7 @@ function newBoard() {
     card_flipped = 0;
     var output = '';
     //...................Using this newArray and changing it here it has as result undefided values for the array//
-    memory_array.length = [8];
+    memory_array.length = [6];
     memory_array.memory_card_shuffle();
     for (var i = 0; i < memory_array.length; i++) {
         output += '<div id="card_' + i + '" onclick="memoryFlipCard(this,\'' + memory_array[i] + '\')"></div>'
