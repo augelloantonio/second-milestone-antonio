@@ -36,13 +36,13 @@
                             <div class="gameComandBoard">
                                 <div class="row ">
                                     <div id="startBtn" class="col-4 gameControlsBox">
-                                        <button class="fas fa-play gameComandBtn" type="button" id="startBtn" onclick="startGame();"></button>
+                                        <button class="fas fa-play gameComandBtn" type="button" id="startBtn" onclick="startGame(); show()"></button>
                                     </div>
                                     <div id="startBtn" class="col-4 gameControlsBox">
-                                        <button class="fas fa-undo-alt gameComandBtn" type="button" id="startBtn" onclick="startGame();"></button>
+                                        <button class="fas fa-undo-alt gameComandBtn" type="button" id="resetBtn" onclick="resetGame();"></button>
                                     </div>
                                     <div id="startBtn" class="col-4 gameControlsBox">
-                                        <button class="fas fa-volume-mute gameComandBtn" type="button" id="startBtn" onclick="startGame();"></button>
+                                        <button class="fas fa-volume-up gameComandBtn" type="button" id="soundOnOffBtn" onclick="switchSoundClass();"></button>
                                     </div>
                                 </div>
                             </div>
@@ -57,17 +57,30 @@
 
             <!-- Right Side / Game -->
             <div class="col-md-8 gameContainer">
-                <div class="col-xs-12 headerTab">
-                    <div class="headerContent">
-                        <p class="mb-1">This easy memory game is what do you need to keep your mind sharp.</p>
-                        <p class="mb-1">This is a 10 levels game that will help you to practice your brain memory, off course you need to do it every day.</p>
+                <div class="row">
+                    <div class="col-xs-12 headerTab">
+                        <div class="headerContent">
+                            <div class="row">
+                                <div class="col-xs-3 infoMatch">
+                                    <p id="totalClick" class="mb-1"></p>
+
+                                    <p id="point" class="mb-1"></p>
+                                </div>
+                                <div class="col-xs-3 infoMatch">
+                                    <p id="level" class="mb-1"></p>
+                                </div>
+                                <div class="col-xs-3 infoMatch">
+                                    <p id="timer" class="mb-1">Timer</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <section class="loadGame">
+                        <div id="loadGame" class="">
+                            <div id="boardgame" class="col-xs-12 boardgame"></div>
+                        </div>
+                    </section>
                 </div>
-                <section class="container container-fluid">
-                    <div id="loadGame" class="row">
-                        <div id="boardgame" class="col-xs-12 boardgame"></div>
-                    </div>
-                </section>
             </div>
         </div>
     </div>
@@ -76,13 +89,14 @@
     <footer class="container-fluid">
         <div class="row footerRow">
             <p>HelpYourBrain is a WebApp developed by Antonio Augello as CodeInstitute Second Milestone Project</p>
-            <p>Copyright <i class="far fa-copyright"></i> Antonio Augello</p>
+            <p>Copyright Antonio Augello</p>
             <div class="footerSocialLinks">
-                <ul class="list-inline">
-                    <li class="socialsButtons"><a class="socialsButtons" target="_blank" href="#"><i class="fab fa-linkedin"></i></a></li>
-                    <li class="socialsButtons"><a class="socialsButtons" target="_blank" href="#"><i class="fab fa-github-square"></i></a></li>
+                <ul class="list-inline socialList">
+                    <li class="socialsButtons"><a target="_blank" href="https://www.linkedin.com/in/antonio-augello-aba83911a/"><i class="fab fa-linkedin faPersonalIcons"></i></a></li>
+                    <li class="socialsButtons"><a target="_blank" href="https://github.com/gello94"><i class="fab fa-github-square faPersonalIcons"></i></a></li>
                 </ul>
             </div>
+        </div>
     </footer>
     <!--/.Footer-->
 
@@ -222,6 +236,22 @@
                 <div class="modal-body">
                     <p>This easy memory game is what you need to keep your mind sharp.</p>
                     <p>The goal of this game is to match the Web Logos! So when you click on one card it will show you a Logo, you have to match the same Logo with less number of attempt possible.</p>
+                    <h5>Instructions</h5>
+                    <ul>
+                        <li>
+                            <p>Press the start button, the timer will start and you can start the game.</p>
+                        </li>
+                        <li>
+                            <p>Click on one of the cards and see the image.</p>
+                        </li>
+                        <li>
+                            <p>Click another card, if the card has the same image then is a Match, and you score a point!</p>
+                        </li>
+                        <li>
+                            <p>If the images are not the same they will both flip back.</p>
+                        </li>
+                    </ul>
+                    <br/>
                     <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
                 </div>
             </div>
