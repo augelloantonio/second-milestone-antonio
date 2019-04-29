@@ -7,10 +7,15 @@ var memory_values = [];
 var memory_card_ids = [];
 var card_flipped = 0;
 var num_cards = 4;
-var totalPoints = 0;
 var match = 0;
 var level = 1;
 var click = 0;
+var score = [];
+var scoreUser = 0;
+var playerLevel = 0;
+var sumCardMatch = 0;
+var sumCardClick = 0;
+
 //Array.prototype.memory_card_shuffle = function() {
 //  var i = this.length,
 //    j, temp;
@@ -79,7 +84,9 @@ function showBoardGame() {
 
 
 // Function that will restart the sounds 
-function startSounds() {}
+function startSounds() {
+
+}
 
 //Function that change my sound button class on each click
 function switchSoundClass() {
@@ -113,20 +120,9 @@ function newBoard(num_cards) {
 
     for (var i = 0; i < shuffled.length; i++) {
         output += '<div class="backLogoCardDiv"  id="card_' + i + '" onclick="memoryFlipCard(this,\'' + shuffled[i] + '\')"></div>'
-        //add <img id="imgCard" class="backImg" src="/assets/img/cards/' + shuffled[i] + '.png"/> between div to create img classthat will stay for each div
     }
-    // memory_array.length = [num_cards];
-    // memory_array.memory_card_shuffle();
-    // for (var i = 0; i < memory_array.length; i++) {
-    //     output += '<div  id="card_' + i + '" onclick="memoryFlipCard(this,\'' + memory_array[i] + '\')"></div>'
-    // }
     document.getElementById('boardgame').innerHTML = output;
 }
-
-//.............................................................. To fix why the array's values after the length element are udefined//
-//function levelTwoBoard() {
-//$.getScript("/assets/js/levels/levelTwo.js", function() {});
-//}
 
 
 /*....................................................Flip card function
@@ -159,6 +155,7 @@ function memoryFlipCard(card, val) {
                     document.getElementById('boardgame').innerHTML = "";
                     generateNewBoard();
                     showLevel(level += 1);
+                    totalScore()
 
                 }
             }
@@ -185,10 +182,12 @@ function memoryFlipCard(card, val) {
 //Loop that will let my num_cards add 4 new items each time until value of 16 reached (bug= it show 4 more card than my )
 function generateNewBoard() {
     newBoard(num_cards + 4);
+    //levelScore();
     if (num_cards >= 16) {
         $('#levelFiveModal').modal({ show: true });
         startLevelFive();
         num_cards = [];
+
     }
     else {
         $('#levelTwoModal').modal({ show: true });
@@ -233,13 +232,16 @@ function startTimer() {
     interval = setInterval(function() {
         timer.innerHTML = "Timer:" + minute + "mins " + second + "secs";
         second++;
+        totalSecond = second;
         if (second == 60) {
             minute++;
             second = 0;
+            totalMinute = minute;
         }
         if (minute == 60) {
             hour++;
             minute = 0;
+            totalHour = hour;
         }
     }, 1000);
 }
@@ -250,18 +252,21 @@ function timeGaming() {
 
 }
 
+
+
 /*function that will count the point the user does for each match ==> replace this function here and use it to value the totale times that the
 user click on the card, then made another function that will remove the totalClick */
-function showMatch() {
+function showMatch(matchSum) {
     let cardMatched = ("Matches: " + match);
-    if (card_flipped >= 0) {
+    if (memory_values[0] == memory_values[1]) {
         match++;
     }
-    //var totalPoints =  ;
+    $('#matches').text(cardMatched);
+    sumCardMatch = match;
 
-    $('#point').text(cardMatched);
-    console.log(match);
+    console.log(cardMatched);
 }
+
 
 function totalClick() {
     let cardClicked = ("Total Click: " + click);
@@ -269,17 +274,73 @@ function totalClick() {
         click++;
     }
     $('#totalClick').text(cardClicked);
-    console.log(point);
+    sumCardClick = click;
+
+    console.log(cardClicked);
 }
 
 //Function that will show the actual level 
 function showLevel() {
-    let actualLevel = ("Level: " + level);
+    let actualLevel = ("Level " + level);
     if (card_flipped == shuffled.length) {
         level++;
     }
     $('#level').text(actualLevel);
-    console.log(level);
+    console.log(actualLevel);
+    playerLevel = level;
+}
+
+
+//Function that will count the total score of the previous level and display it
+function totalScore(total, num) {
+    //should give total score = total score at the start of the next level
+
+    if (level != 1) {
+        let levelPoints = (sumCardMatch / sumCardClick) + 10;
+        globalLevelPoint = levelPoints;
+        console.log("The level score is: " + globalLevelPoint);
+        score.push(globalLevelPoint); //create a new empty array where push my results, now i have to made the sum of them and show it
+        total = score.reduce((acc, cur) => acc + cur, 0); //taken from https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+
+        document.getElementById('totalScore').innerHTML = ("Total Score: " + total);
+
+    }
+    else {
+        document.getElementById('totalScore').innerHTML = "Total Score: " + 0;
+
+    }
+    //calculate the total score
+    console.log("total is " + total);
+}
+
+
+function dataReset() {
+
+    timeGaming();
+    second = 0;
+    minute = 0;
+
+    showMatch();
+    match = 0;
+
+    totalClick();
+    click = 0;
+
+    showLevel();
+    level = 1;
+
+    totalScore();
+    globalLevelPoint = 0;
+
+    newBoard();
+    num_cards = 4;
+
+
+}
+
+
+function resetGame() {
+    document.getElementById("resetBtn").onclick = function() { dataReset() };
 }
 
 
@@ -287,3 +348,4 @@ newBoard(num_cards);
 showMatch();
 totalClick()
 showLevel();
+totalScore();
