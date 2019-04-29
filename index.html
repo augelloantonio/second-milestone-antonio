@@ -34,12 +34,12 @@
                             </div>
 
                             <div class="gameComandBoard">
-                                <div class="row ">
+                                <div class="row">
                                     <div id="startBtn" class="col-4 gameControlsBox">
-                                        <button class="fas fa-play gameComandBtn" type="button" id="startBtn" onclick="startGame(); show()"></button>
+                                        <button class="fas fa-play gameComandBtn" type="button" id="startBtn" onclick="startGame(); show();"></button>
                                     </div>
                                     <div id="startBtn" class="col-4 gameControlsBox">
-                                        <button class="fas fa-undo-alt gameComandBtn" type="button" id="resetBtn" onclick="resetGame();"></button>
+                                        <button class="fas fa-undo-alt gameComandBtn" type="button" id="resetBtn" onclick="dataReset();"></button>
                                     </div>
                                     <div id="startBtn" class="col-4 gameControlsBox">
                                         <button class="fas fa-volume-up gameComandBtn" type="button" id="soundOnOffBtn" onclick="switchSoundClass();"></button>
@@ -63,11 +63,13 @@
                             <div class="row">
                                 <div class="col-xs-3 infoMatch">
                                     <p id="totalClick" class="mb-1"></p>
-
-                                    <p id="point" class="mb-1"></p>
+                                    <p id="matches" class="mb-1"></p>
                                 </div>
                                 <div class="col-xs-3 infoMatch">
                                     <p id="level" class="mb-1"></p>
+                                    <p id="levelScore" class="mb-1"></p>
+                                    <p id="totalScore" class="mb-1"></p>
+
                                 </div>
                                 <div class="col-xs-3 infoMatch">
                                     <p id="timer" class="mb-1">Timer</p>
@@ -188,7 +190,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Well Done!</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Well Done! </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
