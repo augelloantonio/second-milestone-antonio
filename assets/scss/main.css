@@ -1,0 +1,280 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700");
+html {
+  height: 100%; }
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: auto;
+  min-height: 100%;
+  background-color: green; }
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%; }
+
+.page-container {
+  position: relative;
+  min-height: 100vh; }
+
+.row {
+  margin: 0; }
+
+@media (max-width: 360px) {
+  .container-fluid {
+    padding-right: 0px; } }
+/*.....................................................................................Header*/
+.headerTab {
+  background-color: wheightte;
+  color: black;
+  width: 100%;
+  padding-top: 0px; }
+
+.headerContent {
+  padding: 15px;
+  background-color: white; }
+
+.infoMatch {
+  margin: auto; }
+
+/*...............................................................Text, padding and centering*/
+.centeredContent {
+  text-align: center;
+  margin: auto; }
+
+/*...............................................................................Left Side Menu Style*/
+.logo {
+  background-image: url(/assets/img/pagelogo2.jpg);
+  background-color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  min-height: 200px;
+  transition: all .5s ease-in-out;
+  -moz-transition: all .5s ease-in-out;
+  -webkit-transition: all .5s ease-in-out; }
+
+@media (max-width: 767px) {
+  .logo {
+    background-image: url(/assets/img/pagelogo.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-width: 200px; } }
+/*change img logo to fit the logo*/
+@media (max-width: 644px) {
+  .logo {
+    background-image: url(/assets/img/pagelogo2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-width: 200px; } }
+.aside {
+  padding: 0;
+  background-color: white; }
+
+@media screen and (max-width: 767px) {
+  .aside {
+    min-height: auto; } }
+.containerMenuSide {
+  background-color: white; }
+
+.sideMenu {
+  background-color: white;
+  /* min-height: -webkit-fill-available; */
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  font-size: 18px; }
+
+.list-group {
+  padding: 0; }
+
+.list-group-item.list-group-item-action {
+  outline: none; }
+
+.list-group-item.list-group-item-action:hover {
+  border: solid .5px #e88cff; }
+
+.gameComandBoard {
+  background-color: white;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  margin: auto; }
+
+.gameControlsBox {
+  text-align: center; }
+
+.gameComandBtn {
+  background-color: darkmagenta;
+  border: 0; }
+
+.gameComandBtn:focus {
+  border: 2px solid white;
+  border-radius: 50px;
+  background-color: darkmagenta;
+  color: white; }
+
+.gameComandBtn:focus {
+  outline: none; }
+
+.fa,
+.far,
+.fas {
+  font-family: "Font Awesome 5 Free";
+  font-size: 30px;
+  text-align: center;
+  color: white;
+  border-radius: 50px;
+  width: 55px;
+  height: 55px; }
+
+.fa,
+.far,
+.fas:hover {
+  box-shadow: inset 0 0 0px 3px;
+  box-shadow: 0 0 4px 8px rgba(139, 0, 139, 0.17); }
+
+.menuNavbar {
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+  width: 100%; }
+
+.homePageMenu {
+  padding-top: 15px; }
+
+.card-body {
+  min-width: 100%;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  font-size: 24px;
+  border: 0; }
+
+.menuButton {
+  border: 0;
+  padding: 0;
+  margin: 0; }
+
+div#boardgame {
+  padding-top: 24px;
+  margin: 0px auto; }
+
+div#boardgame > div {
+  background-color: bisque;
+  background: url(/assets/img/backLogoCard.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: bisque;
+  border-radius: 20px;
+  box-shadow: 3px 3px 3px 3px #827575;
+  width: 84px;
+  height: 103px;
+  float: left;
+  margin: 10px;
+  font-size: 64px;
+  cursor: pointer;
+  text-align: center; }
+
+@media (max-width: 365px) {
+  .boardgame {
+    display: contents; } }
+/*.............................................................cards img*/
+.backImg {
+  width: 80px;
+  height: 100px;
+  border-radius: 20px;
+  vertical-align: unset; }
+
+/*..............................................................................Game Screen*/
+@media (max-width: 768px) {
+  .gameContainer {
+    margin-top: 0; } }
+#loadGame {
+  margin: auto;
+  max-width: 75%;
+  padding: 0; }
+
+.gameboard {
+  width: 100%;
+  min-height: 885px; }
+
+@media (max-width: 768px) {
+  .loadGame {
+    margin: auto;
+    max-width: 100%; } }
+.boardgame {
+  display: none; }
+
+.gameContainer {
+  padding: 0;
+  padding-right: 0;
+  padding-left: 0;
+  height: -webkit-fill-available; }
+
+/*..........................................................................Modal Style*/
+button.btnBody {
+  float: right;
+  background-color: orangered; }
+
+button.btn.btn-secondary.btnBody:hover {
+  background-color: #ff6a00; }
+
+button.btn.btn-secondary.btnBody:active {
+  background-color: #ff6a00; }
+
+/*...................................................................Success Modal*/
+#successAlertModal {
+  background-color: transparent; }
+
+.modalSuccessContent {
+  font-size: 50px;
+  text-align: center; }
+
+.faModalSuccess {
+  font-family: "Font Awesome 5 Free";
+  font-size: 80px;
+  color: green;
+  border-radius: 100px;
+  width: 120px;
+  height: 120px;
+  padding-top: 19px;
+  padding-left: 7px;
+  box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55); }
+
+.faModalSuccess:hover {
+  box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55); }
+
+/*......................................................Credits Modal*/
+.fab {
+  border: 8px solid #941494;
+  border-radius: 50px;
+  background-color: darkmagenta;
+  color: white;
+  font-size: 22px; }
+
+.socialsButtons {
+  padding-left: 30px;
+  padding-right: 30px; }
+
+.creditSocialLinks {
+  text-align: center;
+  display: inline-block; }
+
+.socialList {
+  display: inline-flex; }
+
+/*................................Footer*/
+.footer {
+  background-color: #dcb1dc;
+  color: black;
+  min-height: 80px;
+  margin: 0;
+  width: 100%;
+  bottom: 0;
+  position: absolute; }
+
+/*# sourceMappingURL=main.css.map */

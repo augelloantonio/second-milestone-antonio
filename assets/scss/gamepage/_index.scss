@@ -1,0 +1,67 @@
+    @import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700');
+
+    html {
+        height: 100%;
+    }
+
+    body {
+        font-family: "Roboto", sans-serif;
+        margin: auto;
+        min-height: 100%;
+        background-color: green;
+    }
+
+    .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+        width: 100%;
+    }
+
+    .page-container {
+        position: relative;
+        min-height: 100vh;
+    }
+
+    .row {
+        margin: 0;
+    }
+
+
+
+    @media (max-width: 360px) {
+        .container-fluid {
+            padding-right: 0px;
+        }
+    }
+
+
+
+    /*.....................................................................................Header*/
+
+    .headerRow {}
+
+    .headerTab {
+        background-color: wheightte;
+        color: black;
+        width: 100%;
+        padding-top: 0px;
+
+    }
+
+    .headerContent {
+        padding: 15px;
+        background-color: white;
+    }
+
+    .infoMatch {
+        margin: auto;
+    }
+
+
+    /*...............................................................Text, padding and centering*/
+
+    .centeredContent {
+        text-align: center;
+        margin: auto;
+    }
+    

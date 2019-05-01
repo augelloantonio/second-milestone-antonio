@@ -1,0 +1,78 @@
+div#boardgame {
+    padding-top: 24px;
+    margin: 0px auto;
+}
+
+div#boardgame>div {
+    background-color: bisque;
+    background: url(/assets/img/backLogoCard.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: bisque;
+    border-radius: 20px;
+    box-shadow: 3px 3px 3px 3px #827575;
+    width: 84px;
+    height: 103px;
+    float: left;
+    margin: 10px;
+    font-size: 64px;
+    cursor: pointer;
+    text-align: center;
+}
+
+
+.boardgame {}
+
+@media (max-width: 365px) {
+    .boardgame {
+        display: contents;
+    }
+}
+
+/*.............................................................cards img*/
+
+.backImg {
+    width: 80px;
+    height: 100px;
+    border-radius: 20px;
+    vertical-align: unset;
+
+}
+
+/*..............................................................................Game Screen*/
+
+@media (max-width: 768px) {
+    .gameContainer {
+        margin-top: 0;
+    }
+}
+
+#loadGame {
+    margin: auto;
+    max-width: 75%;
+    padding: 0;
+}
+
+.gameboard {
+    width: 100%;
+    min-height: 885px;
+}
+
+@media (max-width: 768px) {
+    .loadGame {
+        margin: auto;
+        max-width: 100%;
+    }
+}
+
+.boardgame {
+    display: none;
+}
+
+.gameContainer {
+    padding: 0;
+    padding-right: 0;
+    padding-left: 0;
+    height: -webkit-fill-available;
+}

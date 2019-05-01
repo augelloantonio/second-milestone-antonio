@@ -1,0 +1,68 @@
+ /*..........................................................................Modal Style*/
+
+ button.btnBody {
+     float: right;
+     background-color: orangered;
+ }
+
+ button.btn.btn-secondary.btnBody:hover {
+     background-color: #ff6a00;
+ }
+
+ button.btn.btn-secondary.btnBody:active {
+     background-color: #ff6a00;
+ }
+
+ /*...................................................................Success Modal*/
+
+ #successAlertModal {
+     background-color: transparent;
+ }
+
+ .modalSuccessContent {
+     font-size: 50px;
+     text-align: center;
+ }
+
+ .faModalSuccess {
+     font-family: "Font Awesome 5 Free";
+     font-size: 80px;
+     color: green;
+     border-radius: 100px;
+     width: 120px;
+     height: 120px;
+     padding-top: 19px;
+     padding-left: 7px;
+     box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55);
+ }
+
+ .faModalSuccess:hover {
+     box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55);
+ }
+ 
+ 
+ /*......................................................Credits Modal*/
+ .fab {
+    border: 8px solid #941494;
+    border-radius: 50px;
+    background-color: darkmagenta;
+    color: white;
+    font-size: 22px;
+}
+
+
+.socialsButtons {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.creditSocialLinks {
+    text-align: center;
+    display: inline-block;
+}
+
+.socialList {
+    display: inline-flex;
+
+}
+
