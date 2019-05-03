@@ -51,6 +51,7 @@
     .headerContent {
         padding: 15px;
         background-color: white;
+        height: 200px;
     }
 
     .infoMatch {
@@ -74,6 +75,72 @@
     .highScoreStar {
         font-size: 20px;
         color: #f05322;
+    }
+
+    .infoMatch {
+        min-height: 50px;
+        margin: auto;
+        max-height: 50px;
+    }
+
+    .click_match_bar {
+        width: 100%;
+        padding-bottom: 5px;
+    }
+
+    .levelBoard {
+        box-shadow: 0 0 4px 1px #d320ff;
+        padding: 5px;
+        margin: auto;
+        max-height: 50px;
+        background: #cc01fe;
+        color: white;
+        font-weight: 500;
+        border-radius: 25PX;
+    }
+
+    .clickBoard {
+        box-shadow: 0 0 4px 1px rgb(211, 32, 255);
+        padding: 5px;
+        max-width: 48%;
+        max-height: 50px;
+        margin: auto;
+        background: #ea98ff;
+        color: white;
+        font-weight: 500;
+    }
+
+    .matchBoard {
+        box-shadow: 0 0 4px 1px rgb(211, 32, 255);
+        padding: 5px;
+        max-width: 48%;
+        max-height: 50px;
+        margin: auto;
+        background: #ea98ff;
+        color: white;
+        font-weight: 500;
+    }
+
+    .scoreBoard {
+        box-shadow: 0 0 4px 1px rgb(211, 32, 255);
+        padding-bottom: 8px;
+        max-width: 48%;
+        max-height: 55px;
+        margin: auto;
+        background: #ea98ff;
+        color: white;
+        font-weight: 500;
+    }
+
+    .timeBoard {
+        box-shadow: 0 0 4px 1px rgb(211, 32, 255);
+        padding-bottom: 8px;
+        max-width: 48%;
+        max-height: 55px;
+        margin: auto;
+        background: #ea98ff;
+        color: white;
+        font-weight: 500;
     }
 
     /*...............................................................Text, padding and centering*/

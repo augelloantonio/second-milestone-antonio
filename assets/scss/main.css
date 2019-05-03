@@ -33,7 +33,8 @@ body {
 
 .headerContent {
   padding: 15px;
-  background-color: white; }
+  background-color: white;
+  height: 200px; }
 
 .infoMatch {
   margin: auto; }
@@ -52,6 +53,65 @@ body {
 .highScoreStar {
   font-size: 20px;
   color: #f05322; }
+
+.infoMatch {
+  min-height: 50px;
+  margin: auto;
+  max-height: 50px; }
+
+.click_match_bar {
+  width: 100%;
+  padding-bottom: 5px; }
+
+.levelBoard {
+  box-shadow: 0 0 4px 1px #d320ff;
+  padding: 5px;
+  margin: auto;
+  max-height: 50px;
+  background: #cc01fe;
+  color: white;
+  font-weight: 500;
+  border-radius: 25PX; }
+
+.clickBoard {
+  box-shadow: 0 0 4px 1px #d320ff;
+  padding: 5px;
+  max-width: 48%;
+  max-height: 50px;
+  margin: auto;
+  background: #ea98ff;
+  color: white;
+  font-weight: 500; }
+
+.matchBoard {
+  box-shadow: 0 0 4px 1px #d320ff;
+  padding: 5px;
+  max-width: 48%;
+  max-height: 50px;
+  margin: auto;
+  background: #ea98ff;
+  color: white;
+  font-weight: 500; }
+
+.scoreBoard {
+  box-shadow: 0 0 4px 1px #d320ff;
+  padding-bottom: 8px;
+  max-width: 48%;
+  max-height: 55px;
+  margin: auto;
+  background: #ea98ff;
+  color: white;
+  font-weight: 500; }
+
+.timeBoard {
+  box-shadow: 0 0 4px 1px #d320ff;
+  padding-bottom: 8px;
+  max-width: 48%;
+  max-height: 55px;
+  margin: auto;
+  background: #ea98ff;
+  color: white;
+  font-weight: 500; }
 
 /*...............................................................Text, padding and centering*/
 .centeredContent {
@@ -191,6 +251,9 @@ body {
   box-shadow: 0 0 4px 4px rgba(139, 0, 139, 0.17);
   margin: 2.5px 0 2.5px 0; }
 
+.faMenu {
+  padding-left: 15px; }
+
 div#boardgame {
   padding-top: 24px;
   margin: 0px auto; }
@@ -246,6 +309,13 @@ div#boardgame > div {
   padding-right: 0;
   padding-left: 0;
   height: -webkit-fill-available; }
+
+.startComandBtn {
+  position: absolute;
+  clear: both; }
+
+.pauseComandBtn {
+  display: block; }
 
 /*..........................................................................Modal Style*/
 button.btnBody {

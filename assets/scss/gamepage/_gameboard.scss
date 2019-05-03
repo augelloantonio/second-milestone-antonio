@@ -75,3 +75,12 @@ div#boardgame>div {
     padding-left: 0;
     height: -webkit-fill-available;
 }
+
+.startComandBtn {
+    position: absolute;
+    clear: both;
+}
+
+.pauseComandBtn{
+    display: block;
+}
