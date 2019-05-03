@@ -1,5 +1,6 @@
 // Declaring arrays and using shuffle function to give casual orders to my cards //
 
+//BoardGame arrays and variable
 //var memory_array = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H', 'I', 'I', 'L', 'L'];
 var cardList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L', 'M', 'N'];
 var shuffled = [];
@@ -8,6 +9,8 @@ var memory_card_ids = [];
 var memory_array = [];
 var card_flipped = 0;
 var num_cards = 4;
+
+//Variable for my scores  
 var match = 0;
 var click = 0;
 var level = 1;
@@ -17,9 +20,19 @@ var playerLevel = 0;
 var sumCardMatch = 0;
 var sumCardClick = 0;
 
+//Variable for my timer
 var second = 0,
     minute = 0;
 var interval;
+
+//Variable for random sentences on the Next Level Modal
+var sentences = [
+    "Is your brain on? Go haed! Don't lose time",
+    'So you passed another level. Fair play to you!',
+    'You can do it!',
+    "You're on the bowl! Keep going.",
+    "You passed another level, but don't be excited you are not a genius.",
+];
 
 //Array.prototype.memory_card_shuffle = function() {
 //  var i = this.length,
@@ -75,13 +88,14 @@ function getRandomInt(min, max) {
 //................Starting Game BTN -- restarts game with 4 card less when pushed //
 
 function startGame() {
-    var x = document.getElementById("boardgame");
-    if (x.style.display === "none") {
-        x.style.display == "block";
-    }
-    document.getElementById("startBtn").onclick = function() { newBoard(num_cards) };
-    startTimer();
+
     showBoardGame();
+
+    newBoard(num_cards);
+    startTimer();
+    hideStartButton();
+    document.getElementById("startBtn").onclick = function() { startGame(); };
+
 }
 
 function showBoardGame() {
@@ -89,8 +103,28 @@ function showBoardGame() {
 }
 
 
+function hideStartButton() {
+    $("#startBtn").css({ display: 'none' });
+}
+
+function showStartButton() {
+    $("#startBtn").css({ display: 'block' });
+
+}
+
+
+
+function stopGame() {
+    stopTimer();
+    showStartButton();
+    document.getElementById("pauseComandBtn").onclick = function() { stopGame(); };
+
+}
+
+
 // Function that will restart the sounds 
 function startSounds() {
+    $("#soundOnOffBtn").toggleClass('fas fa-volume-mute fas fa-volume-up');
 
 }
 
@@ -104,7 +138,7 @@ function switchSoundClass() {
 //..................................................................Game starting board//
 function newBoard(num_cards) {
 
-    console.log(num_cards); //testing console.log
+    console.log("the cards in the game are ==> " + num_cards); //testing console.log
 
     card_flipped = 0;
     var output = '';
@@ -191,14 +225,20 @@ function generateNewBoard() {
     newBoard(num_cards + 4);
     //levelScore();
     if (num_cards >= 16) {
+        stopTimer();
         $('#levelFiveModal').modal({ show: true });
         startLevelFive();
         num_cards = [];
 
     }
-    else {
+    else if (playerLevel == 1) {
         stopTimer();
         $('#levelTwoModal').modal({ show: true });
+        num_cards += 4;
+    }
+    else {
+        stopTimer();
+        $('#nextLevelModal').modal({ show: true });
         num_cards += 4;
     }
 }
@@ -222,17 +262,18 @@ function showCards() {
 }
 */
 
-//On Page load modal 
+/*On Page load modal 
 $(window).on('load', function() {
     $('#onLoadModal').modal('show');
 });
-
+*/
 
 //game timer
 
 
 // Timer set to start when click first card (BUG = time go faster the double for each time the loop start again, so fo each level)
-document.getElementById('timer').innerHTML = "Timer:" + minute + "mins " + second + "secs";
+
+document.getElementById('timer').innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
 
 
 function startTimer() {
@@ -242,7 +283,7 @@ function startTimer() {
 
 
     interval = setInterval(function() {
-        timer.innerHTML = "Timer:" + minute + "mins " + second + "secs";
+        timer.innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
         second++;
         totalSecond = second;
         if (second == 60) {
@@ -309,11 +350,11 @@ function showLevel() {
 function totalScore(total, num) {
 
     if (level != 1) {
-        let levelPoints = ((sumCardMatch + 20 * sumCardMatch) / sumCardClick) * playerLevel; //Calculate the total score as total match + 20
+        let levelPoints = ((sumCardMatch * sumCardMatch) / sumCardClick) * playerLevel; //Calculate the total score as total match + 20
         globalLevelPoint = levelPoints;
         console.log("The level score is: " + globalLevelPoint);
         score.push(globalLevelPoint); //create a new empty array where push my results, now i have to made the sum of them and show it
-        total = score.reduce((acc, cur) => acc + cur, 0); //taken from https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
+        total = score.reduce((acc, cur) => acc + cur, 0).toFixed(0); //taken from https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
 
         document.getElementById('totalScore').innerHTML = ("Total Score: " + total);
 
@@ -341,12 +382,13 @@ function dataReset() {
     totalScore(); //reset in first the total user score clling the function to fi=x the bug that my score goes up instead of setting to 0
     globalLevelPoint = 0;
 
-    newBoard(4);
+    newBoard();
     num_cards = 4;
 
     totalClick();
     showMatch();
     showLevel();
+    showStartButton();
 }
 
 //Function that will reset the timer and prevent it starts again without clicking on the start
@@ -354,11 +396,16 @@ function resetTimer() {
     second = 0;
     minute = 0;
     stopTimer();
-    timer.innerHTML = "Timer:" + minute + "mins " + second + "secs";
+    timer.innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
 }
 
 function stopTimer() {
     clearInterval(interval);
+}
+
+//Function that allow the menu icon to change from "down" to "up" clicking on the Menu button 
+function dropdownMenuIcon() {
+    $("#menuDropdownBtn").toggleClass('fas fa-caret-down fas fa-caret-up');
 }
 
 
@@ -415,8 +462,25 @@ function validateEmailForm() {
 }
 
 
+
+
+//function to get random sentences every level passed - function took from the following link: from https://stackoverflow.com/questions/33160766/generate-random-sentences-from-an-array-javascript
+function getRandomSentence() {
+    var index = Math.floor(Math.random() * (sentences.length));
+    return sentences[index];
+}
+
+function showRandomSentences() {
+    var element = $("#endLevelSentences");
+    var shuffledSentences = getRandomSentence();
+    element.text(shuffledSentences);
+}
+
+
 newBoard(num_cards);
+showBoardGame();
 showMatch();
 totalClick();
 showLevel();
 totalScore();
+showRandomSentences();
