@@ -39,30 +39,59 @@
  .faModalSuccess:hover {
      box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55);
  }
- 
- 
+
+
  /*......................................................Credits Modal*/
- .fab {
-    border: 8px solid #941494;
-    border-radius: 50px;
-    background-color: darkmagenta;
-    color: white;
-    font-size: 22px;
-}
+
+ .faPersonalIcons {
+     border: 8px solid #941494;
+     border-radius: 50px;
+     background-color: darkmagenta;
+     color: white;
+     font-size: 22px;
+ }
 
 
-.socialsButtons {
-    padding-left: 30px;
-    padding-right: 30px;
-}
+ .socialsButtons {
+     padding-left: 30px;
+     padding-right: 30px;
+ }
 
-.creditSocialLinks {
-    text-align: center;
-    display: inline-block;
-}
+ .creditSocialLinks {
+     text-align: center;
+     display: inline-block;
+ }
 
-.socialList {
-    display: inline-flex;
+ .socialList {
+     display: inline-flex;
+ }
 
-}
+ /*.................................................................Instruction Modal*/
 
+ .example {
+     width: 100%;
+     max-width: 300px;
+     height: auto;
+ }
+
+
+ /*...................................................................Reset Modal*/
+
+ .resetModal {
+     flex-direction: inherit;
+ }
+
+ .resetModalTitle{
+     color: red;
+     font-size:28px
+ }
+ 
+ .backResetBtn{
+     background-color: green;
+     color: white;
+ }
+ 
+ .confirmResetBtn{
+     background-color: red;
+     color: white;
+ }

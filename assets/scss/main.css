@@ -28,7 +28,8 @@ body {
   background-color: wheightte;
   color: black;
   width: 100%;
-  padding-top: 0px; }
+  padding-top: 0px;
+  text-align: center; }
 
 .headerContent {
   padding: 15px;
@@ -36,6 +37,21 @@ body {
 
 .infoMatch {
   margin: auto; }
+
+.starIcon {
+  display: inline-flex; }
+
+.lowScoreStar {
+  font-size: 20px;
+  color: #f05322; }
+
+.midScoreStar {
+  font-size: 20px;
+  color: #f05322; }
+
+.highScoreStar {
+  font-size: 20px;
+  color: #f05322; }
 
 /*...............................................................Text, padding and centering*/
 .centeredContent {
@@ -108,7 +124,14 @@ body {
 
 .gameComandBtn {
   background-color: darkmagenta;
-  border: 0; }
+  border: 0;
+  font-family: "Font Awesome 5 Free";
+  font-size: 30px;
+  text-align: center;
+  color: white;
+  border-radius: 50px;
+  width: 55px;
+  height: 55px; }
 
 .gameComandBtn:focus {
   border: 2px solid white;
@@ -119,44 +142,54 @@ body {
 .gameComandBtn:focus {
   outline: none; }
 
-.fa,
-.far,
-.fas {
-  font-family: "Font Awesome 5 Free";
-  font-size: 30px;
-  text-align: center;
-  color: white;
-  border-radius: 50px;
-  width: 55px;
-  height: 55px; }
-
-.fa,
-.far,
-.fas:hover {
+.gameComandBtn:hover {
   box-shadow: inset 0 0 0px 3px;
   box-shadow: 0 0 4px 8px rgba(139, 0, 139, 0.17); }
+
+.gameComandBtn:focus {
+  outline: none; }
+
+.dropdownMenu {
+  display: inline-block;
+  width: 100%;
+  background-color: white; }
+
+.bg-light {
+  background-color: white !important;
+  color: black; }
 
 .menuNavbar {
   background-color: transparent;
   padding: 0;
   margin: 0;
-  width: 100%; }
+  width: 100%;
+  background-color: white; }
 
-.homePageMenu {
-  padding-top: 15px; }
+.navbar-light .navbar-toggler {
+  color: #ffffff;
+  border-color: #eca2fe9c;
+  box-shadow: 0 0 4px 4px rgba(139, 0, 139, 0.17);
+  border-radius: 25px;
+  background-color: #d320ff; }
 
-.card-body {
-  min-width: 100%;
-  padding: 0;
-  margin: 0;
-  text-align: center;
-  font-size: 24px;
-  border: 0; }
+.dropdownMenuBtn {
+  width: 95%;
+  min-height: 40px;
+  margin-bottom: 10px; }
 
-.menuButton {
-  border: 0;
-  padding: 0;
-  margin: 0; }
+.navbar-light .navbar-toggler :focus {
+  border: 2px solid white;
+  border-radius: 50px;
+  background-color: darkmagenta;
+  color: white; }
+
+.navbar-light .navbar-toggler:focus {
+  outline: none; }
+
+.menuBtn {
+  border: 0.5px solid darkmagenta;
+  box-shadow: 0 0 4px 4px rgba(139, 0, 139, 0.17);
+  margin: 2.5px 0 2.5px 0; }
 
 div#boardgame {
   padding-top: 24px;
@@ -199,8 +232,7 @@ div#boardgame > div {
   padding: 0; }
 
 .gameboard {
-  width: 100%;
-  min-height: 885px; }
+  width: 100%; }
 
 @media (max-width: 768px) {
   .loadGame {
@@ -249,7 +281,7 @@ button.btn.btn-secondary.btnBody:active {
   box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55); }
 
 /*......................................................Credits Modal*/
-.fab {
+.faPersonalIcons {
   border: 8px solid #941494;
   border-radius: 50px;
   background-color: darkmagenta;
@@ -266,6 +298,28 @@ button.btn.btn-secondary.btnBody:active {
 
 .socialList {
   display: inline-flex; }
+
+/*.................................................................Instruction Modal*/
+.example {
+  width: 100%;
+  max-width: 300px;
+  height: auto; }
+
+/*...................................................................Reset Modal*/
+.resetModal {
+  flex-direction: inherit; }
+
+.resetModalTitle {
+  color: red;
+  font-size: 28px; }
+
+.backResetBtn {
+  background-color: green;
+  color: white; }
+
+.confirmResetBtn {
+  background-color: red;
+  color: white; }
 
 /*................................Footer*/
 .footer {
