@@ -5,16 +5,21 @@ var cardList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L', 'M', 'N'];
 var shuffled = [];
 var memory_values = [];
 var memory_card_ids = [];
+var memory_array = [];
 var card_flipped = 0;
 var num_cards = 4;
 var match = 0;
-var level = 1;
 var click = 0;
+var level = 1;
 var score = [];
 var scoreUser = 0;
 var playerLevel = 0;
 var sumCardMatch = 0;
 var sumCardClick = 0;
+
+var second = 0,
+    minute = 0;
+var interval;
 
 //Array.prototype.memory_card_shuffle = function() {
 //  var i = this.length,
@@ -27,16 +32,17 @@ var sumCardClick = 0;
 //    }
 //}
 
-// function memory_card_shuffle(arr) {
-//     var i = arr.length,
-//         j, temp;
-//     while (--i > 0) {
-//         j = Math.floor(Math.random() * (i + 1));
-//         temp = arr[j];
-//         arr[j] = arr[i];
-//         arr[i] = temp;
-//     }
-// }
+
+function memory_card_shuffle(arr) {
+    var i = arr.length,
+        j, temp;
+    while (--i > 0) {
+        j = Math.floor(Math.random() * (i + 1));
+        temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+    }
+}
 
 // memory_card_shuffle(memory_array);
 
@@ -113,9 +119,10 @@ function newBoard(num_cards) {
         shuffled.push(cardList[card]);
         shuffled.push(cardList[card]);
         console.log(shuffled);
-    }
 
-    shuffled.memory_card_shuffle();
+    }
+    memory_card_shuffle(shuffled);
+
     console.log('shuffled ---> ', shuffled);
 
     for (var i = 0; i < shuffled.length; i++) {
@@ -123,6 +130,7 @@ function newBoard(num_cards) {
     }
     document.getElementById('boardgame').innerHTML = output;
 }
+
 
 
 /*....................................................Flip card function
@@ -155,8 +163,7 @@ function memoryFlipCard(card, val) {
                     document.getElementById('boardgame').innerHTML = "";
                     generateNewBoard();
                     showLevel(level += 1);
-                    totalScore()
-
+                    totalScore();
                 }
             }
             //If the id of the selected card is not the same then it will flip back the card assigning them my card logo 
@@ -190,11 +197,11 @@ function generateNewBoard() {
 
     }
     else {
+        stopTimer();
         $('#levelTwoModal').modal({ show: true });
         num_cards += 4;
     }
 }
-
 
 function startLevelFive(card, val) {
     console.log("level 5 will start now");
@@ -222,13 +229,18 @@ $(window).on('load', function() {
 
 
 //game timer
-var second = 0,
-    minute = 0;
-var timer = document.querySelector("#timer");
-var interval;
+
 
 // Timer set to start when click first card (BUG = time go faster the double for each time the loop start again, so fo each level)
+document.getElementById('timer').innerHTML = "Timer:" + minute + "mins " + second + "secs";
+
+
 function startTimer() {
+
+    var timer = document.querySelector("#timer");
+
+
+
     interval = setInterval(function() {
         timer.innerHTML = "Timer:" + minute + "mins " + second + "secs";
         second++;
@@ -270,14 +282,15 @@ function showMatch(matchSum) {
 
 function totalClick() {
     let cardClicked = ("Total Click: " + click);
+
     if (card_flipped >= 0) {
         click++;
     }
     $('#totalClick').text(cardClicked);
     sumCardClick = click;
-
     console.log(cardClicked);
 }
+
 
 //Function that will show the actual level 
 function showLevel() {
@@ -286,17 +299,17 @@ function showLevel() {
         level++;
     }
     $('#level').text(actualLevel);
-    console.log(actualLevel);
     playerLevel = level;
+    console.log("player leves is " + actualLevel);
+
 }
 
 
-//Function that will count the total score of the previous level and display it
+//Function that count the total score of the previous level and display it
 function totalScore(total, num) {
-    //should give total score = total score at the start of the next level
 
     if (level != 1) {
-        let levelPoints = (sumCardMatch / sumCardClick) + 10;
+        let levelPoints = ((sumCardMatch + 20 * sumCardMatch) / sumCardClick) * playerLevel; //Calculate the total score as total match + 20
         globalLevelPoint = levelPoints;
         console.log("The level score is: " + globalLevelPoint);
         score.push(globalLevelPoint); //create a new empty array where push my results, now i have to made the sum of them and show it
@@ -309,43 +322,101 @@ function totalScore(total, num) {
         document.getElementById('totalScore').innerHTML = "Total Score: " + 0;
 
     }
-    //calculate the total score
+    //testing calculate the total score
     console.log("total is " + total);
 }
 
 
+//Function that will reset all the data
 function dataReset() {
 
-    timeGaming();
-    second = 0;
-    minute = 0;
+    resetTimer();
 
-    showMatch();
     match = 0;
-
-    totalClick();
     click = 0;
 
-    showLevel();
+
     level = 1;
 
-    totalScore();
+    totalScore(); //reset in first the total user score clling the function to fi=x the bug that my score goes up instead of setting to 0
     globalLevelPoint = 0;
 
-    newBoard();
+    newBoard(4);
     num_cards = 4;
 
+    totalClick();
+    showMatch();
+    showLevel();
+}
 
+//Function that will reset the timer and prevent it starts again without clicking on the start
+function resetTimer() {
+    second = 0;
+    minute = 0;
+    stopTimer();
+    timer.innerHTML = "Timer:" + minute + "mins " + second + "secs";
+}
+
+function stopTimer() {
+    clearInterval(interval);
 }
 
 
+//Function that will allow the reset confirm button to let reset the game
 function resetGame() {
-    document.getElementById("resetBtn").onclick = function() { dataReset() };
+    document.getElementById("restartConfirm").onclick = function() { dataReset(); };
+
+}
+
+//Display a modal alert that will advise to the user that all the data are erased
+function successAlert() {
+    setTimeout(function() { $('#successAlertModal').modal('show') }, 500);
+    setTimeout(function() { $('#successAlertModal').modal('hide') }, 2000);
+}
+
+//Display a modal alert that will advise to the user that the email has been sent
+function successEmailAlert() {
+    setTimeout(function() { $('#successEmailModal').modal('show') }, 500);
+    setTimeout(function() { $('#successEmailModal').modal('hide') }, 2000);
+}
+
+
+//Reverse order for my element
+//$('ul').append($('ul').find('li').get().reverse());
+
+
+//Send email form
+function sendMail(contactForm) {
+    emailjs.send("outlook", "helpyourbrain", {
+            "from_name": from_name_value,
+            "from_email": from_email_value,
+            "email_text": email_text_value
+        })
+        .then(
+            function(response) {
+                console.log("SUCCESS", response);
+            },
+            function(error) {
+                console.log("FAILED", error);
+            }
+        );
+    return false; // To block from loading a new page
+}
+
+//Validate if email for has been filled or not
+function validateEmailForm() {
+    name = document.getElementById("fullname");
+    email = document.getElementById("emailaddress");
+    text = document.getElementById("textarea");
+
+    if (name == 'Name' && email == 'Email' && '' && text == 'Text here') {
+        alert("Please fill all the areas!");
+    }
 }
 
 
 newBoard(num_cards);
 showMatch();
-totalClick()
+totalClick();
 showLevel();
 totalScore();
