@@ -32,13 +32,14 @@
                         <div class="row">
                             <div class="col-sm-push-12 col-md-12 gameComandBoard">
                                 <div class="row">
-                                    <div id="startBtn" class="col-4 gameControlsBox">
-                                        <button class="fas fa-play gameComandBtn" type="button" id="startBtn" onclick="startGame(); showBoardGame();"></button>
+                                    <div id="" class="col-4 gameControlsBox">
+                                        <button class="fas fa-play gameComandBtn startComandBtn" type="button" id="startBtn" onclick="startGame();"></button>
+                                        <button class="fas fa-pause gameComandBtn" type="button" id="pauseComandBtn" onclick="stopGame();"></button>
                                     </div>
-                                    <div id="startBtn" class="col-4 gameControlsBox">
+                                    <div id="" class="col-4 gameControlsBox">
                                         <button type="button" class="fas fa-undo-alt gameComandBtn" data-toggle="modal" data-target="#resetGameModal"></button>
                                     </div>
-                                    <div id="startBtn" class="col-4 gameControlsBox">
+                                    <div id="" class="col-4 gameControlsBox">
                                         <button class="fas fa-volume-up gameComandBtn" type="button" id="soundOnOffBtn" onclick="switchSoundClass();"></button>
                                     </div>
                                 </div>
@@ -46,7 +47,7 @@
 
                             <!--Menu Dropdown Menu-->
                             <nav class="navbar navbar-expand-lg navbar-light bg-light dropdownMenu">
-                                <button class="navbar-toggler dropdownMenuBtn" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+                                <button class="navbar-toggler dropdownMenuBtn" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" onclick="dropdownMenuIcon();">Menu <i id="menuDropdownBtn" class="fas fa-caret-down faMenu"></i></button>
                                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                                     <div class="list-group menuNavbar">
                                         <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#InstructionModalCenter" onclick="stopTimer();">Instructions</button>
@@ -68,13 +69,26 @@
                     <div class="row">
                         <div class="col-xs-12 headerTab">
                             <div class="headerContent">
-                                <div class="row">
-                                    <div class="col-xs-3 infoMatch">
-                                        <p id="totalClick" class="mb-1"></p>
-                                        <p id="matches" class="mb-1"></p>
-                                    </div>
-                                    <div class="col-sm-3 col-xs-12 infoMatch">
+                                <div class="row infoMatch">
+                                    <div class="col-4"></div>
+
+                                    <div class="col-4 col-xs-12 levelBoard">
                                         <p id="level" class="mb-1"></p>
+                                    </div>
+                                    <div class="col-4"></div>
+                                </div>
+                                <div class="click_match_bar">
+                                    <div class="row infoMatch">
+                                        <div class="col-6 clickBoard">
+                                            <p id="totalClick" class="mb-1"></p>
+                                        </div>
+                                        <div class="col-6 matchBoard">
+                                            <p id="matches" class="mb-1"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row infoMatch">
+                                    <div class="col-sm-6 col-xs-12 scoreBoard">
                                         <p id="levelScore" class="mb-1"></p>
                                         <p id="totalScore" class="mb-1"></p>
                                         <ul class="list-inline starIcon">
@@ -83,21 +97,22 @@
                                             <li><i class="fas fa-star highScoreStar"></i></li>
                                         </ul>
                                     </div>
-                                    <div class="col-xs-3 infoMatch">
+                                    <div class="col-sm-6 col-xs-12 timeBoard">
                                         <p id="timer" class="mb-1">Timer</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="gameboard">
-                            <div id="loadGame" class="gameboard">
-                                <div id="boardgame" class="col-xs-12 boardgame"></div>
-                            </div>
+                    </div>
+                    <div class="gameboard">
+                        <div id="loadGame" class="gameboard">
+                            <div id="boardgame" class="col-xs-12 boardgame"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -225,6 +240,25 @@
                 </div>
                 <div class="modal-body">
                     <p>Level One completed, but that was an easy one! Let's start with the real game now!</p>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Next Level Modal-->
+    <div class="modal fade" id="nextLevelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Well Done! </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+                </div>
+                <div class="modal-body">
+                    <p id="endLevelSentences"></p>
                     <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
                 </div>
 
