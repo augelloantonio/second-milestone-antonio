@@ -8,38 +8,35 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/css/homepage.css" type="text/css" />
-    <link rel="stylesheet" href="/assets/css/board_style.css" type="text/css" />
+    <link rel="stylesheet" href="/assets/scss/main.css" type="text/css" />
+
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            emailjs.init("user_96n5MVsQfZCvUmDKXU673");
+        })();
+    </script>
 
 </head>
 
 <body>
     <!-- ........................................Home Page Menu-->
+    <div class="page-container">
+        <div class="container-fluid">
+            <div class="row">
+                <!--....................Left Side Menu-->
+                <div class="col-md-4 aside">
+                    <div class="logo"></div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <!--....................Left Side Menu-->
-            <div class="col-md-4 aside">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="logo"></div>
-
-                        <div class="containerMenuSide sideMenu">
-
-                            <div class="list-group">
-                                <button type="button" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#InstructionModalCenter">Instructions</button>
-                                <button type="button" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#LevelsModalCenter">Levels</button>
-                                <button type="button" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#ContactModalCenter">Contact</button>
-                                <button type="button" class="list-group-item list-group-item-action" data-toggle="modal" data-target="#CreditsModalCenter">Credits</button>
-                            </div>
-
-                            <div class="gameComandBoard">
+                    <div class="containerMenuSide sideMenu">
+                        <div class="row">
+                            <div class="col-sm-push-12 col-md-12 gameComandBoard">
                                 <div class="row">
                                     <div id="startBtn" class="col-4 gameControlsBox">
-                                        <button class="fas fa-play gameComandBtn" type="button" id="startBtn" onclick="startGame(); show();"></button>
+                                        <button class="fas fa-play gameComandBtn" type="button" id="startBtn" onclick="startGame(); showBoardGame();"></button>
                                     </div>
                                     <div id="startBtn" class="col-4 gameControlsBox">
-                                        <button class="fas fa-undo-alt gameComandBtn" type="button" id="resetBtn" onclick="dataReset();"></button>
+                                        <button type="button" class="fas fa-undo-alt gameComandBtn" data-toggle="modal" data-target="#resetGameModal"></button>
                                     </div>
                                     <div id="startBtn" class="col-4 gameControlsBox">
                                         <button class="fas fa-volume-up gameComandBtn" type="button" id="soundOnOffBtn" onclick="switchSoundClass();"></button>
@@ -47,60 +44,61 @@
                                 </div>
                             </div>
 
+                            <!--Menu Dropdown Menu-->
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light dropdownMenu">
+                                <button class="navbar-toggler dropdownMenuBtn" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+                                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                                    <div class="list-group menuNavbar">
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#InstructionModalCenter" onclick="stopTimer();">Instructions</button>
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#LevelsModalCenter" onclick="stopTimer();">Levels</button>
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#ContactModalCenter" onclick="stopTimer();">Contact</button>
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#CreditsModalCenter" onclick="stopTimer();">Credits</button>
+                                    </div>
+                                </div>
+                            </nav>
+                            <!-- End Menu Dropdown Menu-->
 
-                            <!-- ................................................................Start button-->
+
                         </div>
                     </div>
                 </div>
 
-            </div>
-
-            <!-- Right Side / Game -->
-            <div class="col-md-8 gameContainer">
-                <div class="row">
-                    <div class="col-xs-12 headerTab">
-                        <div class="headerContent">
-                            <div class="row">
-                                <div class="col-xs-3 infoMatch">
-                                    <p id="totalClick" class="mb-1"></p>
-                                    <p id="matches" class="mb-1"></p>
-                                </div>
-                                <div class="col-xs-3 infoMatch">
-                                    <p id="level" class="mb-1"></p>
-                                    <p id="levelScore" class="mb-1"></p>
-                                    <p id="totalScore" class="mb-1"></p>
-
-                                </div>
-                                <div class="col-xs-3 infoMatch">
-                                    <p id="timer" class="mb-1">Timer</p>
+                <!-- Right Side / Game -->
+                <div class="col-md-8 gameContainer">
+                    <div class="row">
+                        <div class="col-xs-12 headerTab">
+                            <div class="headerContent">
+                                <div class="row">
+                                    <div class="col-xs-3 infoMatch">
+                                        <p id="totalClick" class="mb-1"></p>
+                                        <p id="matches" class="mb-1"></p>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-12 infoMatch">
+                                        <p id="level" class="mb-1"></p>
+                                        <p id="levelScore" class="mb-1"></p>
+                                        <p id="totalScore" class="mb-1"></p>
+                                        <ul class="list-inline starIcon">
+                                            <li><i class="fas fa-star lowScoreStar"></i></li>
+                                            <li><i class="fas fa-star midScoreStar"></i></li>
+                                            <li><i class="fas fa-star highScoreStar"></i></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-xs-3 infoMatch">
+                                        <p id="timer" class="mb-1">Timer</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <section class="loadGame">
-                        <div id="loadGame" class="">
-                            <div id="boardgame" class="col-xs-12 boardgame"></div>
+                        <div class="gameboard">
+                            <div id="loadGame" class="gameboard">
+                                <div id="boardgame" class="col-xs-12 boardgame"></div>
+                            </div>
                         </div>
-                    </section>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <!--Footer-->
-    <footer class="container-fluid">
-        <div class="row footerRow">
-            <p>HelpYourBrain is a WebApp developed by Antonio Augello as CodeInstitute Second Milestone Project</p>
-            <p>Copyright Antonio Augello</p>
-            <div class="footerSocialLinks">
-                <ul class="list-inline socialList">
-                    <li class="socialsButtons"><a target="_blank" href="https://www.linkedin.com/in/antonio-augello-aba83911a/"><i class="fab fa-linkedin faPersonalIcons"></i></a></li>
-                    <li class="socialsButtons"><a target="_blank" href="https://github.com/gello94"><i class="fab fa-github-square faPersonalIcons"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </footer>
-    <!--/.Footer-->
 
 
 
@@ -109,20 +107,39 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Contact</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Instruction</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <p>...</p>
+                    <div class="row">
+                        <div>
+                            <ul>
+                                <li>
+                                    <p>Press the start button, the timer will start and you can start the game.</p>
+                                </li>
+                                <li>
+                                    <p>Click on one of the cards and see the image.</p>
+                                    <img class="example" src="/assets/img/clickExample.jpg" alt="clickExample"></img>
 
+                                </li>
+                                <li>
+                                    <p>Click another card, if the card has the same image then is a Match, and you score a point!</p>
+                                    <img class="example" src="/assets/img/matchExample.jpg" alt="matchExample"></img>
+                                </li>
+                                <li>
+                                    <p>If the images are not the same they will both flip back.</p>
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
                     <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
-
                 </div>
             </div>
         </div>
     </div>
+
+
 
     <!-- Modal levels-->
     <div class="modal fade" id="LevelsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -148,17 +165,21 @@
     <div class="modal fade" id="CreditsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header centeredContent">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Credits</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
                 </div>
-                <div class="modal-body">
-                    <p>...</p>
-
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
-
+                <div class="modal-body centeredContent">
+                    <p>HelpYourBrain is a WebApp developed by Antonio Augello as CodeInstitute Second Milestone Project</p>
+                    <p>Copyright Antonio Augello</p>
+                    <div class="creditSocialLinks">
+                        <p>Linkedin Account:</p>
+                        <a target="_blank" href="https://www.linkedin.com/in/antonio-augello-aba83911a/"><i class="fab fa-linkedin faPersonalIcons"></i></a>
+                        <p>GitHub Account:</p>
+                        <a target="_blank" href="https://github.com/gello94"><i class="fab fa-github-square faPersonalIcons"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -169,16 +190,23 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Contact</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Do you want to let me know what do you think of my game or do you have any suggestions? Send me an email</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
                 </div>
-                <div class="modal-body">
-                    <p>...</p>
+                <div class="modal-body centeredContent">
+                    <div class="row bg-color-contact">
 
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
-
+                        <div class="center-form">
+                            <form onsubmit="return sendMail(this);" method="POST">
+                                <input type="text" name="name" class="form-control" id="fullname" placeholder="Name" required/>
+                                <input type="text" name="emailaddress" class="form-control" id="emailaddress" placeholder="Email" required/>
+                                <textarea rows="5" name="projectsummary" class="form-control" id="textarea" placeholder="Text here" required></textarea>
+                                <button type="submit" class="btn btn-secondary center-block" onclick="validateEmailForm();">Send Email</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -197,7 +225,7 @@
                 </div>
                 <div class="modal-body">
                     <p>Level One completed, but that was an easy one! Let's start with the real game now!</p>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
                 </div>
 
             </div>
@@ -218,7 +246,7 @@
                 <div class="modal-body">
                     Let's made the game bit more interesting, now you have 10 seconds to memorize all the pictures and then only 3 attempts to match all the cards.
                     <br/> 5 seconds and 4 new cards will be added on Level 6. So be ready.
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
                 </div>
             </div>
         </div>
@@ -241,7 +269,7 @@
                     <h5>Instructions</h5>
                     <ul>
                         <li>
-                            <p>Press the start button, the timer will start and you can start the game.</p>
+                            <p>Press the start button, the card will be showed on the board and the timer will start and you can start the game.</p>
                         </li>
                         <li>
                             <p>Click on one of the cards and see the image.</p>
@@ -260,12 +288,55 @@
         </div>
     </div>
 
+    <!-- Modal Reset Game-->
+    <div class="modal fade " id="resetGameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content resetModal">
+                <div class="modal-header resetModalHeader centeredContent">
+                    <h5 class="modal-title resetModalTitle" id="exampleModalCenterTitle">Are you sure you want to reset the game?</h5>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Clicking on Reset all the progress will be lost.</p>
+
+                    <button type="button" class="btn btn-secondary backResetBtn" data-dismiss="modal">Go Back</button>
+                    <button class="btn btn-secondary confirmResetBtn" type="button" id="resetBtn" data-dismiss="modal" onclick="dataReset(); successAlert();">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Alert Modal-->
+    <div class="modal fade" id="successAlertModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modalSuccessContent">
+                <div class="modal-body">
+                    <p>Reset Successfull!</p>
+                    <i class="fas fa-check faModalSuccess"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Email Sent Modal-->
+    <div class="modal fade" id="successEmailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modalSuccessContent">
+                <div class="modal-body">
+                    <p>Email Sent!</p>
+                    <i class="fas fa-check faModalSuccess"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/assets/js/sendemail.js"></script>
 
-    <script type="text/javascript" src="/assets/js/levels/levelTwo.js"></script>
     <script type="text/javascript" src="/assets/js/boardgame.js"></script>
-    <script type="text/javascript" src="/assets/js/timer.js"></script>
 </body>
 
 </html>
