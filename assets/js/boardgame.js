@@ -13,7 +13,7 @@ var num_cards = 4;
 //Variable for my scores  
 var match = 0;
 var click = 0;
-var level = 1;
+var level = 3; //Set to 0 or my increment will set it to start from 1 level more
 var score = [];
 var scoreUser = 0;
 var playerLevel = 0;
@@ -26,6 +26,9 @@ var second = 0,
 var interval;
 
 //Variable for random sentences on the Next Level Modal
+var randomizedSentences = [];
+var showedSentences = [];
+var shuffledSentences = [];
 var sentences = [
     "Is your brain on? Go haed! Don't lose time",
     'So you passed another level. Fair play to you!',
@@ -34,19 +37,7 @@ var sentences = [
     "You passed another level, but don't be excited you are not a genius.",
 ];
 
-//Array.prototype.memory_card_shuffle = function() {
-//  var i = this.length,
-//    j, temp;
-//while (--i > 0) {
-//        j = Math.floor(Math.random() * (i + 1));
-//        temp = this[j];
-//        this[j] = this[i];
-//        this[i] = temp;
-//    }
-//}
-
-
-function memory_card_shuffle(arr) {
+function shuffle(arr) {
     var i = arr.length,
         j, temp;
     while (--i > 0) {
@@ -56,11 +47,6 @@ function memory_card_shuffle(arr) {
         arr[i] = temp;
     }
 }
-
-// memory_card_shuffle(memory_array);
-
-
-
 
 // Get a random index between min and max
 // from https://stackoverflow.com/questions/1527803/generating-random-whole-numbers-in-javascript-in-a-specific-range
@@ -85,7 +71,8 @@ function getRandomInt(min, max) {
 }
 
 
-//................Starting Game BTN -- restarts game with 4 card less when pushed //
+/* Starting Game function assignet to the start Button, clicking on this button the play the game will generate 4 
+cards and the time will start counting, the pause button will appear instead of the play */
 
 function startGame() {
 
@@ -108,17 +95,15 @@ function hideStartButton() {
 }
 
 function showStartButton() {
-    $("#startBtn").css({ display: 'block' });
+    $("#startBtn").css({ display: '' });
 
 }
 
-
-
+//Function that allow the player to pause the game and show the play button 
 function stopGame() {
     stopTimer();
     showStartButton();
     document.getElementById("pauseComandBtn").onclick = function() { stopGame(); };
-
 }
 
 
@@ -145,7 +130,7 @@ function newBoard(num_cards) {
     shuffled = [];
 
     for (var i = 0; i < num_cards / 2; i++) {
-        // Get a random card between 0 and 7 from the card list
+        // Get a random card between 0 and 11 from the card list
         var card = getRandomInt(0, 11);
 
         // Push the card into the list to be shuffled
@@ -155,7 +140,7 @@ function newBoard(num_cards) {
         console.log(shuffled);
 
     }
-    memory_card_shuffle(shuffled);
+    shuffle(shuffled);
 
     console.log('shuffled ---> ', shuffled);
 
@@ -163,6 +148,8 @@ function newBoard(num_cards) {
         output += '<div class="backLogoCardDiv"  id="card_' + i + '" onclick="memoryFlipCard(this,\'' + shuffled[i] + '\')"></div>'
     }
     document.getElementById('boardgame').innerHTML = output;
+
+    getRandomSentence(); // to generate a new sentence every
 }
 
 
@@ -196,7 +183,7 @@ function memoryFlipCard(card, val) {
                 if (card_flipped == shuffled.length) {
                     document.getElementById('boardgame').innerHTML = "";
                     generateNewBoard();
-                    showLevel(level += 1);
+                    levelUp();
                     totalScore();
                 }
             }
@@ -220,47 +207,33 @@ function memoryFlipCard(card, val) {
     }
 }
 
-//Loop that will let my num_cards add 4 new items each time until value of 16 reached (bug= it show 4 more card than my )
 function generateNewBoard() {
     newBoard(num_cards + 4);
-    //levelScore();
-    if (num_cards >= 16) {
+    if (level == 4) { 
         stopTimer();
+        num_cards = 4;
         $('#levelFiveModal').modal({ show: true });
+        $('#nextLevelModal').modal('hide');
         startLevelFive();
-        num_cards = [];
 
     }
-    else if (playerLevel == 1) {
+    if (playerLevel == 1) {
         stopTimer();
         $('#levelTwoModal').modal({ show: true });
-        num_cards += 4;
+        // num_cards += 4;
     }
-    else {
+    if (level != 1 && level != 4) {
         stopTimer();
         $('#nextLevelModal').modal({ show: true });
-        num_cards += 4;
+        // num_cards += 4;
     }
 }
 
-function startLevelFive(card, val) {
+function startLevelFive() {
     console.log("level 5 will start now");
     // showCards(); to activate later
 }
 
-
-//..............................................New function that allow to see the cards for 10 seconds //
-/*
-function showCards() {
-    getElementByClass('.backLogoCardDiv.backImg');
-
-
-    if (card_flipped == 0) {
-
-    }
-    setTimeout(function() { $("img").fadeOut(); }, 1000);
-}
-*/
 
 /*On Page load modal 
 $(window).on('load', function() {
@@ -268,19 +241,11 @@ $(window).on('load', function() {
 });
 */
 
-//game timer
-
-
-// Timer set to start when click first card (BUG = time go faster the double for each time the loop start again, so fo each level)
-
 document.getElementById('timer').innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
-
 
 function startTimer() {
 
     var timer = document.querySelector("#timer");
-
-
 
     interval = setInterval(function() {
         timer.innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
@@ -304,7 +269,6 @@ function startTimer() {
 function timeGaming() {
 
 }
-
 
 
 /*function that will count the point the user does for each match ==> replace this function here and use it to value the totale times that the
@@ -334,21 +298,19 @@ function totalClick() {
 
 
 //Function that will show the actual level 
-function showLevel() {
-    let actualLevel = ("Level " + level);
-    if (card_flipped == shuffled.length) {
-        level++;
-    }
-    $('#level').text(actualLevel);
+function levelUp() {
+    level++;
+    $('#level').text("Level " + level);
     playerLevel = level;
-    console.log("player leves is " + actualLevel);
+    previousLevel = level - 1;
+    $("#nextLevelModalTitle").text("Well Done, you passed the level " + previousLevel);
 
+    console.log("player leves is " + level);
 }
 
 
 //Function that count the total score of the previous level and display it
 function totalScore(total, num) {
-
     if (level != 1) {
         let levelPoints = ((sumCardMatch * sumCardMatch) / sumCardClick) * playerLevel; //Calculate the total score as total match + 20
         globalLevelPoint = levelPoints;
@@ -387,7 +349,7 @@ function dataReset() {
 
     totalClick();
     showMatch();
-    showLevel();
+    levelUp();
     showStartButton();
 }
 
@@ -399,6 +361,7 @@ function resetTimer() {
     timer.innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
 }
 
+// To prevent the timer to continue when the end levels modals are showed
 function stopTimer() {
     clearInterval(interval);
 }
@@ -408,11 +371,9 @@ function dropdownMenuIcon() {
     $("#menuDropdownBtn").toggleClass('fas fa-caret-down fas fa-caret-up');
 }
 
-
 //Function that will allow the reset confirm button to let reset the game
 function resetGame() {
     document.getElementById("restartConfirm").onclick = function() { dataReset(); };
-
 }
 
 //Display a modal alert that will advise to the user that all the data are erased
@@ -421,35 +382,7 @@ function successAlert() {
     setTimeout(function() { $('#successAlertModal').modal('hide') }, 2000);
 }
 
-//Display a modal alert that will advise to the user that the email has been sent
-function successEmailAlert() {
-    setTimeout(function() { $('#successEmailModal').modal('show') }, 500);
-    setTimeout(function() { $('#successEmailModal').modal('hide') }, 2000);
-}
-
-
-//Reverse order for my element
-//$('ul').append($('ul').find('li').get().reverse());
-
-
-//Send email form
-function sendMail(contactForm) {
-    emailjs.send("outlook", "helpyourbrain", {
-            "from_name": from_name_value,
-            "from_email": from_email_value,
-            "email_text": email_text_value
-        })
-        .then(
-            function(response) {
-                console.log("SUCCESS", response);
-            },
-            function(error) {
-                console.log("FAILED", error);
-            }
-        );
-    return false; // To block from loading a new page
-}
-
+/* I could use it as my final modal
 //Validate if email for has been filled or not
 function validateEmailForm() {
     name = document.getElementById("fullname");
@@ -460,27 +393,21 @@ function validateEmailForm() {
         alert("Please fill all the areas!");
     }
 }
-
-
-
+*/
 
 //function to get random sentences every level passed - function took from the following link: from https://stackoverflow.com/questions/33160766/generate-random-sentences-from-an-array-javascript
 function getRandomSentence() {
-    var index = Math.floor(Math.random() * (sentences.length));
-    return sentences[index];
+    var randomSentences = sentences[Math.floor(Math.random() * sentences.length)];
+    document.getElementById('endLevelSentences').innerHTML = randomSentences;
+    console.log(randomSentences);
 }
 
-function showRandomSentences() {
-    var element = $("#endLevelSentences");
-    var shuffledSentences = getRandomSentence();
-    element.text(shuffledSentences);
-}
 
 
 newBoard(num_cards);
 showBoardGame();
 showMatch();
 totalClick();
-showLevel();
+levelUp();
 totalScore();
-showRandomSentences();
+getRandomSentence();
