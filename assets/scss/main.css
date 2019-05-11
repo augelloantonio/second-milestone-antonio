@@ -71,7 +71,9 @@ body {
   background: #cc01fe;
   color: white;
   font-weight: 500;
-  border-radius: 25PX; }
+  border-radius: 25PX;
+  max-width: 48%;
+  margin-bottom: 3px; }
 
 .clickBoard {
   box-shadow: 0 0 4px 1px #d320ff;
@@ -327,6 +329,10 @@ button.btn.btn-secondary.btnBody:hover {
 
 button.btn.btn-secondary.btnBody:active {
   background-color: #ff6a00; }
+
+/*.....................................................................On load Modal*/
+.alertPlayer {
+  display: none; }
 
 /*...................................................................Success Modal*/
 #successAlertModal {
