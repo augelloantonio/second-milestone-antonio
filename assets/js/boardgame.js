@@ -13,7 +13,7 @@ var num_cards = 4;
 //Variable for my scores  
 var match = 0;
 var click = 0;
-var level = 3; //Set to 0 or my increment will set it to start from 1 level more
+var level = 0; //Set to 0 or my increment will set it to start from 1 level more
 var score = [];
 var scoreUser = 0;
 var playerLevel = 0;
@@ -226,22 +226,21 @@ function generateNewBoard() {
         $('#levelTwoModal').modal({ show: true });
         newBoard(num_cards + 4);
 
-        // num_cards += 4;
+        num_cards += 4;
     }
     if (level != 1 && level != 4) {
         stopTimer();
         $('#nextLevelModal').modal({ show: true });
         newBoard(num_cards + 4);
 
-        // num_cards += 4;
+        num_cards += 4;
     }
 }
 
 function startLevelFive() {
     $.getScript("/assets/js/trying.js", function() {
         levelFiveNewBoard();
-    });
-    console.log("level 5 will start now");
+        });
     // showCards(); to activate later
 }
 
