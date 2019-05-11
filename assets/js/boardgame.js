@@ -37,6 +37,11 @@ var sentences = [
     "You passed another level, but don't be excited you are not a genius.",
 ];
 
+//localStorage.clear(userName);
+
+var userName = "Player";
+
+
 function shuffle(arr) {
     var i = arr.length,
         j, temp;
@@ -149,7 +154,7 @@ function newBoard(num_cards) {
     }
     document.getElementById('boardgame').innerHTML = output;
 
-    getRandomSentence(); // to generate a new sentence every
+    getRandomSentence(); // to generate a new sentence every round
 }
 
 
@@ -208,8 +213,7 @@ function memoryFlipCard(card, val) {
 }
 
 function generateNewBoard() {
-    newBoard(num_cards + 4);
-    if (level == 4) { 
+    if (level == 4) {
         stopTimer();
         num_cards = 4;
         $('#levelFiveModal').modal({ show: true });
@@ -220,26 +224,42 @@ function generateNewBoard() {
     if (playerLevel == 1) {
         stopTimer();
         $('#levelTwoModal').modal({ show: true });
+        newBoard(num_cards + 4);
+
         // num_cards += 4;
     }
     if (level != 1 && level != 4) {
         stopTimer();
         $('#nextLevelModal').modal({ show: true });
+        newBoard(num_cards + 4);
+
         // num_cards += 4;
     }
 }
 
 function startLevelFive() {
+    $.getScript("/assets/js/trying.js", function() {
+        levelFiveNewBoard();
+    });
     console.log("level 5 will start now");
     // showCards(); to activate later
 }
 
 
-/*On Page load modal 
-$(window).on('load', function() {
-    $('#onLoadModal').modal('show');
-});
-*/
+//On Page load modal 
+function showOnLoadModal() {
+    if (userName != "Player") {
+        $(window).on('load', function() {
+            $('#onLoadModal').modal('hide');
+        });
+    }
+    if (userName === "Player") {
+        $(window).on('load', function() {
+            $('#onLoadModal').modal('show');
+        });
+    }
+}
+
 
 document.getElementById('timer').innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
 
@@ -262,12 +282,6 @@ function startTimer() {
             totalHour = hour;
         }
     }, 1000);
-}
-
-
-// Function that should stop the reloop of the startTimer function
-function timeGaming() {
-
 }
 
 
@@ -338,8 +352,13 @@ function dataReset() {
     match = 0;
     click = 0;
 
+    var sumCardMatch = 0;
+    var sumCardClick = 0;
 
-    level = 1;
+    score = [];
+
+
+    level = 0;
 
     totalScore(); //reset in first the total user score clling the function to fi=x the bug that my score goes up instead of setting to 0
     globalLevelPoint = 0;
@@ -347,10 +366,16 @@ function dataReset() {
     newBoard();
     num_cards = 4;
 
+    localStorage.clear("userName");
+    userName = "Player";
+    displayPlayerName();
+    store();
+
     totalClick();
     showMatch();
     levelUp();
     showStartButton();
+    totalScore();
 }
 
 //Function that will reset the timer and prevent it starts again without clicking on the start
@@ -402,7 +427,65 @@ function getRandomSentence() {
     console.log(randomSentences);
 }
 
+//User Details
 
+// storing username from the starting modal
+//User Details
+var userName = localStorage.getItem("userName");
+
+// storing username from the form input into the onload modal
+function store() {
+    if (userName == "Player") { //To prevent my name to change as default "Player" if the button to set the name is clicked
+        userName = $("#username").val();
+        localStorage.setItem("userName", userName);
+    }
+    console.log(userName); // testing console
+
+}
+
+//Assign to the p element the username chosen by the user
+function displayPlayerName() {
+
+    if (userName != "") {
+        $('#playerName').text("Player: " + userName);
+    }
+    if (userName === null) {
+        userName = "Player";
+        $('#playerName').text("Player: " + userName);
+    }
+    else if (userName == "") {
+        userName = "Player";
+        $('#playerName').text("Player: " + userName);
+    }
+    console.log(userName); //testing console
+}
+
+//Show a success alert or an error alert if the player name is/ or is not inserted
+function showAlertPlayerName() {
+    if (userName != "Player") {
+        $('#playerNameSuccess').show();
+        setTimeout(function() { $('#playerNameSuccess').hide(); }, 1500);
+    }
+    if (userName == "Player") {
+        $('#playerNameError').show();
+        setTimeout(function() { $('#playerNameError').hide(); }, 1500);
+    }
+}
+
+//To allow the player to change his name
+function changePlayerName() {
+
+    userName = $("#changeusername").val();
+    localStorage.setItem("userName", userName);
+
+    console.log(userName); // testing console
+
+}
+
+function showPlayerResults() {
+    $('#playername').text("Player: " + userName);
+
+}
 
 newBoard(num_cards);
 showBoardGame();
@@ -411,3 +494,6 @@ totalClick();
 levelUp();
 totalScore();
 getRandomSentence();
+displayPlayerName();
+showOnLoadModal();
+startLevelFive();

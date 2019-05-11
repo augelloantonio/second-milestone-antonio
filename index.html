@@ -9,14 +9,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/scss/main.css" type="text/css" />
-
-    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("user_96n5MVsQfZCvUmDKXU673");
-        })();
-    </script>
-
 </head>
 
 <body>
@@ -51,8 +43,8 @@
                                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                                     <div class="list-group menuNavbar">
                                         <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#InstructionModalCenter" onclick="stopTimer();">Instructions</button>
-                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#LevelsModalCenter" onclick="stopTimer();">Levels</button>
-                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#ContactModalCenter" onclick="stopTimer();">Contact</button>
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#playerScoreModalCenter" onclick="stopTimer();">Players Score</button>
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#SettingsModalCenter" onclick="stopTimer();">Settings</button>
                                         <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#CreditsModalCenter" onclick="stopTimer();">Credits</button>
                                     </div>
                                 </div>
@@ -69,13 +61,13 @@
                     <div class="row">
                         <div class="col-xs-12 headerTab">
                             <div class="headerContent">
-                                <div class="row infoMatch">
-                                    <div class="col-4"></div>
-
-                                    <div class="col-4 col-xs-12 levelBoard">
+                                <div class="row">
+                                    <div class="col-6  levelBoard">
+                                        <p id="playerName" class="mb-1"></p>
+                                    </div>
+                                    <div class="col-6  levelBoard">
                                         <p id="level" class="mb-1"></p>
                                     </div>
-                                    <div class="col-4"></div>
                                 </div>
                                 <div class="click_match_bar">
                                     <div class="row infoMatch">
@@ -156,19 +148,49 @@
 
 
 
-    <!-- Modal levels-->
-    <div class="modal fade" id="LevelsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!-- Modal Player Score-->
+    <div class="modal fade" id="playerScoreModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Levels</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Players Score</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
                 </div>
                 <div class="modal-body">
-                    <p>...</p>
-
+                    <div>
+                        <table class="table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">First</th>
+                                    <th scope="col">Last</th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td id="playername"></td>
+                                    <td>Otto</td>
+                                    <td>@mdo</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td id="playername"></td>
+                                    <td>Thornton</td>
+                                    <td>@fat</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td id="playername">Mark</td>
+                                    <td>the Bird</td>
+                                    <td>@twitter</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
 
                 </div>
@@ -200,12 +222,12 @@
         </div>
     </div>
 
-    <!-- Modal Contact-->
-    <div class="modal fade" id="ContactModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!-- Modal Settings-->
+    <div class="modal fade" id="SettingsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Do you want to let me know what do you think of my game or do you have any suggestions? Send me an email</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Settings</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -213,13 +235,12 @@
                 <div class="modal-body centeredContent">
                     <div class="row bg-color-contact">
 
-                        <div class="center-form">
-                            <form onsubmit="return sendMail(this);" method="POST">
-                                <input type="text" name="name" class="form-control" id="fullname" placeholder="Name" required/>
-                                <input type="text" name="emailaddress" class="form-control" id="emailaddress" placeholder="Email" required/>
-                                <textarea rows="5" name="projectsummary" class="form-control" id="textarea" placeholder="Text here" required></textarea>
-                                <button type="submit" class="btn btn-secondary center-block" onclick="validateEmailForm();">Send Email</button>
-                            </form>
+                        <div class="">
+                            <h6>Change Player Name</h6>
+                            <p>
+                                <input id="changeusername" name="username" type="text" placeholder="Write Player Name" value="" />
+                                <button type="button" class="btn btn-secondary btnBody" onClick="changePlayerName (); displayPlayerName(); showAlertPlayerName();">Confirm Player Name</button>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -252,7 +273,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Well Done! </h5>
+                    <h5 class="modal-title" id="nextLevelModalTitle"> </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -300,6 +321,18 @@
                 <div class="modal-body">
                     <p>This easy memory game is what you need to keep your mind sharp.</p>
                     <p>The goal of this game is to match the Web Logos! So when you click on one card it will show you a Logo, you have to match the same Logo with less number of attempt possible.</p>
+                    <p>In first if you want to save your score choice your name:</p>
+                    <p>
+                        <input id="username" name="username" type="text" placeholder="Write Player Name" value="" />
+                        <button type="button" class="btn btn-secondary btnBody" onClick="store(); displayPlayerName(); showAlertPlayerName();">Confirm Player Name</button>
+                    </p>
+                    <div id="playerNameSuccess" class="alert alert-success alertPlayer" role="alert">
+                        Player name set!
+                    </div>
+                    <div id="playerNameError" class="alert alert-danger alertPlayer" role="alert">
+                        Please add a Player Name!
+                    </div>
+
                     <h5>Instructions</h5>
                     <ul>
                         <li>
@@ -316,7 +349,7 @@
                         </li>
                     </ul>
                     <br/>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onClick="store()">Next</button>
                 </div>
             </div>
         </div>
@@ -352,25 +385,13 @@
         </div>
     </div>
 
-    <!-- Success Email Sent Modal-->
-    <div class="modal fade" id="successEmailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content modalSuccessContent">
-                <div class="modal-body">
-                    <p>Email Sent!</p>
-                    <i class="fas fa-check faModalSuccess"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
 
     <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="/assets/js/sendemail.js"></script>
 
     <script type="text/javascript" src="/assets/js/boardgame.js"></script>
+    <script src="/assets/js/trying.js"></script>
+
 </body>
 
 </html>
