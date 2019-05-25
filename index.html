@@ -83,11 +83,6 @@
                                     <div class="col-sm-6 col-xs-12 scoreBoard">
                                         <p id="levelScore" class="mb-1"></p>
                                         <p id="totalScore" class="mb-1"></p>
-                                        <ul class="list-inline starIcon">
-                                            <li><i class="fas fa-star lowScoreStar"></i></li>
-                                            <li><i class="fas fa-star midScoreStar"></i></li>
-                                            <li><i class="fas fa-star highScoreStar"></i></li>
-                                        </ul>
                                     </div>
                                     <div class="col-sm-6 col-xs-12 timeBoard">
                                         <p id="timer" class="mb-1">Timer</p>
@@ -174,17 +169,17 @@
                                     <th scope="row">1</th>
                                     <td id="playername"></td>
                                     <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <td id="score1"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">2</th>
-                                    <td id="playername"></td>
+                                    <td id="playername2"></td>
                                     <td>Thornton</td>
-                                    <td>@fat</td>
+                                    <td id="score2"></td>
                                 </tr>
                                 <tr>
                                     <th scope="row">3</th>
-                                    <td id="playername">Mark</td>
+                                    <td id="playername3">Mark</td>
                                     <td>the Bird</td>
                                     <td>@twitter</td>
                                 </tr>
@@ -239,7 +234,7 @@
                             <h6>Change Player Name</h6>
                             <p>
                                 <input id="changeusername" name="username" type="text" placeholder="Write Player Name" value="" />
-                                <button type="button" class="btn btn-secondary btnBody" onClick="changePlayerName (); displayPlayerName(); showAlertPlayerName();">Confirm Player Name</button>
+                                <button type="button" class="btn btn-secondary btnBody" onClick="changePlayerName(); displayPlayerName(); showAlertPlayerName();">Confirm Player Name</button>
                             </p>
                         </div>
                     </div>
@@ -255,13 +250,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Well Done! </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
                 </div>
                 <div class="modal-body">
                     <p>Level One completed, but that was an easy one! Let's start with the real game now!</p>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer(); storeScore(); setScore()">Next</button>
                 </div>
 
             </div>
@@ -280,7 +272,7 @@
                 </div>
                 <div class="modal-body">
                     <p id="endLevelSentences"></p>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer(); storeScore();">Next</button>
                 </div>
 
             </div>
@@ -299,9 +291,11 @@
         </button>
                 </div>
                 <div class="modal-body">
-                    Let's made the game bit more interesting, now you have 10 seconds to memorize all the pictures and then only 3 attempts to match all the cards.
-                    <br/> 5 seconds and 4 new cards will be added on Level 6. So be ready.
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
+                    <p> Let's made the game bit more interesting, now you have to match 3 cards.</p>
+                    <img class="example" src="/assets/img/matchThreeExample.jpg" alt="Match Three Card Example"></img>
+
+                    <p>3 new cards will be added on Level 6. So be ready.</p>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer(); storeScore(); setScore()">Next</button>
                 </div>
             </div>
         </div>
@@ -314,9 +308,6 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Welcome to #HelpYourBrain Challenge</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
                 </div>
                 <div class="modal-body">
                     <p>This easy memory game is what you need to keep your mind sharp.</p>
@@ -349,7 +340,7 @@
                         </li>
                     </ul>
                     <br/>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onClick="store()">Next</button>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onClick="store(); displayPlayerName(); showAlertPlayerName();">Next</button>
                 </div>
             </div>
         </div>
@@ -381,6 +372,31 @@
                     <p>Reset Successfull!</p>
                     <i class="fas fa-check faModalSuccess"></i>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Win Modal-->
+    <div class="modal fade" id="winModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content modalSuccessContent">
+                <div class="modal-body">
+                    <p class="endGameSentence" id="endGameSentence"></p>
+                    <p class="endGameSentence" id="totalMatchScore"></p>
+                    <p class="endGameSentence">Your ended the game in <span id="endgametimer"></span></p>
+                    <img class="endGameImg" id="bestScoreEndGame" src="http://www.gifanimate.com/data/media/492/fuochi-d-artificio-immagine-animata-0012.gif" border="0" alt="high score gif" />
+                    <img class="endGameImg" id="midScoreEndGame" src="https://media.giphy.com/media/l41YmQjOz9qg2Ecow/giphy.gif" border="0" alt="mid score gif" />
+                    <img class="endGameImg" id="lowScoreEndGame" src="https://media.giphy.com/media/13xEKxMqnclCE0/giphy.gif" border="0" alt="low score gif" />
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-secondary endGameBtn" data-dismiss="modal" onClick="storeScore();">Go Back</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-secondary endGameBtn" type="button" id="resetBtn" data-dismiss="modal" onclick="dataReset(); successAlert(); storeScore(); setScore()">Restart Game</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
