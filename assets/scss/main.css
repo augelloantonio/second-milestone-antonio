@@ -54,6 +54,10 @@ body {
   font-size: 20px;
   color: #f05322; }
 
+.starActive {
+  font-size: 21px;
+  color: #ffe200; }
+
 .infoMatch {
   min-height: 50px;
   margin: auto;
@@ -99,7 +103,7 @@ body {
   box-shadow: 0 0 4px 1px #d320ff;
   padding-bottom: 8px;
   max-width: 48%;
-  max-height: 55px;
+  min-height: 55px;
   margin: auto;
   background: #ea98ff;
   color: white;
@@ -396,6 +400,18 @@ button.btn.btn-secondary.btnBody:active {
 .confirmResetBtn {
   background-color: red;
   color: white; }
+
+/*..............................Win Modal*/
+.endGameSentence {
+  font-size: 30px; }
+
+.endGameImg {
+  max-width: 350px; }
+
+.endGameBtn {
+  max-width: 250px;
+  margin: auto;
+  background-color: darkmagenta; }
 
 /*................................Footer*/
 .footer {

@@ -1,104 +1,122 @@
- /*..........................................................................Modal Style*/
+/*..........................................................................Modal Style*/
 
- button.btnBody {
-     float: right;
-     background-color: orangered;
- }
+button.btnBody {
+ float: right;
+ background-color: orangered;
+}
 
- button.btn.btn-secondary.btnBody:hover {
-     background-color: #ff6a00;
- }
+button.btn.btn-secondary.btnBody:hover {
+ background-color: #ff6a00;
+}
 
- button.btn.btn-secondary.btnBody:active {
-     background-color: #ff6a00;
- }
+button.btn.btn-secondary.btnBody:active {
+ background-color: #ff6a00;
+}
 
 
 /*.....................................................................On load Modal*/
-.alertPlayer{
+
+.alertPlayer {
  display: none;
 }
 
 
- /*...................................................................Success Modal*/
+/*...................................................................Success Modal*/
 
- #successAlertModal {
-     background-color: transparent;
- }
+#successAlertModal {
+ background-color: transparent;
+}
 
- .modalSuccessContent {
-     font-size: 50px;
-     text-align: center;
- }
+.modalSuccessContent {
+ font-size: 50px;
+ text-align: center;
+}
 
- .faModalSuccess {
-     font-family: "Font Awesome 5 Free";
-     font-size: 80px;
-     color: green;
-     border-radius: 100px;
-     width: 120px;
-     height: 120px;
-     padding-top: 19px;
-     padding-left: 7px;
-     box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55);
- }
+.faModalSuccess {
+ font-family: "Font Awesome 5 Free";
+ font-size: 80px;
+ color: green;
+ border-radius: 100px;
+ width: 120px;
+ height: 120px;
+ padding-top: 19px;
+ padding-left: 7px;
+ box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55);
+}
 
- .faModalSuccess:hover {
-     box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55);
- }
-
-
- /*......................................................Credits Modal*/
-
- .faPersonalIcons {
-     border: 8px solid #941494;
-     border-radius: 50px;
-     background-color: darkmagenta;
-     color: white;
-     font-size: 22px;
- }
+.faModalSuccess:hover {
+ box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55);
+}
 
 
- .socialsButtons {
-     padding-left: 30px;
-     padding-right: 30px;
- }
+/*......................................................Credits Modal*/
 
- .creditSocialLinks {
-     text-align: center;
-     display: inline-block;
- }
-
- .socialList {
-     display: inline-flex;
- }
-
- /*.................................................................Instruction Modal*/
-
- .example {
-     width: 100%;
-     max-width: 300px;
-     height: auto;
- }
+.faPersonalIcons {
+ border: 8px solid #941494;
+ border-radius: 50px;
+ background-color: darkmagenta;
+ color: white;
+ font-size: 22px;
+}
 
 
- /*...................................................................Reset Modal*/
+.socialsButtons {
+ padding-left: 30px;
+ padding-right: 30px;
+}
 
- .resetModal {
-     flex-direction: inherit;
- }
+.creditSocialLinks {
+ text-align: center;
+ display: inline-block;
+}
 
- .resetModalTitle{
-     color: red;
-     font-size:28px
- }
- 
- .backResetBtn{
-     background-color: green;
-     color: white;
- }
- 
- .confirmResetBtn{
-     background-color: red;
-     color: white;
- }
+.socialList {
+ display: inline-flex;
+}
+
+/*.................................................................Instruction Modal*/
+
+.example {
+ width: 100%;
+ max-width: 300px;
+ height: auto;
+}
+
+
+/*...................................................................Reset Modal*/
+
+.resetModal {
+ flex-direction: inherit;
+}
+
+.resetModalTitle {
+ color: red;
+ font-size: 28px
+}
+
+.backResetBtn {
+ background-color: green;
+ color: white;
+}
+
+.confirmResetBtn {
+ background-color: red;
+ color: white;
+}
+
+
+/*..............................Win Modal*/
+
+.endGameSentence {
+ font-size: 30px;
+}
+
+.endGameImg {
+ max-width: 350px;
+}
+
+.endGameBtn {
+ max-width: 250px;
+ margin: auto;
+ background-color: darkmagenta;
+}
