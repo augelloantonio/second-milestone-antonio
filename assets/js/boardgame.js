@@ -1,24 +1,28 @@
 // Declaring arrays and using shuffle function to give casual orders to my cards //
 
 //BoardGame arrays and variable
-//var memory_array = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G', 'H', 'H', 'I', 'I', 'L', 'L'];
 var cardList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L', 'M', 'N'];
 var shuffled = [];
 var memory_values = [];
 var memory_card_ids = [];
-var memory_array = [];
 var card_flipped = 0;
 var num_cards = 4;
 
 //Variable for my scores  
 var match = 0;
 var click = 0;
-var level = 0; //Set to 0 or my increment will set it to start from 1 level more
+var level = 7; //Set to 0 or my increment will set it to start from 1 level more
 var score = [];
-var scoreUser = 0;
 var playerLevel = 0;
 var sumCardMatch = 0;
 var sumCardClick = 0;
+var scoreTotalLevelPoints = 0;
+var scoreLevelPoints = 0;
+var playerEndGameTotalScore = 0;
+var totalMatchScore = 0;
+var notMatchedScore = 1;
+var noMatches = 1;
+var playerTotalGameScore = 0;
 
 //Variable for my timer
 var second = 0,
@@ -26,9 +30,6 @@ var second = 0,
 var interval;
 
 //Variable for random sentences on the Next Level Modal
-var randomizedSentences = [];
-var showedSentences = [];
-var shuffledSentences = [];
 var sentences = [
     "Is your brain on? Go haed! Don't lose time",
     'So you passed another level. Fair play to you!',
@@ -37,9 +38,13 @@ var sentences = [
     "You passed another level, but don't be excited you are not a genius.",
 ];
 
-//localStorage.clear(userName);
-
 var userName = "Player";
+
+//Variable for audio
+var matchSound = new Audio('/assets/sounds/Fuzzy Beep-SoundBible.com-1580329899.mp3');
+var endGameSound = new Audio('/assets/sounds/Ta Da-SoundBible.com-1884170640.mp3');
+var flipBackSound = new Audio('/assets/sounds/Pitch Baseball-SoundBible.com-868005975.mp3');
+var endLevelSound = new Audio('/assets/sounds/Applause Light 2-SoundBible.com-356111200.mp3');
 
 
 function shuffle(arr) {
@@ -121,7 +126,6 @@ function startSounds() {
 //Function that change my sound button class on each click
 function switchSoundClass() {
     $("#soundOnOffBtn").toggleClass('fas fa-volume-mute fas fa-volume-up');
-    document.getElementById("soundOnOffBtn").onclick = function() { switchSoundClass() };
 }
 
 
@@ -158,10 +162,10 @@ function newBoard(num_cards) {
 }
 
 
-
-/*....................................................Flip card function
-It will assign an image value to the card and then it will check if my none of the cards are flipped
-it will assign to the card i clicked the value */
+/* Flip card function
+ *It will assign an image value to the card and then it will check if my none of the cards are flipped
+ *it will assign to the card i clicked the value 
+ */
 
 function memoryFlipCard(card, val) {
     if (card.innerHTML == "" && memory_values.length < 2) {
@@ -180,6 +184,7 @@ function memoryFlipCard(card, val) {
             //And when i click another card it will add the value to the other card and it will check if it is a match
             if (memory_values[0] == memory_values[1]) {
                 showMatch();
+                matchSound.play();
                 card_flipped += 2;
                 // If it is a match it will clear both arrays and the function can restart
                 memory_values = [];
@@ -194,54 +199,76 @@ function memoryFlipCard(card, val) {
             }
             //If the id of the selected card is not the same then it will flip back the card assigning them my card logo 
             else {
-                function flip2Back() {
-                    // Flip the 2 cards back over
-                    var card_1 = document.getElementById(memory_card_ids[0]);
-                    var card_2 = document.getElementById(memory_card_ids[1]);
-                    card_1.style.cssText = 'background: url(assets/img/backLogoCard.png) no repeat, background-size: cover';
-                    card_1.innerHTML = "";
-                    card_2.style.cssText = 'background: url(assets/img/backLogoCard.png) no repeat, background-size: cover';
-                    card_2.innerHTML = "";
-                    // Clear both arrays
-                    memory_values = [];
-                    memory_card_ids = [];
-                }
-                setTimeout(flip2Back, 500);
+                flipBackSound.play();
+                setTimeout(flip2Back, 600);
             }
         }
     }
 }
 
+//Flip back the card if the selected card are not the same
+function flip2Back() {
+    // Flip the 2 cards back over
+    var card_1 = document.getElementById(memory_card_ids[0]);
+    var card_2 = document.getElementById(memory_card_ids[1]);
+    card_1.style.cssText = 'background: url(assets/img/backLogoCard.png) no repeat, background-size: cover';
+    card_1.innerHTML = "";
+    card_2.style.cssText = 'background: url(assets/img/backLogoCard.png) no repeat, background-size: cover';
+    card_2.innerHTML = "";
+    // Clear both arrays
+    memory_values = [];
+    memory_card_ids = [];
+    notMatchedScore++; //Every time the card flip back it add 1 point score that will give me the total score
+    noMatches = notMatchedScore;
+    console.log("not matched score is " + notMatchedScore); //testing console 
+
+}
+
 function generateNewBoard() {
-    if (level == 4) {
-        stopTimer();
-        num_cards = 4;
-        $('#levelFiveModal').modal({ show: true });
-        $('#nextLevelModal').modal('hide');
-        startLevelFive();
-
-    }
-    if (playerLevel == 1) {
-        stopTimer();
-        $('#levelTwoModal').modal({ show: true });
-        newBoard(num_cards + 4);
-
-        num_cards += 4;
-    }
-    if (level != 1 && level != 4) {
+    if (level > 1 && level < 4) {
         stopTimer();
         $('#nextLevelModal').modal({ show: true });
         newBoard(num_cards + 4);
-
         num_cards += 4;
+        endLevelSound.play();
     }
-}
+    if (playerLevel === 1) {
+        stopTimer();
+        $('#levelTwoModal').modal({ show: true });
+        newBoard(num_cards + 4);
+        num_cards += 4;
+        endLevelSound.play();
+    }
 
-function startLevelFive() {
-    $.getScript("/assets/js/trying.js", function() {
-        levelFiveNewBoard();
+    if (level == 4) {
+        num_cards = 9
+        stopTimer();
+        $.getScript("/assets/js/trying.js", function() {
+            levelFiveBoard(num_cards);
         });
-    // showCards(); to activate later
+        $('#levelFiveModal').modal({ show: true });
+        $('#nextLevelModal').modal('hide');
+        endLevelSound.play();
+    }
+    if (level > 4 && level < 8) {
+        stopTimer();
+        $.getScript("/assets/js/trying.js", function() {
+            levelFiveBoard(num_cards);
+        });
+        num_cards += 3;
+        $('#nextLevelModal').modal({ show: true });
+        $('#levelFiveModal').modal('hide');
+        endLevelSound.play();
+    }
+    if (level == 8) {
+        $('#totalMatchScore').text(userName + " score: " + playerEndGameTotalScore);
+        $('#nextLevelModal').modal('hide');
+        $('#winModal').modal({ show: true });
+
+        stopTimer();
+        endGame();
+    }
+
 }
 
 
@@ -258,7 +285,6 @@ function showOnLoadModal() {
         });
     }
 }
-
 
 document.getElementById('timer').innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
 
@@ -284,19 +310,38 @@ function startTimer() {
 }
 
 
-/*function that will count the point the user does for each match ==> replace this function here and use it to value the totale times that the
-user click on the card, then made another function that will remove the totalClick */
+//function that will count the point the user does for each match 
 function showMatch(matchSum) {
+    if (level >= 5) {
+        let matchLevelFive = match;
+        let cardMatched = ("Matches: " + matchLevelFive);
+        //if (areEqual(memory_values[0], memory_values[1], memory_values[2])) {
+        if (memory_values[0] === memory_values[1] && memory_values[1] === memory_values[2]) {
+            matchLevelFive++;
+        }
+        $('#matches').text(cardMatched);
+        sumCardMatch = match;
+
+
+        console.log(cardMatched);
+        console.log("The match score is " + scoreTotalLevelPoints);
+    }
     let cardMatched = ("Matches: " + match);
     if (memory_values[0] == memory_values[1]) {
         match++;
+        totalMatchScore = scoreTotalLevelPoints
+
+        //increment my match score by 5 every time the user match the cards
+        for (i = 0; i < match; i += 5) {
+            scoreTotalLevelPoints += 5;
+        }
+
     }
     $('#matches').text(cardMatched);
     sumCardMatch = match;
 
     console.log(cardMatched);
 }
-
 
 function totalClick() {
     let cardClicked = ("Total Click: " + click);
@@ -309,39 +354,57 @@ function totalClick() {
     console.log(cardClicked);
 }
 
-
 //Function that will show the actual level 
 function levelUp() {
     level++;
+
     $('#level').text("Level " + level);
     playerLevel = level;
     previousLevel = level - 1;
+    stop
     $("#nextLevelModalTitle").text("Well Done, you passed the level " + previousLevel);
 
     console.log("player leves is " + level);
 }
 
 
-//Function that count the total score of the previous level and display it
 function totalScore(total, num) {
-    if (level != 1) {
-        let levelPoints = ((sumCardMatch * sumCardMatch) / sumCardClick) * playerLevel; //Calculate the total score as total match + 20
-        globalLevelPoint = levelPoints;
-        console.log("The level score is: " + globalLevelPoint);
-        score.push(globalLevelPoint); //create a new empty array where push my results, now i have to made the sum of them and show it
+    if (level > 1) {
+        let levelPoints = level - 1; //give the level multiplied for the level, the first level is not calculated for this score
+        scoreLevelPoints = levelPoints;
+
+        totalGameScore = (totalMatchScore + scoreLevelPoints) / noMatches;
+
+        console.log("The level score is" + scoreLevelPoints)
+        console.log("the total matches score is " + totalMatchScore)
+        score.push(totalGameScore); //create a new empty array where push my results, now i have to made the sum of them and show it
         total = score.reduce((acc, cur) => acc + cur, 0).toFixed(0); //taken from https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-
+        playerEndGameTotalScore = total;
         document.getElementById('totalScore').innerHTML = ("Total Score: " + total);
-
     }
     else {
         document.getElementById('totalScore').innerHTML = "Total Score: " + 0;
-
     }
     //testing calculate the total score
-    console.log("total is " + total);
+    console.log("total is " + playerEndGameTotalScore);
 }
 
+function storeScore() {
+    score1 = playerEndGameTotalScore;
+    score2 = playerEndGameTotalScore;
+    score3 = playerEndGameTotalScore;
+    localStorage.setItem("score1", score1);
+    localStorage.setItem("score2", score2);
+    localStorage.setItem("score3", score3);
+}
+
+function setScore() {
+    var score1 = localStorage.getItem("score1");
+    $('#score1').text(score1);
+
+    var score2 = localStorage.getItem("score2");
+    $('#score2').text(score2);
+}
 
 //Function that will reset all the data
 function dataReset() {
@@ -355,12 +418,13 @@ function dataReset() {
     var sumCardClick = 0;
 
     score = [];
+    notMatchedScore = 1;
+    noMatches = 1;
 
 
     level = 0;
 
-    totalScore(); //reset in first the total user score clling the function to fi=x the bug that my score goes up instead of setting to 0
-    globalLevelPoint = 0;
+    scoreTotalLevelPoints = 0;
 
     newBoard();
     num_cards = 4;
@@ -406,18 +470,6 @@ function successAlert() {
     setTimeout(function() { $('#successAlertModal').modal('hide') }, 2000);
 }
 
-/* I could use it as my final modal
-//Validate if email for has been filled or not
-function validateEmailForm() {
-    name = document.getElementById("fullname");
-    email = document.getElementById("emailaddress");
-    text = document.getElementById("textarea");
-
-    if (name == 'Name' && email == 'Email' && '' && text == 'Text here') {
-        alert("Please fill all the areas!");
-    }
-}
-*/
 
 //function to get random sentences every level passed - function took from the following link: from https://stackoverflow.com/questions/33160766/generate-random-sentences-from-an-array-javascript
 function getRandomSentence() {
@@ -425,8 +477,6 @@ function getRandomSentence() {
     document.getElementById('endLevelSentences').innerHTML = randomSentences;
     console.log(randomSentences);
 }
-
-//User Details
 
 // storing username from the starting modal
 //User Details
@@ -439,7 +489,6 @@ function store() {
         localStorage.setItem("userName", userName);
     }
     console.log(userName); // testing console
-
 }
 
 //Assign to the p element the username chosen by the user
@@ -478,13 +527,61 @@ function changePlayerName() {
     localStorage.setItem("userName", userName);
 
     console.log(userName); // testing console
-
 }
 
-function showPlayerResults() {
-    $('#playername').text("Player: " + userName);
+function endGame() {
+    endGameSound.play();
+    $('#nextLevelModal').modal('hide');
+    num_cards = 0;
+    stopGame();
 
+    if (playerEndGameTotalScore >= 150 && playerEndGameTotalScore <= 250) {
+        $("#endGameSentence").text("Congrats! Your memory is better than I thought!")
+    }
+    else if (playerEndGameTotalScore <= 100 && playerEndGameTotalScore >= 140) {
+        $("#endGameSentence").text("You reached the end of the game, but you can do better!")
+        $("#bestScoreEndGame").hide();
+        $("#lowScoreEndGame").hide();
+    }
+    else if (playerEndGameTotalScore < 100) {
+        $("#endGameSentence").text("OPS! You should do better than this, your memory is not good enough !")
+        $("#bestScoreEndGame").hide();
+        $("#midScoreEndGame").hide();
+    }
 }
+
+//Function that stop or restart the audio pending on the class of the button audio
+function audioOnOff() {
+    if ($('#soundOnOffBtn').hasClass('fa-volume-mute')) {
+        audioOff();
+    }
+    if ($('#soundOnOffBtn').hasClass('fa-volume-up')) {
+        audioOn();
+    }
+}
+
+//Stop audio function
+function audioOff() {
+    endGameSound.muted = true;
+    flipBackSound.muted = true;
+    endLevelSound.muted = true;
+    matchSound.muted = true;
+}
+
+//Restart audio function
+function audioOn() {
+    endGameSound.muted = false;
+    flipBackSound.muted = false
+    endLevelSound.muted = false;
+    matchSound.muted = false;
+}
+
+
+//Store all players name and scores and display it
+$('#playername').text("Player: " + userName);
+$('#playername2').text("Player: " + userName);
+$('#playername3').text("Player: " + userName);
+
 
 newBoard(num_cards);
 showBoardGame();
@@ -495,4 +592,5 @@ totalScore();
 getRandomSentence();
 displayPlayerName();
 showOnLoadModal();
-startLevelFive();
+setScore();
+audioOnOff();
