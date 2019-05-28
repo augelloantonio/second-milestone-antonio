@@ -1,7 +1,7 @@
 // Declaring arrays and using shuffle function to give casual orders to my cards //
 
 //BoardGame arrays and variable
-var cardList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'L', 'M', 'N'];
+var cardList = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "L", "M", "N"];
 var shuffled = [];
 var memory_values = [];
 var memory_card_ids = [];
@@ -11,22 +11,19 @@ var num_cards = 4;
 //Variable for my scores  
 var match = 0;
 var click = 0;
-var level = 7; //Set to 0 or my increment will set it to start from 1 level more
+var level = 6; //Set to 0 or my increment will set it to start from 1 level more
 var score = [];
 var playerLevel = 0;
-var sumCardMatch = 0;
-var sumCardClick = 0;
 var scoreTotalLevelPoints = 0;
 var scoreLevelPoints = 0;
 var playerEndGameTotalScore = 0;
 var totalMatchScore = 0;
 var notMatchedScore = 1;
 var noMatches = 1;
-var playerTotalGameScore = 0;
 
 //Variable for my timer
-var second = 0,
-    minute = 0;
+var second = 0;
+var minute = 0;
 var interval;
 
 //Variable for random sentences on the Next Level Modal
@@ -35,7 +32,7 @@ var sentences = [
     'So you passed another level. Fair play to you!',
     'You can do it!',
     "You're on the bowl! Keep going.",
-    "You passed another level, but don't be excited you are not a genius.",
+    "You passed another level, but don't be excited you are not a genius."
 ];
 
 var userName = "Player";
@@ -45,7 +42,8 @@ var matchSound = new Audio('/assets/sounds/Fuzzy Beep-SoundBible.com-1580329899.
 var endGameSound = new Audio('/assets/sounds/Ta Da-SoundBible.com-1884170640.mp3');
 var flipBackSound = new Audio('/assets/sounds/Pitch Baseball-SoundBible.com-868005975.mp3');
 var endLevelSound = new Audio('/assets/sounds/Applause Light 2-SoundBible.com-356111200.mp3');
-
+var resetSuccessSound = new Audio('/assets/sounds/277032__headphaze__ui-completed-status-alert-notification-sfx002.wav');
+var startGameSound = new Audio('/assets/sounds/88550__movingplaid__pull-chain-02.wav');
 
 function shuffle(arr) {
     var i = arr.length,
@@ -87,6 +85,7 @@ cards and the time will start counting, the pause button will appear instead of 
 function startGame() {
 
     showBoardGame();
+    startGameSound.play();
 
     newBoard(num_cards);
     startTimer();
@@ -154,7 +153,7 @@ function newBoard(num_cards) {
     console.log('shuffled ---> ', shuffled);
 
     for (var i = 0; i < shuffled.length; i++) {
-        output += '<div class="backLogoCardDiv"  id="card_' + i + '" onclick="memoryFlipCard(this,\'' + shuffled[i] + '\')"></div>'
+        output += '<div class="backLogoCardDiv"  id="card_' + i + '" onclick="memoryFlipCard(this,\'' + shuffled[i] + '\')"></div>';
     }
     document.getElementById('boardgame').innerHTML = output;
 
@@ -168,10 +167,10 @@ function newBoard(num_cards) {
  */
 
 function memoryFlipCard(card, val) {
-    if (card.innerHTML == "" && memory_values.length < 2) {
+    if (card.innerHTML === "" && memory_values.length < 2) {
         card.style.background = '#FFF';
-        card.innerHTML = '<img id="imgCard" class="backImg" src="/assets/img/cards/' + val + '.png"/>'
-        if (memory_values.length == 0) {
+        card.innerHTML = '<img id="imgCard" class="backImg" src="/assets/img/cards/' + val + '.png"/>';
+        if (memory_values.length === 0) {
             totalClick();
             memory_values.push(val);
             memory_card_ids.push(card.id);
@@ -241,9 +240,9 @@ function generateNewBoard() {
     }
 
     if (level == 4) {
-        num_cards = 9
+        num_cards = 9;
         stopTimer();
-        $.getScript("/assets/js/trying.js", function() {
+        $.getScript("/assets/js/threecardsboard.js", function() {
             levelFiveBoard(num_cards);
         });
         $('#levelFiveModal').modal({ show: true });
@@ -252,7 +251,7 @@ function generateNewBoard() {
     }
     if (level > 4 && level < 8) {
         stopTimer();
-        $.getScript("/assets/js/trying.js", function() {
+        $.getScript("/assets/js/threecardsboard.js", function() {
             levelFiveBoard(num_cards);
         });
         num_cards += 3;
@@ -311,7 +310,7 @@ function startTimer() {
 
 
 //function that will count the point the user does for each match 
-function showMatch(matchSum) {
+function showMatch() {
     if (level >= 5) {
         let matchLevelFive = match;
         let cardMatched = ("Matches: " + matchLevelFive);
@@ -320,8 +319,6 @@ function showMatch(matchSum) {
             matchLevelFive++;
         }
         $('#matches').text(cardMatched);
-        sumCardMatch = match;
-
 
         console.log(cardMatched);
         console.log("The match score is " + scoreTotalLevelPoints);
@@ -329,7 +326,7 @@ function showMatch(matchSum) {
     let cardMatched = ("Matches: " + match);
     if (memory_values[0] == memory_values[1]) {
         match++;
-        totalMatchScore = scoreTotalLevelPoints
+        totalMatchScore = scoreTotalLevelPoints;
 
         //increment my match score by 5 every time the user match the cards
         for (i = 0; i < match; i += 5) {
@@ -338,7 +335,6 @@ function showMatch(matchSum) {
 
     }
     $('#matches').text(cardMatched);
-    sumCardMatch = match;
 
     console.log(cardMatched);
 }
@@ -350,7 +346,6 @@ function totalClick() {
         click++;
     }
     $('#totalClick').text(cardClicked);
-    sumCardClick = click;
     console.log(cardClicked);
 }
 
@@ -361,22 +356,21 @@ function levelUp() {
     $('#level').text("Level " + level);
     playerLevel = level;
     previousLevel = level - 1;
-    stop
     $("#nextLevelModalTitle").text("Well Done, you passed the level " + previousLevel);
 
     console.log("player leves is " + level);
 }
 
 
-function totalScore(total, num) {
+function totalScore(total) {
     if (level > 1) {
         let levelPoints = level - 1; //give the level multiplied for the level, the first level is not calculated for this score
         scoreLevelPoints = levelPoints;
 
         totalGameScore = (totalMatchScore + scoreLevelPoints) / noMatches;
 
-        console.log("The level score is" + scoreLevelPoints)
-        console.log("the total matches score is " + totalMatchScore)
+        console.log("The level score is" + scoreLevelPoints);
+        console.log("the total matches score is " + totalMatchScore);
         score.push(totalGameScore); //create a new empty array where push my results, now i have to made the sum of them and show it
         total = score.reduce((acc, cur) => acc + cur, 0).toFixed(0); //taken from https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
         playerEndGameTotalScore = total;
@@ -391,19 +385,12 @@ function totalScore(total, num) {
 
 function storeScore() {
     score1 = playerEndGameTotalScore;
-    score2 = playerEndGameTotalScore;
-    score3 = playerEndGameTotalScore;
     localStorage.setItem("score1", score1);
-    localStorage.setItem("score2", score2);
-    localStorage.setItem("score3", score3);
 }
 
 function setScore() {
     var score1 = localStorage.getItem("score1");
     $('#score1').text(score1);
-
-    var score2 = localStorage.getItem("score2");
-    $('#score2').text(score2);
 }
 
 //Function that will reset all the data
@@ -413,10 +400,7 @@ function dataReset() {
 
     match = 0;
     click = 0;
-
-    var sumCardMatch = 0;
-    var sumCardClick = 0;
-
+    
     score = [];
     notMatchedScore = 1;
     noMatches = 1;
@@ -439,6 +423,8 @@ function dataReset() {
     levelUp();
     showStartButton();
     totalScore();
+
+    resetSuccessSound.play();
 }
 
 //Function that will reset the timer and prevent it starts again without clicking on the start
@@ -459,17 +445,11 @@ function dropdownMenuIcon() {
     $("#menuDropdownBtn").toggleClass('fas fa-caret-down fas fa-caret-up');
 }
 
-//Function that will allow the reset confirm button to let reset the game
-function resetGame() {
-    document.getElementById("restartConfirm").onclick = function() { dataReset(); };
-}
-
 //Display a modal alert that will advise to the user that all the data are erased
 function successAlert() {
     setTimeout(function() { $('#successAlertModal').modal('show') }, 500);
     setTimeout(function() { $('#successAlertModal').modal('hide') }, 2000);
 }
-
 
 //function to get random sentences every level passed - function took from the following link: from https://stackoverflow.com/questions/33160766/generate-random-sentences-from-an-array-javascript
 function getRandomSentence() {
@@ -494,21 +474,21 @@ function store() {
 //Assign to the p element the username chosen by the user
 function displayPlayerName() {
 
-    if (userName != "") {
+    if (userName !== "") {
         $('#playerName').text("Player: " + userName);
     }
     if (userName === null) {
         userName = "Player";
         $('#playerName').text("Player: " + userName);
     }
-    else if (userName == "") {
+    else if (userName === "") {
         userName = "Player";
         $('#playerName').text("Player: " + userName);
     }
     console.log(userName); //testing console
 }
 
-//Show a success alert or an error alert if the player name is/ or is not inserted
+//Show a success alert or an error alert if the player name is or is not inserted
 function showAlertPlayerName() {
     if (userName != "Player") {
         $('#playerNameSuccess').show();
@@ -536,15 +516,15 @@ function endGame() {
     stopGame();
 
     if (playerEndGameTotalScore >= 150 && playerEndGameTotalScore <= 250) {
-        $("#endGameSentence").text("Congrats! Your memory is better than I thought!")
+        $("#endGameSentence").text("Congrats! Your memory is better than I thought!");
     }
     else if (playerEndGameTotalScore <= 100 && playerEndGameTotalScore >= 140) {
-        $("#endGameSentence").text("You reached the end of the game, but you can do better!")
+        $("#endGameSentence").text;
         $("#bestScoreEndGame").hide();
         $("#lowScoreEndGame").hide();
     }
     else if (playerEndGameTotalScore < 100) {
-        $("#endGameSentence").text("OPS! You should do better than this, your memory is not good enough !")
+        $("#endGameSentence").text("OPS! You should do better than this, your memory is not good enough !");
         $("#bestScoreEndGame").hide();
         $("#midScoreEndGame").hide();
     }
@@ -566,22 +546,19 @@ function audioOff() {
     flipBackSound.muted = true;
     endLevelSound.muted = true;
     matchSound.muted = true;
+    resetSuccessSound.muted = true;
+    startGameSound.muted = true;
 }
 
 //Restart audio function
 function audioOn() {
     endGameSound.muted = false;
-    flipBackSound.muted = false
+    flipBackSound.muted = false;
     endLevelSound.muted = false;
     matchSound.muted = false;
+    resetSuccessSound.muted = false;
+    startGameSound.muted = false;
 }
-
-
-//Store all players name and scores and display it
-$('#playername').text("Player: " + userName);
-$('#playername2').text("Player: " + userName);
-$('#playername3').text("Player: " + userName);
-
 
 newBoard(num_cards);
 showBoardGame();
