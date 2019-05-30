@@ -79,54 +79,50 @@ function getRandomInt(min, max) {
 }
 
 
+function showBoardGame() {
+    $("#startBtn").click(function() { $(".boardgame").show(); });
+}
+
 /* Starting Game function assignet to the start Button, clicking on this button the play the game will generate 4 
 cards and the time will start counting, the pause button will appear instead of the play */
 
 function startGame() {
 
+    startTimer();
     showBoardGame();
     startGameSound.play();
 
     newBoard(num_cards);
-    startTimer();
-    hideStartButton();
-    document.getElementById("startBtn").onclick = function() { startGame(); };
-
+    //hideStartButton();
 }
 
-function showBoardGame() {
-    $("#startBtn").click(function() { $(".boardgame").show(); });
-}
-
-
-function hideStartButton() {
-    $("#startBtn").css({ display: 'none' });
-}
-
-function showStartButton() {
-    $("#startBtn").css({ display: '' });
-
+function playPauseGame() {
+    if ($('#startBtn').hasClass('fa-play')) {
+        showBoardGame();
+        startGame();
+    }
+    if ($('#startBtn').hasClass('fa-pause')) {
+        stopGame();
+    }
 }
 
 //Function that allow the player to pause the game and show the play button 
 function stopGame() {
     stopTimer();
-    showStartButton();
-    document.getElementById("pauseComandBtn").onclick = function() { stopGame(); };
+    //showStartButton();
+    //document.getElementById("pauseComandBtn").onclick = function() { stopGame(); };
 }
 
-
-// Function that will restart the sounds 
-function startSounds() {
-    $("#soundOnOffBtn").toggleClass('fas fa-volume-mute fas fa-volume-up');
-
-}
 
 //Function that change my sound button class on each click
 function switchSoundClass() {
     $("#soundOnOffBtn").toggleClass('fas fa-volume-mute fas fa-volume-up');
 }
 
+//Function that change my play button class on each click
+function switchPlayBtnClass() {
+    $("#startBtn").toggleClass('fas fa-play fas fa-pause');
+}
 
 //..................................................................Game starting board//
 function newBoard(num_cards) {
@@ -156,9 +152,9 @@ function newBoard(num_cards) {
         output += '<div class="backLogoCardDiv"  id="card_' + i + '" onclick="memoryFlipCard(this,\'' + shuffled[i] + '\')"></div>';
     }
     document.getElementById('boardgame').innerHTML = output;
-
     getRandomSentence(); // to generate a new sentence every round
 }
+
 
 
 /* Flip card function
@@ -270,7 +266,6 @@ function generateNewBoard() {
 
 }
 
-
 //On Page load modal 
 function showOnLoadModal() {
     if (userName != "Player") {
@@ -285,14 +280,17 @@ function showOnLoadModal() {
     }
 }
 
-document.getElementById('timer').innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
+function startOfGameTimeDisplay() {
+    timer.innerHTML = "Time: <br/>" + "mins " + " : " + "secs";
+
+}
 
 function startTimer() {
 
     var timer = document.querySelector("#timer");
 
     interval = setInterval(function() {
-        timer.innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
+        timer.innerHTML = "Time: <br/>" + minute + " : " + second + "";
         second++;
         totalSecond = second;
         if (second == 60) {
@@ -306,6 +304,21 @@ function startTimer() {
             totalHour = hour;
         }
     }, 1000);
+    document.getElementById('timer').innerHTML = "Time: <br/>" + minute + " : " + second + "";
+
+}
+
+//Function that will reset the timer and prevent it starts again without clicking on the start
+function resetTimer() {
+    stopTimer();
+    second = 0;
+    minute = 0;
+    timer.innerHTML = "Time: <br/>" + "mins " + " : " + "secs";
+}
+
+// To prevent the timer to continue when the end levels modals are showed
+function stopTimer() {
+    clearInterval(interval);
 }
 
 
@@ -397,10 +410,11 @@ function setScore() {
 function dataReset() {
 
     resetTimer();
+    stopTimer();
 
     match = 0;
     click = 0;
-    
+
     score = [];
     notMatchedScore = 1;
     noMatches = 1;
@@ -418,27 +432,18 @@ function dataReset() {
     displayPlayerName();
     store();
 
+    $('#startBtn').removeClass('fa-pause');
+    $('#startBtn').addClass('fa-play');
+
     totalClick();
     showMatch();
     levelUp();
-    showStartButton();
     totalScore();
 
     resetSuccessSound.play();
 }
 
-//Function that will reset the timer and prevent it starts again without clicking on the start
-function resetTimer() {
-    second = 0;
-    minute = 0;
-    stopTimer();
-    timer.innerHTML = "Time: <br/>" + minute + " mins " + second + " secs";
-}
 
-// To prevent the timer to continue when the end levels modals are showed
-function stopTimer() {
-    clearInterval(interval);
-}
 
 //Function that allow the menu icon to change from "down" to "up" clicking on the Menu button 
 function dropdownMenuIcon() {
@@ -561,6 +566,7 @@ function audioOn() {
 }
 
 newBoard(num_cards);
+startOfGameTimeDisplay();
 showBoardGame();
 showMatch();
 totalClick();

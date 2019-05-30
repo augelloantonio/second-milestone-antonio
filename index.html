@@ -25,8 +25,7 @@
                             <div class="col-sm-push-12 col-md-12 gameComandBoard">
                                 <div class="row">
                                     <div id="" class="col-4 gameControlsBox">
-                                        <button class="fas fa-play gameComandBtn startComandBtn" type="button" id="startBtn" onclick="startGame();"></button>
-                                        <button class="fas fa-pause gameComandBtn" type="button" id="pauseComandBtn" onclick="stopGame();"></button>
+                                        <button class="fas fa-play gameComandBtn" type="button" id="startBtn" onclick="playPauseGame(); switchPlayBtnClass(); "></button>
                                     </div>
                                     <div id="" class="col-4 gameControlsBox">
                                         <button type="button" class="fas fa-undo-alt gameComandBtn" data-toggle="modal" data-target="#resetGameModal"></button>
@@ -43,8 +42,7 @@
                                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                                     <div class="list-group menuNavbar">
                                         <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#InstructionModalCenter" onclick="stopTimer();">Instructions</button>
-                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#playerScoreModalCenter" onclick="stopTimer();">Players Score</button>
-                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#SettingsModalCenter" onclick="stopTimer();">Settings</button>
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#SettingsModalCenter" onclick="stopTimer();">Change Player Name</button>
                                         <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#CreditsModalCenter" onclick="stopTimer();">Credits</button>
                                     </div>
                                 </div>
@@ -143,55 +141,6 @@
 
 
 
-    <!-- Modal Player Score-->
-    <div class="modal fade" id="playerScoreModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Players Score</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-                </div>
-                <div class="modal-body">
-                    <div>
-                        <table class="table">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First</th>
-                                    <th scope="col">Last</th>
-                                    <th scope="col">Score</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td id="playername"></td>
-                                    <td>Otto</td>
-                                    <td id="score1"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td id="playername2"></td>
-                                    <td>Thornton</td>
-                                    <td id="score2"></td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td id="playername3">Mark</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Modal credits-->
     <div class="modal fade" id="CreditsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -222,7 +171,7 @@
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Settings</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Change Player Name</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -232,10 +181,20 @@
 
                         <div class="">
                             <h6>Change Player Name</h6>
-                            <p>
-                                <input id="changeusername" name="username" type="text" placeholder="Write Player Name" value="" />
-                                <button type="button" class="btn btn-secondary btnBody" onClick="changePlayerName(); displayPlayerName(); showAlertPlayerName();">Confirm Player Name</button>
-                            </p>
+                            <div class="row changenameRow">
+                                <div class="col-sm-12 col-md-6 changeNameCol">
+                                    <input id="changeusername" name="username" class="usernameInput" type="text" placeholder="Write Player Name" value="" />
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <button type="button" class="btn btn-secondary btnBody btnAssignName" onClick="changePlayerName(); displayPlayerName(); showAlertPlayerName();">Confirm Player Name</button>
+                                </div>
+                            </div>
+                            <div id="playerNameSuccess" class="alert alert-success alertPlayer" role="alert">
+                                Player name set!
+                            </div>
+                            <div id="playerNameError" class="alert alert-danger alertPlayer" role="alert">
+                                Please add a Player Name!
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -313,10 +272,14 @@
                     <p>This easy memory game is what you need to keep your mind sharp.</p>
                     <p>The goal of this game is to match the Web Logos! So when you click on one card it will show you a Logo, you have to match the same Logo with less number of attempt possible.</p>
                     <p>In first if you want to save your score choice your name:</p>
-                    <p>
-                        <input id="username" name="username" type="text" placeholder="Write Player Name" value="" />
-                        <button type="button" class="btn btn-secondary btnBody" onClick="store(); displayPlayerName(); showAlertPlayerName();">Confirm Player Name</button>
-                    </p>
+                    <div class="row changenameRow">
+                        <div class="col-sm-12 col-md-6 changeNameCol">
+                            <input id="username" name="username" class="usernameInput" type="text" placeholder="Write Player Name" value="" />
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <button type="button" class="btn btn-secondary btnBody btnAssignName" onClick="store(); displayPlayerName(); showAlertPlayerName();">Confirm Player Name</button>
+                        </div>
+                    </div>
                     <div id="playerNameSuccess" class="alert alert-success alertPlayer" role="alert">
                         Player name set!
                     </div>
@@ -406,7 +369,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="/assets/js/boardgame.js"></script>
-    <script src="/assets/js/trying.js"></script>
+    <script src="/assets/js/threecardsboard.js"></script>
 
 </body>
 
