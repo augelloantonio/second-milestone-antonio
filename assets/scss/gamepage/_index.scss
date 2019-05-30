@@ -51,8 +51,18 @@ body {
 .headerContent {
     padding: 15px;
     background-color: white;
-    height: 200px;
+    min-height: 250px;
+    padding-top: 35px;
 }
+
+@media (max-width: 768px) {
+    .headerContent {
+        padding-top: 10px;
+        min-height: 200px;
+    }
+}
+
+
 
 .infoMatch {
     margin: auto;
@@ -141,9 +151,9 @@ body {
 
 .timeBoard {
     box-shadow: 0 0 4px 1px rgb(211, 32, 255);
-    padding-bottom: 8px;
+    padding-bottom: 3px;
     max-width: 48%;
-    max-height: 55px;
+    min-height: 55px;
     margin: auto;
     background: #ea98ff;
     color: white;

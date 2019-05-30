@@ -34,8 +34,13 @@ body {
 .headerContent {
   padding: 15px;
   background-color: white;
-  height: 200px; }
+  min-height: 250px;
+  padding-top: 35px; }
 
+@media (max-width: 768px) {
+  .headerContent {
+    padding-top: 10px;
+    min-height: 200px; } }
 .infoMatch {
   margin: auto; }
 
@@ -111,9 +116,9 @@ body {
 
 .timeBoard {
   box-shadow: 0 0 4px 1px #d320ff;
-  padding-bottom: 8px;
+  padding-bottom: 3px;
   max-width: 48%;
-  max-height: 55px;
+  min-height: 55px;
   margin: auto;
   background: #ea98ff;
   color: white;
@@ -132,7 +137,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  min-height: 200px;
+  min-height: 250px;
   transition: all .5s ease-in-out;
   -moz-transition: all .5s ease-in-out;
   -webkit-transition: all .5s ease-in-out; }
@@ -215,6 +220,14 @@ body {
 .gameComandBtn:focus {
   outline: none; }
 
+.click_match_bar {
+  padding-top: 10px;
+  padding-bottom: 10px; }
+
+@media (max-width: 768px) {
+  .click_match_bar {
+    padding-top: 5px;
+    padding-bottom: 5px; } }
 .dropdownMenu {
   display: inline-block;
   width: 100%;
@@ -281,6 +294,9 @@ div#boardgame > div {
   cursor: pointer;
   text-align: center; }
 
+.boardgame {
+  position: absolute; }
+
 @media (max-width: 365px) {
   .boardgame {
     display: contents; } }
@@ -314,7 +330,7 @@ div#boardgame > div {
   padding: 0;
   padding-right: 0;
   padding-left: 0;
-  height: -webkit-fill-available; }
+  min-height: 800px; }
 
 .startComandBtn {
   position: absolute;
@@ -337,6 +353,27 @@ button.btn.btn-secondary.btnBody:active {
 /*.....................................................................On load Modal*/
 .alertPlayer {
   display: none; }
+
+@media (max-width: 768px) {
+  .alertPlayer {
+    display: none;
+    margin-top: 5px; } }
+.btnAssignName {
+  float: unset !important; }
+
+.changenameRow {
+  text-align: center;
+  padding: 3px; }
+
+.changeNameCol {
+  padding: 2px; }
+
+@media (max-width: 768px) {
+  .changeNameCol {
+    padding-bottom: 5px; } }
+.usernameInput {
+  border: solid 0.5px;
+  padding: 5px; }
 
 /*...................................................................Success Modal*/
 #successAlertModal {

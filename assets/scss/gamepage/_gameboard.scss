@@ -22,7 +22,9 @@ div#boardgame>div {
 }
 
 
-.boardgame {}
+.boardgame {
+    position: absolute;
+}
 
 @media (max-width: 365px) {
     .boardgame {
@@ -73,7 +75,7 @@ div#boardgame>div {
     padding: 0;
     padding-right: 0;
     padding-left: 0;
-    height: -webkit-fill-available;
+    min-height: 800px;
 }
 
 .startComandBtn {
@@ -81,6 +83,6 @@ div#boardgame>div {
     clear: both;
 }
 
-.pauseComandBtn{
+.pauseComandBtn {
     display: block;
 }
