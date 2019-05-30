@@ -78,22 +78,18 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 function showBoardGame() {
     $("#startBtn").click(function() { $(".boardgame").show(); });
 }
 
 /* Starting Game function assignet to the start Button, clicking on this button the play the game will generate 4 
 cards and the time will start counting, the pause button will appear instead of the play */
-
 function startGame() {
-
     startTimer();
     showBoardGame();
     startGameSound.play();
 
     newBoard(num_cards);
-    //hideStartButton();
 }
 
 function playPauseGame() {
@@ -109,14 +105,6 @@ function playPauseGame() {
 //Function that allow the player to pause the game and show the play button 
 function stopGame() {
     stopTimer();
-    //showStartButton();
-    //document.getElementById("pauseComandBtn").onclick = function() { stopGame(); };
-}
-
-
-//Function that change my sound button class on each click
-function switchSoundClass() {
-    $("#soundOnOffBtn").toggleClass('fas fa-volume-mute fas fa-volume-up');
 }
 
 //Function that change my play button class on each click
@@ -155,13 +143,10 @@ function newBoard(num_cards) {
     getRandomSentence(); // to generate a new sentence every round
 }
 
-
-
 /* Flip card function
  *It will assign an image value to the card and then it will check if my none of the cards are flipped
  *it will assign to the card i clicked the value 
  */
-
 function memoryFlipCard(card, val) {
     if (card.innerHTML === "" && memory_values.length < 2) {
         card.style.background = '#FFF';
@@ -216,7 +201,6 @@ function flip2Back() {
     notMatchedScore++; //Every time the card flip back it add 1 point score that will give me the total score
     noMatches = notMatchedScore;
     console.log("not matched score is " + notMatchedScore); //testing console 
-
 }
 
 function generateNewBoard() {
@@ -263,7 +247,6 @@ function generateNewBoard() {
         stopTimer();
         endGame();
     }
-
 }
 
 //On Page load modal 
@@ -282,13 +265,10 @@ function showOnLoadModal() {
 
 function startOfGameTimeDisplay() {
     timer.innerHTML = "Time: <br/>" + "mins " + " : " + "secs";
-
 }
 
 function startTimer() {
-
     var timer = document.querySelector("#timer");
-
     interval = setInterval(function() {
         timer.innerHTML = "Time: <br/>" + minute + " : " + second + "";
         second++;
@@ -305,7 +285,6 @@ function startTimer() {
         }
     }, 1000);
     document.getElementById('timer').innerHTML = "Time: <br/>" + minute + " : " + second + "";
-
 }
 
 //Function that will reset the timer and prevent it starts again without clicking on the start
@@ -320,7 +299,6 @@ function resetTimer() {
 function stopTimer() {
     clearInterval(interval);
 }
-
 
 //function that will count the point the user does for each match 
 function showMatch() {
@@ -345,10 +323,8 @@ function showMatch() {
         for (i = 0; i < match; i += 5) {
             scoreTotalLevelPoints += 5;
         }
-
     }
     $('#matches').text(cardMatched);
-
     console.log(cardMatched);
 }
 
@@ -373,7 +349,6 @@ function levelUp() {
 
     console.log("player leves is " + level);
 }
-
 
 function totalScore(total) {
     if (level > 1) {
@@ -404,6 +379,27 @@ function storeScore() {
 function setScore() {
     var score1 = localStorage.getItem("score1");
     $('#score1').text(score1);
+}
+
+function endGame() {
+    endGameSound.play();
+    $('#nextLevelModal').modal('hide');
+    num_cards = 0;
+    stopGame();
+
+    if (playerEndGameTotalScore >= 150 && playerEndGameTotalScore <= 250) {
+        $("#endGameSentence").text("Congrats! Your memory is better than I thought!");
+    }
+    else if (playerEndGameTotalScore <= 100 && playerEndGameTotalScore >= 140) {
+        $("#endGameSentence").text;
+        $("#bestScoreEndGame").hide();
+        $("#lowScoreEndGame").hide();
+    }
+    else if (playerEndGameTotalScore < 100) {
+        $("#endGameSentence").text("OPS! You should do better than this, your memory is not good enough !");
+        $("#bestScoreEndGame").hide();
+        $("#midScoreEndGame").hide();
+    }
 }
 
 //Function that will reset all the data
@@ -443,8 +439,6 @@ function dataReset() {
     resetSuccessSound.play();
 }
 
-
-
 //Function that allow the menu icon to change from "down" to "up" clicking on the Menu button 
 function dropdownMenuIcon() {
     $("#menuDropdownBtn").toggleClass('fas fa-caret-down fas fa-caret-up');
@@ -469,24 +463,23 @@ var userName = localStorage.getItem("userName");
 
 // storing username from the form input into the onload modal
 function store() {
-    if (userName == "Player") { //To prevent my name to change as default "Player" if the button to set the name is clicked
-        userName = $("#username").val();
-        localStorage.setItem("userName", userName);
-    }
+    userName = $("#username").val();
+    localStorage.setItem("userName", userName);
+
     console.log(userName); // testing console
 }
 
 //Assign to the p element the username chosen by the user
 function displayPlayerName() {
 
-    if (userName !== "") {
+    if (userName != "") {
         $('#playerName').text("Player: " + userName);
     }
     if (userName === null) {
         userName = "Player";
         $('#playerName').text("Player: " + userName);
     }
-    else if (userName === "") {
+    else if (userName == "") {
         userName = "Player";
         $('#playerName').text("Player: " + userName);
     }
@@ -514,25 +507,21 @@ function changePlayerName() {
     console.log(userName); // testing console
 }
 
-function endGame() {
-    endGameSound.play();
-    $('#nextLevelModal').modal('hide');
-    num_cards = 0;
-    stopGame();
+//Show an alert in on onload modal for the username set or not set
+function showAlertName() {
+    if (userName != "Player") {
+        $('#playerNameSuccess2').show();
+        setTimeout(function() { $('#playerNameSuccess2').hide(); }, 1500);
+    }
+    if (userName == "Player") {
+        $('#playerNameError2').show();
+        setTimeout(function() { $('#playerNameError2').hide(); }, 1500);
+    }
+}
 
-    if (playerEndGameTotalScore >= 150 && playerEndGameTotalScore <= 250) {
-        $("#endGameSentence").text("Congrats! Your memory is better than I thought!");
-    }
-    else if (playerEndGameTotalScore <= 100 && playerEndGameTotalScore >= 140) {
-        $("#endGameSentence").text;
-        $("#bestScoreEndGame").hide();
-        $("#lowScoreEndGame").hide();
-    }
-    else if (playerEndGameTotalScore < 100) {
-        $("#endGameSentence").text("OPS! You should do better than this, your memory is not good enough !");
-        $("#bestScoreEndGame").hide();
-        $("#midScoreEndGame").hide();
-    }
+//Function that change my sound button class on each click
+function switchSoundClass() {
+    $("#soundOnOffBtn").toggleClass('fas fa-volume-mute fas fa-volume-up');
 }
 
 //Function that stop or restart the audio pending on the class of the button audio
@@ -566,7 +555,6 @@ function audioOn() {
 }
 
 newBoard(num_cards);
-startOfGameTimeDisplay();
 showBoardGame();
 showMatch();
 totalClick();
@@ -577,3 +565,4 @@ displayPlayerName();
 showOnLoadModal();
 setScore();
 audioOnOff();
+startOfGameTimeDisplay();
