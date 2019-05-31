@@ -11,7 +11,7 @@ var num_cards = 4;
 //Variable for my scores  
 var match = 0;
 var click = 0;
-var level = 6; //Set to 0 or my increment will set it to start from 1 level more
+var level = 0; //Set to 0 or my increment will set it to start from 1 level more
 var score = [];
 var playerLevel = 0;
 var scoreTotalLevelPoints = 0;
@@ -20,6 +20,8 @@ var playerEndGameTotalScore = 0;
 var totalMatchScore = 0;
 var notMatchedScore = 1;
 var noMatches = 1;
+var cardMatched;
+
 
 //Variable for my timer
 var second = 0;
@@ -163,6 +165,7 @@ function memoryFlipCard(card, val) {
             memory_card_ids.push(card.id);
             //And when i click another card it will add the value to the other card and it will check if it is a match
             if (memory_values[0] == memory_values[1]) {
+                cardMatch();
                 showMatch();
                 matchSound.play();
                 card_flipped += 2;
@@ -300,33 +303,26 @@ function stopTimer() {
     clearInterval(interval);
 }
 
-//function that will count the point the user does for each match 
-function showMatch() {
-    if (level >= 5) {
-        let matchLevelFive = match;
-        let cardMatched = ("Matches: " + matchLevelFive);
-        //if (areEqual(memory_values[0], memory_values[1], memory_values[2])) {
-        if (memory_values[0] === memory_values[1] && memory_values[1] === memory_values[2]) {
-            matchLevelFive++;
-        }
-        $('#matches').text(cardMatched);
 
-        console.log(cardMatched);
-        console.log("The match score is " + scoreTotalLevelPoints);
-    }
-    let cardMatched = ("Matches: " + match);
-    if (memory_values[0] == memory_values[1]) {
+//Function that will increment the matches every time the user does a match
+function cardMatch() {
+    for (i = 0; i < shuffled.length / num_cards; i++) {
         match++;
+        scoreTotalLevelPoints += 5;
         totalMatchScore = scoreTotalLevelPoints;
-
-        //increment my match score by 5 every time the user match the cards
-        for (i = 0; i < match; i += 5) {
-            scoreTotalLevelPoints += 5;
-        }
     }
+}
+
+//function that will count the point the user does for each match 
+function showMatch(matchSum) {
+    let cardMatched = ("Matches: " + match);
+
     $('#matches').text(cardMatched);
+    sumCardMatch = match;
+
     console.log(cardMatched);
 }
+
 
 function totalClick() {
     let cardClicked = ("Total Click: " + click);
@@ -351,8 +347,8 @@ function levelUp() {
 }
 
 function totalScore(total) {
-    if (level > 1) {
-        let levelPoints = level - 1; //give the level multiplied for the level, the first level is not calculated for this score
+    if (level >= 1) {
+        let levelPoints = level - 1;
         scoreLevelPoints = levelPoints;
 
         totalGameScore = (totalMatchScore + scoreLevelPoints) / noMatches;
@@ -556,9 +552,9 @@ function audioOn() {
 
 newBoard(num_cards);
 showBoardGame();
-showMatch();
 totalClick();
 levelUp();
+showMatch();
 totalScore();
 getRandomSentence();
 displayPlayerName();

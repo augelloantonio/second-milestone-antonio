@@ -57,6 +57,7 @@ function memoryFlipThreeCard(card, val) {
             memory_card_ids.push(card.id);
             //And when i click another card it will add the value to the other card and it will check if it is a match
             if (memory_values[0] === memory_values[1] && memory_values[1] === memory_values[2]) {
+                cardMatch();
                 showMatch();
                 card_flipped += 3;
                 // If it is a match it will clear both arrays and the function can restart
