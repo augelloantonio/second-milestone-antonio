@@ -11,7 +11,7 @@ var num_cards = 4;
 //Variable for my scores  
 var match = 0;
 var click = 0;
-var level = 0; //Set to 0 or my increment will set it to start from 1 level more
+var level = 3; //Set to 0 or my increment will set it to start from 1 level more
 var score = [];
 var playerLevel = 0;
 var scoreTotalLevelPoints = 0;
@@ -21,6 +21,7 @@ var totalMatchScore = 0;
 var notMatchedScore = 1;
 var noMatches = 1;
 var cardMatched;
+var playerClick = 0;
 
 
 //Variable for my timer
@@ -303,14 +304,22 @@ function stopTimer() {
     clearInterval(interval);
 }
 
-
 //Function that will increment the matches every time the user does a match
 function cardMatch() {
-    for (i = 0; i < shuffled.length / num_cards; i++) {
-        match++;
-        scoreTotalLevelPoints += 5;
-        totalMatchScore = scoreTotalLevelPoints;
+
+    if (level >= 5) {
+        for (i = 0; i < shuffled.length / num_cards; i++) {
+            match++;
+            scoreTotalLevelPoints += 5;
+            totalMatchScore = scoreTotalLevelPoints;
+        }
     }
+    if (level > 0 && level < 5)
+        for (i = 0; i < shuffled.length / num_cards; i++) {
+            match++;
+            scoreTotalLevelPoints += 5;
+            totalMatchScore = scoreTotalLevelPoints;
+        }
 }
 
 //function that will count the point the user does for each match 
@@ -323,15 +332,19 @@ function showMatch(matchSum) {
     console.log(cardMatched);
 }
 
-
 function totalClick() {
-    let cardClicked = ("Total Click: " + click);
+    click++;
+    playerClick = click;
+    console.log("click " + click)
+    showTotalClick();
+}
 
-    if (card_flipped >= 0) {
-        click++;
-    }
+function showTotalClick() {
+    let cardClicked = ("Total Click: " + playerClick);
+
     $('#totalClick').text(cardClicked);
     console.log(cardClicked);
+
 }
 
 //Function that will show the actual level 
@@ -351,7 +364,7 @@ function totalScore(total) {
         let levelPoints = level - 1;
         scoreLevelPoints = levelPoints;
 
-        totalGameScore = (totalMatchScore + scoreLevelPoints) / noMatches;
+        totalGameScore = (totalMatchScore + scoreLevelPoints) - (click + noMatches);
 
         console.log("The level score is" + scoreLevelPoints);
         console.log("the total matches score is " + totalMatchScore);
@@ -552,8 +565,8 @@ function audioOn() {
 
 newBoard(num_cards);
 showBoardGame();
-totalClick();
 levelUp();
+showTotalClick();
 showMatch();
 totalScore();
 getRandomSentence();
