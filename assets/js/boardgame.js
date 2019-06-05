@@ -207,15 +207,16 @@ function flip2Back() {
     console.log("not matched score is " + notMatchedScore); //testing console 
 }
 
+//This function will generate a new board pending on what level the player is playing
 function generateNewBoard() {
     if (level > 1 && level < 4) {
-        stopTimer();
+        stopTimer(); //the timer will be stopped and then restart when the player click on the "next" button of the modal
         $('#nextLevelModal').modal({ show: true });
-        newBoard(num_cards + 4);
-        num_cards += 4;
-        endLevelSound.play();
+        newBoard(num_cards + 4); //Start with 4 cards
+        num_cards += 4; //Add 4 cards every level
+        endLevelSound.play(); //Sound of applause at the end of each level
     }
-    if (playerLevel === 1) {
+    if (playerLevel === 1) { //if the level is the first level then it show my first level modal 
         stopTimer();
         $('#levelTwoModal').modal({ show: true });
         newBoard(num_cards + 4);
@@ -223,8 +224,8 @@ function generateNewBoard() {
         endLevelSound.play();
     }
 
-    if (level == 4) {
-        num_cards = 9;
+    if (level == 4) { //At the end of the level 4 it will add the script for my second half game setting the card to be 9 in the board
+        num_cards = 9; 
         stopTimer();
         $.getScript("/assets/js/threecardsboard.js", function() {
             levelFiveBoard(num_cards);
@@ -243,7 +244,7 @@ function generateNewBoard() {
         $('#levelFiveModal').modal('hide');
         endLevelSound.play();
     }
-    if (level == 8) {
+    if (level == 8) { //At the end of the 8th level the game will end and the end modal will be showed
         $('#nextLevelModal').modal('hide');
         $('#winModal').modal({ show: true });
 
@@ -252,7 +253,7 @@ function generateNewBoard() {
     }
 }
 
-//On Page load modal 
+//On Page load modal, if the player name has been set then it won't show it because it assume that is not a new user playing
 function showOnLoadModal() {
     if (userName != "Player") {
         $(window).on('load', function() {
@@ -334,8 +335,7 @@ function showMatch(matchSum) {
     console.log(cardMatched);
 }
 
-
-//BUG - on restart it start with 1 click
+//Every time the user click on a card the counter will add 1 point
 function totalClick() {
     click++;
     playerClick = click;
