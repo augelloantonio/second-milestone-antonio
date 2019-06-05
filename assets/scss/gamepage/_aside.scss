@@ -36,11 +36,17 @@
     }
 }
 
+@media (min-width:1600px) {
+    .logo {
+        min-height: 400px;
+    }
+}
+
 .aside {
     padding: 0;
     background-color: white;
+    min-height: -webkit-fill-available;
 }
-
 
 @media screen and (max-width: 767px) {
     .aside {

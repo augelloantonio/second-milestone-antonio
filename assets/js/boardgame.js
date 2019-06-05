@@ -11,15 +11,15 @@ var num_cards = 4;
 //Variable for my scores  
 var match = 0;
 var click = 0;
-var level = 3; //Set to 0 or my increment will set it to start from 1 level more
+var level = 7; //Set to 0 or my increment will set it to start from 1 level more
 var score = [];
 var playerLevel = 0;
 var scoreTotalLevelPoints = 0;
 var scoreLevelPoints = 0;
 var playerEndGameTotalScore = 0;
 var totalMatchScore = 0;
-var notMatchedScore = 1;
-var noMatches = 1;
+var notMatchedScore = 0;
+var noMatches = 0;
 var cardMatched;
 var playerClick = 0;
 
@@ -244,7 +244,6 @@ function generateNewBoard() {
         endLevelSound.play();
     }
     if (level == 8) {
-        $('#totalMatchScore').text(userName + " score: " + playerEndGameTotalScore);
         $('#nextLevelModal').modal('hide');
         $('#winModal').modal({ show: true });
 
@@ -287,8 +286,11 @@ function startTimer() {
             minute = 0;
             totalHour = hour;
         }
+        document.getElementById('endgametimer').innerHTML = timer.innerHTML; //show the time to the end game modal
+
     }, 1000);
     document.getElementById('timer').innerHTML = "Time: <br/>" + minute + " : " + second + "";
+
 }
 
 //Function that will reset the timer and prevent it starts again without clicking on the start
@@ -332,6 +334,8 @@ function showMatch(matchSum) {
     console.log(cardMatched);
 }
 
+
+//BUG - on restart it start with 1 click
 function totalClick() {
     click++;
     playerClick = click;
@@ -344,7 +348,6 @@ function showTotalClick() {
 
     $('#totalClick').text(cardClicked);
     console.log(cardClicked);
-
 }
 
 //Function that will show the actual level 
@@ -360,18 +363,20 @@ function levelUp() {
 }
 
 function totalScore(total) {
-    if (level >= 1) {
-        let levelPoints = level - 1;
+    if (level > 1) {
+        let levelPoints = level;
         scoreLevelPoints = levelPoints;
 
-        totalGameScore = (totalMatchScore + scoreLevelPoints) - (click + noMatches);
+        totalGameScore = (totalMatchScore + previousLevel) - noMatches;
 
         console.log("The level score is" + scoreLevelPoints);
         console.log("the total matches score is " + totalMatchScore);
         score.push(totalGameScore); //create a new empty array where push my results, now i have to made the sum of them and show it
         total = score.reduce((acc, cur) => acc + cur, 0).toFixed(0); //taken from https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
-        playerEndGameTotalScore = total;
+        playerEndGameTotalScore = total - click; //calculate the final score
         document.getElementById('totalScore').innerHTML = ("Total Score: " + total);
+        $('#totalMatchScore').text(userName + " total score: " + playerEndGameTotalScore); //Assign to my end game modal the score
+
     }
     else {
         document.getElementById('totalScore').innerHTML = "Total Score: " + 0;
@@ -419,10 +424,13 @@ function dataReset() {
 
     match = 0;
     click = 0;
+    playerClick = 0;
+    totalMatchScore = 0;
+    showTotalClick();
 
     score = [];
-    notMatchedScore = 1;
-    noMatches = 1;
+    notMatchedScore = 0;
+    noMatches = 0;
 
 
     level = 0;
@@ -440,7 +448,6 @@ function dataReset() {
     $('#startBtn').removeClass('fa-pause');
     $('#startBtn').addClass('fa-play');
 
-    totalClick();
     showMatch();
     levelUp();
     totalScore();

@@ -41,9 +41,10 @@ body {
   .headerContent {
     padding-top: 10px;
     min-height: 200px; } }
-.infoMatch {
-  margin: auto; }
-
+@media (min-width: 1600px) {
+  .headerContent {
+    padding-top: 80px;
+    min-height: 400px; } }
 .starIcon {
   display: inline-flex; }
 
@@ -65,9 +66,13 @@ body {
 
 .infoMatch {
   min-height: 50px;
-  margin: auto;
+  margin: 5px;
   max-height: 50px; }
 
+@media (min-width: 1600px) {
+  .infoMatch {
+    margin: 10px;
+    font-size: 24px; } }
 .click_match_bar {
   width: 100%;
   padding-bottom: 5px; }
@@ -114,6 +119,9 @@ body {
   color: white;
   font-weight: 500; }
 
+@media (min-width: 1600px) {
+  .scoreBoard {
+    min-height: 79px; } }
 .timeBoard {
   box-shadow: 0 0 4px 1px #d320ff;
   padding-bottom: 3px;
@@ -157,9 +165,13 @@ body {
     background-size: cover;
     width: 100%;
     min-width: 200px; } }
+@media (min-width: 1600px) {
+  .logo {
+    min-height: 400px; } }
 .aside {
   padding: 0;
-  background-color: white; }
+  background-color: white;
+  min-height: -webkit-fill-available; }
 
 @media screen and (max-width: 767px) {
   .aside {
@@ -350,6 +362,9 @@ button.btn.btn-secondary.btnBody:hover {
 button.btn.btn-secondary.btnBody:active {
   background-color: #ff6a00; }
 
+@media (min-width: 1600px) {
+  .modal-content {
+    min-width: 600px; } }
 /*.....................................................................On load Modal*/
 .alertPlayer {
   display: none; }

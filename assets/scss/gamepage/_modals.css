@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700");
+html {
+  height: 100%; }
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: auto;
+  min-height: 100%;
+  background-color: green; }
+
+.container-fluid {
+  padding-left: 0px;
+  padding-right: 0px;
+  width: 100%; }
+
+.page-container {
+  position: relative;
+  min-height: 100vh; }
+
+.row {
+  margin: 0; }
+
+@media (max-width: 360px) {
+  .container-fluid {
+    padding-right: 0px; } }
+/*.....................................................................................Header*/
+.headerTab {
+  background-color: wheightte;
+  color: black;
+  width: 100%;
+  padding-top: 0px;
+  text-align: center; }
+
+.headerContent {
+  padding: 15px;
+  background-color: white;
+  min-height: 250px;
+  padding-top: 35px; }
+
+@media (max-width: 768px) {
+  .headerContent {
+    padding-top: 10px;
+    min-height: 200px; } }
+@media (min-width: 1600px) {
+  .headerContent {
+    padding-top: 80px;
+    min-height: 400px; } }
+.starIcon {
+  display: inline-flex; }
+
+.lowScoreStar {
+  font-size: 20px;
+  color: #f05322; }
+
+.midScoreStar {
+  font-size: 20px;
+  color: #f05322; }
+
+.highScoreStar {
+  font-size: 20px;
+  color: #f05322; }
+
+.starActive {
+  font-size: 21px;
+  color: #ffe200; }
+
+.infoMatch {
+  min-height: 50px;
+  margin: 5px;
+  max-height: 50px; }
+
+@media (min-width: 1600px) {
+  .infoMatch {
+    margin: 10px;
+    font-size: 24px; } }
+.click_match_bar {
+  width: 100%;
+  padding-bottom: 5px; }
+
+.levelBoard {
+  box-shadow: 0 0 4px 1px #d320ff;
+  padding: 5px;
+  margin: auto;
+  max-height: 50px;
+  background: #cc01fe;
+  color: white;
+  font-weight: 500;
+  border-radius: 25PX;
+  max-width: 48%;
+  margin-bottom: 3px; }
+
+.clickBoard {
+  box-shadow: 0 0 4px 1px #d320ff;
+  padding: 5px;
+  max-width: 48%;
+  max-height: 50px;
+  margin: auto;
+  background: #ea98ff;
+  color: white;
+  font-weight: 500; }
+
+.matchBoard {
+  box-shadow: 0 0 4px 1px #d320ff;
+  padding: 5px;
+  max-width: 48%;
+  max-height: 50px;
+  margin: auto;
+  background: #ea98ff;
+  color: white;
+  font-weight: 500; }
+
+.scoreBoard {
+  box-shadow: 0 0 4px 1px #d320ff;
+  padding-bottom: 8px;
+  max-width: 48%;
+  min-height: 55px;
+  margin: auto;
+  background: #ea98ff;
+  color: white;
+  font-weight: 500; }
+
+@media (min-width: 1600px) {
+  .scoreBoard {
+    min-height: 79px; } }
+.timeBoard {
+  box-shadow: 0 0 4px 1px #d320ff;
+  padding-bottom: 3px;
+  max-width: 48%;
+  min-height: 55px;
+  margin: auto;
+  background: #ea98ff;
+  color: white;
+  font-weight: 500; }
+
+/*...............................................................Text, padding and centering*/
+.centeredContent {
+  text-align: center;
+  margin: auto; }
+
+/*# sourceMappingURL=_modals.css.map */
