@@ -212,7 +212,7 @@
                 </div>
                 <div class="modal-body">
                     <p>Level One completed, but that was an easy one! Let's start with the real game now!</p>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer(); storeScore(); setScore()">Next</button>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
                 </div>
 
             </div>
@@ -231,7 +231,7 @@
                 </div>
                 <div class="modal-body">
                     <p id="endLevelSentences"></p>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer(); storeScore();">Next</button>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
                 </div>
 
             </div>
@@ -254,7 +254,7 @@
                     <img class="example" src="/assets/img/matchThreeExample.jpg" alt="Match Three Card Example"></img>
 
                     <p>3 new cards will be added on Level 6. So be ready.</p>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer(); storeScore(); setScore()">Next</button>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();  ">Next</button>
                 </div>
             </div>
         </div>
@@ -353,10 +353,10 @@
                 </div>
                 <div class="row">
                     <div class="col-6">
-                        <button type="button" class="btn btn-secondary endGameBtn" data-dismiss="modal" onClick="storeScore();">Go Back</button>
+                        <button type="button" class="btn btn-secondary endGameBtn" data-dismiss="modal" onClick="">Go Back</button>
                     </div>
                     <div class="col-6">
-                        <button class="btn btn-secondary endGameBtn" type="button" id="resetBtn" data-dismiss="modal" onclick="dataReset(); successAlert(); storeScore(); setScore()">Restart Game</button>
+                        <button class="btn btn-secondary endGameBtn" type="button" id="resetBtn" data-dismiss="modal" onclick="dataReset(); successAlert();  ">Restart Game</button>
                     </div>
                 </div>
 

@@ -1,4 +1,4 @@
-//..................................................................Game starting board//
+//Game starting board//
 function levelFiveBoard(num_cards) {
 
     console.log("the cards in the game are ==> " + num_cards); //testing console.log
@@ -57,19 +57,19 @@ function memoryFlipThreeCard(card, val) {
             memory_card_ids.push(card.id);
             //And when i click another card it will add the value to the other card and it will check if it is a match
             if (memory_values[0] === memory_values[1] && memory_values[1] === memory_values[2]) {
+                cardMatch();
                 showMatch();
                 card_flipped += 3;
                 // If it is a match it will clear both arrays and the function can restart
                 memory_values = [];
                 memory_card_ids = [];
+                matchSound.play();
                 // If all the card on the board are flipped then it generate a newboard  
                 if (card_flipped == shuffled.length) {
                     document.getElementById('boardgame').innerHTML = "";
                     generateNewBoard();
                     levelUp();
                     totalScore();
-                    matchSound.play();
-
                 }
             }
             //If the id of the selected card is not the same then it will flip back the card assigning them my card logo 
@@ -96,4 +96,5 @@ function flip3Back() {
     memory_card_ids = [];
     notMatchedScore++; //Every time the card flip back it add 1 point score that will give me the total score
     console.log("not matched score is " + notMatchedScore);
+    flipBackSound.play();
 }

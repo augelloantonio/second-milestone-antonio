@@ -107,15 +107,18 @@ function switchPlayBtnClass() {
 
 //..................................................................Game starting board//
 function newBoard(num_cards) {
+
+    console.log("the cards in the game are ==> " + num_cards); //testing console.log
+
     card_flipped = 0;
     var output = '';
     shuffled = [];
 
     for (var i = 0; i < num_cards / 2; i++) {
-
-
+        
+        
         // Try this to eliminate duplicate cards problems:
-
+        
         // while (cardAlreadyInShuffled === true) {
         //     var card = getRandomInt(0, 11);
         //     if (shuffled.indexOf(cardlist[card]) != -1) {
@@ -128,7 +131,7 @@ function newBoard(num_cards) {
         //         shuffled.push(cardList[card]);
         //     }
         // }
-
+        
         // Get a random card between 0 and 11 from the card list
         var card = getRandomInt(0, 11);
 
@@ -136,8 +139,12 @@ function newBoard(num_cards) {
         // We must push it twice to make sure it has a match
         shuffled.push(cardList[card]);
         shuffled.push(cardList[card]);
+        console.log(shuffled);
+
     }
     shuffle(shuffled);
+
+    console.log('shuffled ---> ', shuffled);
 
     for (var i = 0; i < shuffled.length; i++) {
         output += '<div class="backLogoCardDiv"  id="card_' + i + '" onclick="memoryFlipCard(this,\'' + shuffled[i] + '\')"></div>';
@@ -204,6 +211,7 @@ function flip2Back() {
     memory_card_ids = [];
     notMatchedScore++; //Every time the card flip back it add 1 point score that will give me the total score
     noMatches = notMatchedScore;
+    console.log("not matched score is " + notMatchedScore); //testing console 
 }
 
 //This function will generate a new board pending on what level the player is playing
@@ -224,7 +232,7 @@ function generateNewBoard() {
     }
 
     if (level == 4) { //At the end of the level 4 it will add the script for my second half game setting the card to be 9 in the board
-        num_cards = 9;
+        num_cards = 9; 
         stopTimer();
         $.getScript("/assets/js/threecardsboard.js", function() {
             levelFiveBoard(num_cards);
@@ -324,19 +332,25 @@ function cardMatch() {
 //function that will count the point the user does for each match 
 function showMatch(matchSum) {
     let cardMatched = ("Matches: " + match);
+
     $('#matches').text(cardMatched);
+
+    console.log(cardMatched);
 }
 
 //Every time the user click on a card the counter will add 1 point
 function totalClick() {
     click++;
     playerClick = click;
+    console.log("click " + click);
     showTotalClick();
 }
 
 function showTotalClick() {
     let cardClicked = ("Total Click: " + playerClick);
+
     $('#totalClick').text(cardClicked);
+    console.log(cardClicked);
 }
 
 //Function that will show the actual level 
@@ -347,6 +361,8 @@ function levelUp() {
     playerLevel = level;
     previousLevel = level - 1;
     $("#nextLevelModalTitle").text("Well Done, you passed the level " + previousLevel);
+
+    console.log("player leves is " + level);
 }
 
 function totalScore(total) {
@@ -356,6 +372,8 @@ function totalScore(total) {
 
         totalGameScore = (totalMatchScore + previousLevel) - noMatches;
 
+        console.log("The level score is" + scoreLevelPoints);
+        console.log("the total matches score is " + totalMatchScore);
         score.push(totalGameScore); //create a new empty array where push my results, now i have to made the sum of them and show it
         total = score.reduce((acc, cur) => acc + cur, 0).toFixed(0); //taken from https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
         playerEndGameTotalScore = total - click; //calculate the final score
@@ -366,6 +384,8 @@ function totalScore(total) {
     else {
         document.getElementById('totalScore').innerHTML = "Total Score: " + 0;
     }
+    //testing calculate the total score
+    console.log("total is " + playerEndGameTotalScore);
 }
 
 function endGame() {
@@ -443,8 +463,10 @@ function successAlert() {
 function getRandomSentence() {
     var randomSentences = sentences[Math.floor(Math.random() * sentences.length)];
     document.getElementById('endLevelSentences').innerHTML = randomSentences;
+    console.log(randomSentences);
 }
 
+// storing username from the starting modal
 //User Details
 var userName = localStorage.getItem("userName");
 
@@ -452,6 +474,8 @@ var userName = localStorage.getItem("userName");
 function store() {
     userName = $("#username").val();
     localStorage.setItem("userName", userName);
+
+    console.log(userName); // testing console
 }
 
 //Assign to the p element the username chosen by the user
@@ -468,6 +492,7 @@ function displayPlayerName() {
         userName = "Player";
         $('#playerName').text("Player: " + userName);
     }
+    console.log(userName); //testing console
 }
 
 //Show a success alert or an error alert if the player name is or is not inserted
@@ -487,6 +512,8 @@ function changePlayerName() {
 
     userName = $("#changeusername").val();
     localStorage.setItem("userName", userName);
+
+    console.log(userName); // testing console
 }
 
 //Show an alert in on onload modal for the username set or not set

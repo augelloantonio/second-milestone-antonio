@@ -1,7 +1,6 @@
-//..................................................................Game starting board//
+//Game starting board//
 function levelFiveBoard(num_cards) {
 
-    console.log("the cards in the game are ==> " + num_cards); //testing console.log
     card_flipped = 0;
     var output = '';
     shuffled = [];
@@ -11,17 +10,12 @@ function levelFiveBoard(num_cards) {
         var card = getRandomInt(0, 11);
 
         // Push the card into the list to be shuffled
-        // We must push it twice to make sure it has a match
+        // We must push it three times to be sure it has a match
         shuffled.push(cardList[card]);
         shuffled.push(cardList[card]);
         shuffled.push(cardList[card]);
-
-        console.log(shuffled);
-
     }
     shuffle(shuffled);
-
-    console.log('shuffled ---> ', shuffled);
 
     for (var i = 0; i < shuffled.length; i++) {
         output += '<div class="backLogoCardDiv"  id="card_' + i + '" onclick="memoryFlipThreeCard(this,\'' + shuffled[i] + '\')"></div>'
@@ -95,6 +89,5 @@ function flip3Back() {
     memory_values = [];
     memory_card_ids = [];
     notMatchedScore++; //Every time the card flip back it add 1 point score that will give me the total score
-    console.log("not matched score is " + notMatchedScore);
     flipBackSound.play();
 }
