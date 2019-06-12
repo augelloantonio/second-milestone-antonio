@@ -115,10 +115,10 @@ function newBoard(num_cards) {
     shuffled = [];
 
     for (var i = 0; i < num_cards / 2; i++) {
-        
-        
+
+
         // Try this to eliminate duplicate cards problems:
-        
+
         // while (cardAlreadyInShuffled === true) {
         //     var card = getRandomInt(0, 11);
         //     if (shuffled.indexOf(cardlist[card]) != -1) {
@@ -131,7 +131,7 @@ function newBoard(num_cards) {
         //         shuffled.push(cardList[card]);
         //     }
         // }
-        
+
         // Get a random card between 0 and 11 from the card list
         var card = getRandomInt(0, 11);
 
@@ -232,7 +232,7 @@ function generateNewBoard() {
     }
 
     if (level == 4) { //At the end of the level 4 it will add the script for my second half game setting the card to be 9 in the board
-        num_cards = 9; 
+        num_cards = 9;
         stopTimer();
         $.getScript("../assets/js/threecardsboard.js", function() {
             levelFiveBoard(num_cards);
@@ -279,6 +279,7 @@ function startOfGameTimeDisplay() {
 }
 
 function startTimer() {
+    console.log("timer started"); //console testig
     var timer = document.querySelector("#timer");
     interval = setInterval(function() {
         timer.innerHTML = "Time: <br/>" + minute + " : " + second + "";
@@ -292,10 +293,8 @@ function startTimer() {
             minute = 0;
         }
         document.getElementById('endgametimer').innerHTML = timer.innerHTML; //show the time to the end game modal
-
     }, 1000);
     document.getElementById('timer').innerHTML = "Time: <br/>" + minute + " : " + second + "";
-
 }
 
 //Function that will reset the timer and prevent it starts again without clicking on the start

@@ -174,6 +174,20 @@ Other small bugs are solved and it is all traceable on my GitHub page, under the
 Most of the javascript code has been tested with the Debug console with the command console.log() that allowed me to find if the function has been called at the right time and to show if the corresponding value was right.
 A copy of the code with all the testing codes is available in my repository under the folder "testing".
 
+Have a look at the testing opening the follwing html file and open the Debug console of your Browser.
+["testing.html"](https://gello94.github.io/second-milestone-antonio/testing/testing.html)
+
+N.B.: I have not update the images link on the testing.html file because this file is only to demonstrate the testing I used to see if my code was working.
+
+Example of testing I followed:
+I want to check if my function startGame, called on click to the start button, is calling all the function I want to.
+
+- Open the Debug console of your Browser
+- Click on the Play button
+- You can see thanks to the console.log() command line how the following function are called: startTimer(), showBoardGame(), newBoard(num_cards).
+
+I'm able this way to see as well all the other function that the function I called is calling and the order of the execution.
+
 
 ### Validation Testings
 
