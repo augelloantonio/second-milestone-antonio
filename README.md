@@ -37,12 +37,13 @@ The layout is very simple:
 
 As a child I would like to find easy instruction with images, to made easier to understand how to play. The "onload modal" show the instruction with pictures that made it clear, as well the "instruction modal" has images to show how to play.
 
+
 ##### Adult user:
 
-As an adult what I want is to find gaming commands
+As an adult what I want is a game that attract my attenction and that is not boring. The change in the 5th level is someting to keep the user challenging itself on the game.
+
 
 ##### User listening music:
-
 As a user that is listening music what I would like is to easly find a way to turn off the sounds of the game. The "sound button" on the game command bar made it easier for all the users that whant to turn off the sounds.
 
 
@@ -79,6 +80,7 @@ The menu includes the following sections:
 - Instructions: simple instruction for the user that will explain to the user how to play.
 - Change Player Name: It give the possibility to the user to change the player name.
 - Credits: It will display developer info, with GitHub and Linkedin profile, icons styled with FontAwesome.
+
 
 #### _Game Section_
 
@@ -152,6 +154,7 @@ To test this project I used various browsers and devices.
 * Acer Laptop
 * Samsung S8
 * Iphone X
+* 42" Schreen
 
 During testing i used Chrome Developer tools to test the responsive design on different size and the features of the page on different width.
 
@@ -163,29 +166,18 @@ The site was developed following the Bootstrap Grid System and the same was test
 
 ### During development
 
-Few bugs appeared during the developing process:
+During the deploiment of the 5th level the code was in the main javascript file sheet "boardgame.js", I had the iusse that the game was accepting my function but not showing it in the right way.
+On the board I had only 4 cards showing at that time and then errors showing. I thing this was for the fact that i was using the same ID fot the div element, and that was giving troubles.
+Then I decided to use another javascript file sheet to made it clear and calling it back as needed. It worked great and is more clear and faster that the other way.
 
+I could have done it adding a new div with hidden class as for the first board and showing it with the function, but I preferred to do this way to test as well using different javascript filesheet.
 
-### Forms and Gallery Testing
+Other small bugs are solved and it is all traceable on my GitHub page, under the "commit" section of my Milestone repository, available at the following  link:
+-  ["https://github.com/gello94/second-milestone-antonio/commits/master"](https://gello94.github.io/first-milestone-antonio/gallery.html)
 
-1. Sign Up form:
-    1. Go to one of the page and click on the Sign Up button
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid.
-
-2. Contact form:
-    1. Go to the ["Contact Us"](https://gello94.github.io/first-milestone-antonio/contact.html) page
-    2. Try to submit the empty form and verify that an error message about the required fields appears
-    3. Try to submit the form with an invalid email address and verify that a relevant error message appears
-    4. Try to submit the form with all inputs valid.
-
-3. Animated Gallery 
-    1. Go to the ["Photobook"](https://gello94.github.io/first-milestone-antonio/gallery.html)
-    2. Try to move your indicator on the images and see the css transitions working.
-    3. Try to click on one of the images and see how the image will be displayed full screen in the same page with a transition effect.
-    4. Click again to go back on the gallery.
-    5. Now try to set the display on a resolution of 768px or less and click on one of the images and see how the transition is not displayed.
+### Testing
+Most of the javascript code has been tested with the Debug console with the command console.log() that allowed me to find if the function has been called at the right time and to show if the corresponding value was right.
+A copy of the code with all the testing codes is available in my repository under the folder "testing".
 
 
 ### Validation Testings
@@ -202,11 +194,21 @@ GitHub is used to host the code and publish the pages.
 
 A new repository was created in GitHub called: second-milestone-antonio.
 
+An initial commit has been done.
+
+Time by time the update files were pushed on GitHib and a proper commit has benn done:
+
+`$git add`
+
+`$git commit -m " commit"`
+
+`$ git push -u origin master`
+
 After a final Git Add and Git commit
 
 `$git add .`
 
-`$git commit -m "Final commit"`
+`$git commit -m "final commit"`
 
 The pages were pushed to the GitHub repository
 
@@ -217,7 +219,7 @@ The pages were pushed to the GitHub repository
 `$Password`
 
 Under the Settings – GitHub Pages of the new repository, the master branch of the code is published to the url:
-https://gello94.github.io/first-milestone-antonio/
+"link of the master branch"
 
 ## Credits
 
