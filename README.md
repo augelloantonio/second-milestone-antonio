@@ -1,6 +1,6 @@
 # Interactive Front-End Development Milestone Project
 
-# [#HELPYOURBRAIN](https://gello94.github.io/first-milestone-antonio)
+# [#HELPYOURBRAIN](https://gello94.github.io/second-milestone-antonio/)
 
 ![Page Logo](https://github.com/gello94/second-milestone-antonio/blob/master/assets/img/pagelogo.jpg)
 

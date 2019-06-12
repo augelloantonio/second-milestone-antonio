@@ -1,182 +1,113 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,600,700|Exo:100,200,300,400,500,600,700');
+/*..........................................................................Modal Style*/
+button.btnBody {
+  float: right;
+  background-color: orangered; }
 
-html {
-    height: 100%;
-}
+button.btn.btn-secondary.btnBody:hover {
+  background-color: #ff6a00; }
 
-body {
-    font-family: "Roboto", sans-serif;
-    margin: auto;
-    min-height: 100%;
-    background-color: green;
-}
+button.btn.btn-secondary.btnBody:active {
+  background-color: #ff6a00; }
 
-.container-fluid {
-    padding-left: 0px;
-    padding-right: 0px;
-    width: 100%;
-}
-
-.page-container {
-    position: relative;
-    min-height: 100vh;
-}
-
-.row {
-    margin: 0;
-}
-
-
-
-@media (max-width: 360px) {
-    .container-fluid {
-        padding-right: 0px;
-    }
-}
-
-
-
-/*.....................................................................................Header*/
-
-.headerRow {}
-
-.headerTab {
-    background-color: wheightte;
-    color: black;
-    width: 100%;
-    padding-top: 0px;
-    text-align: center;
-}
-
-.headerContent {
-    padding: 15px;
-    background-color: white;
-    min-height: 250px;
-    padding-top: 35px;
-}
+@media (min-width: 1600px) {
+  .modal-content {
+    min-width: 600px; } }
+/*.....................................................................On load Modal*/
+.alertPlayer {
+  display: none; }
 
 @media (max-width: 768px) {
-    .headerContent {
-        padding-top: 10px;
-        min-height: 200px;
-    }
-}
+  .alertPlayer {
+    display: none;
+    margin-top: 5px; } }
+.btnAssignName {
+  float: unset !important; }
 
-@media (min-width:1600px) {
-    .headerContent {
-        padding-top: 80px;
-        min-height: 400px;
-    }
-}
+.changenameRow {
+  text-align: center;
+  padding: 3px; }
 
-.starIcon {
-    display: inline-flex;
-}
+.changeNameCol {
+  padding: 2px; }
 
-.lowScoreStar {
-    font-size: 20px;
-    color: #f05322;
-}
+@media (max-width: 768px) {
+  .changeNameCol {
+    padding-bottom: 5px; } }
+.usernameInput {
+  border: solid 0.5px;
+  padding: 5px; }
 
-.midScoreStar {
-    font-size: 20px;
-    color: #f05322;
-}
+/*...................................................................Success Modal*/
+#successAlertModal {
+  background-color: transparent; }
 
-.highScoreStar {
-    font-size: 20px;
-    color: #f05322;
-}
+.modalSuccessContent {
+  font-size: 50px;
+  text-align: center; }
 
-.starActive {
-    font-size: 21px;
-    color: #ffe200;
-}
+.faModalSuccess {
+  font-family: "Font Awesome 5 Free";
+  font-size: 80px;
+  color: green;
+  border-radius: 100px;
+  width: 120px;
+  height: 120px;
+  padding-top: 19px;
+  padding-left: 7px;
+  box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55); }
 
-.infoMatch {
-    min-height: 50px;
-    margin: 5px;
-    max-height: 50px;
-}
+.faModalSuccess:hover {
+  box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55); }
 
-@media (min-width:1600px) {
-    .infoMatch {
-        margin: 10px;
-        font-size: 24px;
-    }
-}
+/*......................................................Credits Modal*/
+.faPersonalIcons {
+  border: 8px solid #941494;
+  border-radius: 50px;
+  background-color: darkmagenta;
+  color: white;
+  font-size: 22px; }
 
-.click_match_bar {
-    width: 100%;
-    padding-bottom: 5px;
-}
+.socialsButtons {
+  padding-left: 30px;
+  padding-right: 30px; }
 
-.levelBoard {
-    box-shadow: 0 0 4px 1px #d320ff;
-    padding: 5px;
-    margin: auto;
-    max-height: 50px;
-    background: #cc01fe;
-    color: white;
-    font-weight: 500;
-    border-radius: 25PX;
-    max-width: 48%;
-    margin-bottom: 3px;
-}
+.creditSocialLinks {
+  text-align: center;
+  display: inline-block; }
 
-.clickBoard {
-    box-shadow: 0 0 4px 1px rgb(211, 32, 255);
-    padding: 5px;
-    max-width: 48%;
-    max-height: 50px;
-    margin: auto;
-    background: #ea98ff;
-    color: white;
-    font-weight: 500;
-}
+.socialList {
+  display: inline-flex; }
 
-.matchBoard {
-    box-shadow: 0 0 4px 1px rgb(211, 32, 255);
-    padding: 5px;
-    max-width: 48%;
-    max-height: 50px;
-    margin: auto;
-    background: #ea98ff;
-    color: white;
-    font-weight: 500;
-}
+/*.................................................................Instruction Modal*/
+.example {
+  width: 100%;
+  max-width: 300px;
+  height: auto; }
 
-.scoreBoard {
-    box-shadow: 0 0 4px 1px rgb(211, 32, 255);
-    padding-bottom: 8px;
-    max-width: 48%;
-    min-height: 55px;
-    margin: auto;
-    background: #ea98ff;
-    color: white;
-    font-weight: 500;
-}
+/*...................................................................Reset Modal*/
+.resetModal {
+  flex-direction: inherit; }
 
-@media (min-width:1600px) {
-    .scoreBoard {
-        min-height: 79px;
-    }
-}
+.resetModalTitle {
+  color: red;
+  font-size: 28px; }
 
-.timeBoard {
-    box-shadow: 0 0 4px 1px rgb(211, 32, 255);
-    padding-bottom: 3px;
-    max-width: 48%;
-    min-height: 55px;
-    margin: auto;
-    background: #ea98ff;
-    color: white;
-    font-weight: 500;
-}
+.backResetBtn {
+  background-color: green;
+  color: white; }
 
-/*...............................................................Text, padding and centering*/
+.confirmResetBtn {
+  background-color: red;
+  color: white; }
 
-.centeredContent {
-    text-align: center;
-    margin: auto;
-}
+/*..............................Win Modal*/
+.endGameSentence {
+  font-size: 30px; }
+
+.endGameImg {
+  max-width: 350px; }
+
+.endGameBtn {
+  max-width: 250px;
+  margin: auto;
+  background-color: darkmagenta; }

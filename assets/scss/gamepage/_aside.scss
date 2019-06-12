@@ -1,7 +1,7 @@
 /*...............................................................................Left Side Menu Style*/
 
 .logo {
-    background-image: url(/assets/img/pagelogo2.jpg);
+    background-image: url(../img/pagelogo2.jpg);
     background-color: white;
     background-position: center;
     background-repeat: no-repeat;
@@ -16,7 +16,7 @@
 
 @media (max-width:767px) {
     .logo {
-        background-image: url(/assets/img/pagelogo.jpg);
+        background-image: url(../img/pagelogo.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         width: 100%;
@@ -28,7 +28,7 @@
 
 @media (max-width:644px) {
     .logo {
-        background-image: url(/assets/img/pagelogo2.jpg);
+        background-image: url(../img/pagelogo2.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         width: 100%;

@@ -139,7 +139,7 @@ body {
 
 /*...............................................................................Left Side Menu Style*/
 .logo {
-  background-image: url(/assets/img/pagelogo2.jpg);
+  background-image: url(../img/pagelogo2.jpg);
   background-color: white;
   background-position: center;
   background-repeat: no-repeat;
@@ -152,7 +152,7 @@ body {
 
 @media (max-width: 767px) {
   .logo {
-    background-image: url(/assets/img/pagelogo.jpg);
+    background-image: url(../img/pagelogo.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -160,7 +160,7 @@ body {
 /*change img logo to fit the logo*/
 @media (max-width: 644px) {
   .logo {
-    background-image: url(/assets/img/pagelogo2.jpg);
+    background-image: url(../img/pagelogo2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     width: 100%;
@@ -291,7 +291,7 @@ div#boardgame {
 
 div#boardgame > div {
   background-color: bisque;
-  background: url(/assets/img/backLogoCard.png);
+  background: url(../img/backLogoCard.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;

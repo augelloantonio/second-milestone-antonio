@@ -9,14 +9,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/scss/main.css" type="text/css" />
-
-    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.3.2/email.min.js"></script>
-    <script type="text/javascript">
-        (function() {
-            emailjs.init("user_96n5MVsQfZCvUmDKXU673");
-        })();
-    </script>
-
 </head>
 
 <body>
@@ -32,27 +24,26 @@
                         <div class="row">
                             <div class="col-sm-push-12 col-md-12 gameComandBoard">
                                 <div class="row">
-                                    <div id="startBtn" class="col-4 gameControlsBox">
-                                        <button class="fas fa-play gameComandBtn" type="button" id="startBtn" onclick="startGame(); showBoardGame();"></button>
+                                    <div id="" class="col-4 gameControlsBox">
+                                        <button class="fas fa-play gameComandBtn" type="button" id="startBtn" onclick="playPauseGame(); switchPlayBtnClass(); "></button>
                                     </div>
-                                    <div id="startBtn" class="col-4 gameControlsBox">
+                                    <div id="" class="col-4 gameControlsBox">
                                         <button type="button" class="fas fa-undo-alt gameComandBtn" data-toggle="modal" data-target="#resetGameModal"></button>
                                     </div>
-                                    <div id="startBtn" class="col-4 gameControlsBox">
-                                        <button class="fas fa-volume-up gameComandBtn" type="button" id="soundOnOffBtn" onclick="switchSoundClass();"></button>
+                                    <div id="" class="col-4 gameControlsBox">
+                                        <button class="fas fa-volume-up gameComandBtn" type="button" id="soundOnOffBtn" onclick="switchSoundClass(); audioOnOff();"></button>
                                     </div>
                                 </div>
                             </div>
 
                             <!--Menu Dropdown Menu-->
                             <nav class="navbar navbar-expand-lg navbar-light bg-light dropdownMenu">
-                                <button class="navbar-toggler dropdownMenuBtn" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
+                                <button class="navbar-toggler dropdownMenuBtn" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" onclick="dropdownMenuIcon();">Menu <i id="menuDropdownBtn" class="fas fa-caret-down faMenu"></i></button>
                                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                                     <div class="list-group menuNavbar">
-                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#InstructionModalCenter">Instructions</button>
-                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#LevelsModalCenter">Levels</button>
-                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#ContactModalCenter">Contact</button>
-                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#CreditsModalCenter">Credits</button>
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#InstructionModalCenter" onclick="stopTimer();">Instructions</button>
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#SettingsModalCenter" onclick="stopTimer();">Change Player Name</button>
+                                        <button type="button" class="list-group-item list-group-item-action menuBtn" data-toggle="modal" data-target="#CreditsModalCenter" onclick="stopTimer();">Credits</button>
                                     </div>
                                 </div>
                             </nav>
@@ -69,35 +60,44 @@
                         <div class="col-xs-12 headerTab">
                             <div class="headerContent">
                                 <div class="row">
-                                    <div class="col-xs-3 infoMatch">
-                                        <p id="totalClick" class="mb-1"></p>
-                                        <p id="matches" class="mb-1"></p>
+                                    <div class="col-6  levelBoard">
+                                        <p id="playerName" class="mb-1"></p>
                                     </div>
-                                    <div class="col-6 col-xs-12 infoMatch">
+                                    <div class="col-6  levelBoard">
                                         <p id="level" class="mb-1"></p>
+                                    </div>
+                                </div>
+                                <div class="click_match_bar">
+                                    <div class="row infoMatch">
+                                        <div class="col-6 clickBoard">
+                                            <p id="totalClick" class="mb-1"></p>
+                                        </div>
+                                        <div class="col-6 matchBoard">
+                                            <p id="matches" class="mb-1"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row infoMatch">
+                                    <div class="col-sm-6 col-xs-12 scoreBoard">
                                         <p id="levelScore" class="mb-1"></p>
                                         <p id="totalScore" class="mb-1"></p>
-                                        <ul class="list-inline starIcon">
-                                            <li><i class="fas fa-star lowScoreStar"></i></li>
-                                            <li><i class="fas fa-star midScoreStar"></i></li>
-                                            <li><i class="fas fa-star highScoreStar"></i></li>
-                                        </ul>
                                     </div>
-                                    <div class="col-6 col-xs-12 infoMatch">
+                                    <div class="col-sm-6 col-xs-12 timeBoard">
                                         <p id="timer" class="mb-1">Timer</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="gameboard">
-                            <div id="loadGame" class="gameboard">
-                                <div id="boardgame" class="col-xs-12 boardgame"></div>
-                            </div>
+                    </div>
+                    <div class="gameboard">
+                        <div id="loadGame" class="gameboard">
+                            <div id="boardgame" class="col-xs-12 boardgame"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
 
@@ -141,25 +141,6 @@
 
 
 
-    <!-- Modal levels-->
-    <div class="modal fade" id="LevelsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Levels</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-                </div>
-                <div class="modal-body">
-                    <p>...</p>
-
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
-
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Modal credits-->
     <div class="modal fade" id="CreditsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -185,12 +166,12 @@
         </div>
     </div>
 
-    <!-- Modal Contact-->
-    <div class="modal fade" id="ContactModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!-- Modal Settings-->
+    <div class="modal fade" id="SettingsModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Do you want to let me know what do you think of my game or do you have any suggestions? Send me an email</h5>
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Change Player Name</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -198,13 +179,22 @@
                 <div class="modal-body centeredContent">
                     <div class="row bg-color-contact">
 
-                        <div class="center-form">
-                            <form onsubmit="return sendMail(this);" method="POST">
-                                <input type="text" name="name" class="form-control" id="fullname" placeholder="Name" required/>
-                                <input type="text" name="emailaddress" class="form-control" id="emailaddress" placeholder="Email" required/>
-                                <textarea rows="5" name="projectsummary" class="form-control" id="textarea" placeholder="Text here" required></textarea>
-                                <button type="submit" class="btn btn-secondary center-block" onclick="validateEmailForm();">Send Email</button>
-                            </form>
+                        <div class="">
+                            <h6>Change Player Name</h6>
+                            <div class="row changenameRow">
+                                <div class="col-sm-12 col-md-6 changeNameCol">
+                                    <input id="changeusername" name="username" class="usernameInput" type="text" placeholder="Write Player Name" value="" />
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+                                    <button type="button" class="btn btn-secondary btnBody btnAssignName" onClick="changePlayerName(); displayPlayerName(); showAlertPlayerName();">Confirm Player Name</button>
+                                </div>
+                            </div>
+                            <div id="playerNameSuccess" class="alert alert-success alertPlayer" role="alert">
+                                Player name set!
+                            </div>
+                            <div id="playerNameError" class="alert alert-danger alertPlayer" role="alert">
+                                Please add a Player Name!
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -219,13 +209,29 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Well Done! </h5>
+                </div>
+                <div class="modal-body">
+                    <p>Level One completed, but that was an easy one! Let's start with the real game now!</p>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Next Level Modal-->
+    <div class="modal fade" id="nextLevelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="nextLevelModalTitle"> </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
                 </div>
                 <div class="modal-body">
-                    <p>Level One completed, but that was an easy one! Let's start with the real game now!</p>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
+                    <p id="endLevelSentences"></p>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();">Next</button>
                 </div>
 
             </div>
@@ -244,9 +250,11 @@
         </button>
                 </div>
                 <div class="modal-body">
-                    Let's made the game bit more interesting, now you have 10 seconds to memorize all the pictures and then only 3 attempts to match all the cards.
-                    <br/> 5 seconds and 4 new cards will be added on Level 6. So be ready.
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
+                    <p> Let's made the game bit more interesting, now you have to match 3 cards.</p>
+                    <img class="example" src="/assets/img/matchThreeExample.jpg" alt="Match Three Card Example"></img>
+
+                    <p>3 new cards will be added on Level 6. So be ready.</p>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onclick="startTimer();  ">Next</button>
                 </div>
             </div>
         </div>
@@ -259,17 +267,30 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalCenterTitle">Welcome to #HelpYourBrain Challenge</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
                 </div>
                 <div class="modal-body">
                     <p>This easy memory game is what you need to keep your mind sharp.</p>
                     <p>The goal of this game is to match the Web Logos! So when you click on one card it will show you a Logo, you have to match the same Logo with less number of attempt possible.</p>
+                    <p>In first if you want to save your score choice your name:</p>
+                    <div class="row changenameRow">
+                        <div class="col-sm-12 col-md-6 changeNameCol">
+                            <input id="username" name="username" class="usernameInput" type="text" placeholder="Write Player Name" value="" />
+                        </div>
+                        <div class="col-sm-12 col-md-6">
+                            <button type="button" class="btn btn-secondary btnBody btnAssignName" onClick="store(); displayPlayerName(); showAlertName();">Confirm Player Name</button>
+                        </div>
+                    </div>
+                    <div id="playerNameSuccess2" class="alert alert-success alertPlayer" role="alert">
+                        Player name set!
+                    </div>
+                    <div id="playerNameError2" class="alert alert-danger alertPlayer" role="alert">
+                        Please add a Player Name!
+                    </div>
+
                     <h5>Instructions</h5>
                     <ul>
                         <li>
-                            <p>Press the start button, the timer will start and you can start the game.</p>
+                            <p>Press the start button, the card will be showed on the board and the timer will start and you can start the game.</p>
                         </li>
                         <li>
                             <p>Click on one of the cards and see the image.</p>
@@ -282,27 +303,25 @@
                         </li>
                     </ul>
                     <br/>
-                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal">Next</button>
+                    <button type="button" class="btn btn-secondary btnBody" data-dismiss="modal" onClick="store(); displayPlayerName(); showAlertPlayerName();">Next</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Modal Reset Game-->
-    <div class="modal fade" id="resetGameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal fade " id="resetGameModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content resetModal">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Are you sure you want to reset the game?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+                <div class="modal-header resetModalHeader centeredContent">
+                    <h5 class="modal-title resetModalTitle" id="exampleModalCenterTitle">Are you sure you want to reset the game?</h5>
+                    </button>
                 </div>
                 <div class="modal-body">
                     <p>Clicking on Reset all the progress will be lost.</p>
 
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Go Back</button>
-                    <button class="btn btn-secondary" type="button" id="resetBtn" data-dismiss="modal" onclick="dataReset(); successAlert();">Reset</button>
+                    <button type="button" class="btn btn-secondary backResetBtn" data-dismiss="modal">Go Back</button>
+                    <button class="btn btn-secondary confirmResetBtn" type="button" id="resetBtn" data-dismiss="modal" onclick="dataReset(); successAlert();">Reset</button>
                 </div>
             </div>
         </div>
@@ -320,25 +339,38 @@
         </div>
     </div>
 
-    <!-- Success Email Sent Modal-->
-    <div class="modal fade" id="successEmailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <!-- Win Modal-->
+    <div class="modal fade" id="winModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content modalSuccessContent">
                 <div class="modal-body">
-                    <p>Email Sent!</p>
-                    <i class="fas fa-check faModalSuccess"></i>
+                    <p class="endGameSentence" id="endGameSentence"></p>
+                    <p class="endGameSentence" id="totalMatchScore"></p>
+                    <p class="endGameSentence">Your ended the game in <span id="endgametimer"></span></p>
+                    <img class="endGameImg" id="bestScoreEndGame" src="http://www.gifanimate.com/data/media/492/fuochi-d-artificio-immagine-animata-0012.gif" border="0" alt="high score gif" />
+                    <img class="endGameImg" id="midScoreEndGame" src="https://media.giphy.com/media/l41YmQjOz9qg2Ecow/giphy.gif" border="0" alt="mid score gif" />
+                    <img class="endGameImg" id="lowScoreEndGame" src="https://media.giphy.com/media/13xEKxMqnclCE0/giphy.gif" border="0" alt="low score gif" />
                 </div>
+                <div class="row">
+                    <div class="col-6">
+                        <button type="button" class="btn btn-secondary endGameBtn" data-dismiss="modal" onClick="">Go Back</button>
+                    </div>
+                    <div class="col-6">
+                        <button class="btn btn-secondary endGameBtn" type="button" id="resetBtn" data-dismiss="modal" onclick="dataReset(); successAlert();  ">Restart Game</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
 
-
     <script src="https://code.jquery.com/jquery-3.4.0.min.js" integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="/assets/js/sendemail.js"></script>
 
-    <script type="text/javascript" src="/assets/js/boardgame.js"></script>
+    <script type="text/javascript" src="boardgame-Testing.js"></script>
+    <script src="threecardsboard-Testing.js"></script>
+
 </body>
 
 </html>

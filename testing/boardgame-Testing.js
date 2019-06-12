@@ -202,9 +202,9 @@ function flip2Back() {
     // Flip the 2 cards back over
     var card_1 = document.getElementById(memory_card_ids[0]);
     var card_2 = document.getElementById(memory_card_ids[1]);
-    card_1.style.cssText = 'background: url(assets/img/backLogoCard.png) no repeat, background-size: cover';
+    card_1.style.cssText = 'background: url(/assets/img/backLogoCard.png) no repeat, background-size: cover';
     card_1.innerHTML = "";
-    card_2.style.cssText = 'background: url(assets/img/backLogoCard.png) no repeat, background-size: cover';
+    card_2.style.cssText = 'background: url(/assets/img/backLogoCard.png) no repeat, background-size: cover';
     card_2.innerHTML = "";
     // Clear both arrays
     memory_values = [];
