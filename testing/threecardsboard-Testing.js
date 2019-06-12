@@ -38,7 +38,7 @@ it will assign to the card i clicked the value */
 function memoryFlipThreeCard(card, val) {
     if (card.innerHTML == "" && memory_values.length < 3) {
         card.style.background = '#FFF';
-        card.innerHTML = '<img id="imgCard" class="backImg" src="/assets/img/cards/' + val + '.png"/>'
+        card.innerHTML = '<img id="imgCard" class="backImg" src="../assets/img/cards/' + val + '.png"/>'
         if (memory_values.length == 0) {
             totalClick();
             memory_values.push(val);
@@ -85,11 +85,11 @@ function flip3Back() {
     var card_1 = document.getElementById(memory_card_ids[0]);
     var card_2 = document.getElementById(memory_card_ids[1]);
     var card_3 = document.getElementById(memory_card_ids[2]);
-    card_1.style.cssText = 'background: url(assets/img/backLogoCard.png) no repeat, background-size: cover';
+    card_1.style.cssText = 'background: url(../assets/img/backLogoCard.png) no repeat, background-size: cover';
     card_1.innerHTML = "";
-    card_2.style.cssText = 'background: url(assets/img/backLogoCard.png) no repeat, background-size: cover';
+    card_2.style.cssText = 'background: url(../assets/img/backLogoCard.png) no repeat, background-size: cover';
     card_2.innerHTML = "";
-    card_3.style.cssText = 'background: url(assets/img/backLogoCard.png) no repeat, background-size: cover';
+    card_3.style.cssText = 'background: url(../assets/img/backLogoCard.png) no repeat, background-size: cover';
     card_3.innerHTML = "";
     // Clear both arrays
     memory_values = [];

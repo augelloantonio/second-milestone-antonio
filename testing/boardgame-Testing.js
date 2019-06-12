@@ -39,12 +39,12 @@ var sentences = [
 var userName = "Player"; //Set default username as Player
 
 //Variable for audio
-var matchSound = new Audio('/assets/sounds/Fuzzy Beep-SoundBible.com-1580329899.mp3');
-var endGameSound = new Audio('/assets/sounds/Ta Da-SoundBible.com-1884170640.mp3');
-var flipBackSound = new Audio('/assets/sounds/Pitch Baseball-SoundBible.com-868005975.mp3');
-var endLevelSound = new Audio('/assets/sounds/Applause Light 2-SoundBible.com-356111200.mp3');
-var resetSuccessSound = new Audio('/assets/sounds/277032__headphaze__ui-completed-status-alert-notification-sfx002.wav');
-var startGameSound = new Audio('/assets/sounds/88550__movingplaid__pull-chain-02.wav');
+var matchSound = new Audio('../assets/sounds/Fuzzy Beep-SoundBible.com-1580329899.mp3');
+var endGameSound = new Audio('../assets/sounds/Ta Da-SoundBible.com-1884170640.mp3');
+var flipBackSound = new Audio('../assets/sounds/Pitch Baseball-SoundBible.com-868005975.mp3');
+var endLevelSound = new Audio('../assets/sounds/Applause Light 2-SoundBible.com-356111200.mp3');
+var resetSuccessSound = new Audio('../assets/sounds/277032__headphaze__ui-completed-status-alert-notification-sfx002.wav');
+var startGameSound = new Audio('../assets/sounds/88550__movingplaid__pull-chain-02.wav');
 
 function shuffle(arr) {
     var i = arr.length,
@@ -160,7 +160,7 @@ function newBoard(num_cards) {
 function memoryFlipCard(card, val) {
     if (card.innerHTML === "" && memory_values.length < 2) {
         card.style.background = '#FFF';
-        card.innerHTML = '<img id="imgCard" class="backImg" src="/assets/img/cards/' + val + '.png"/>';
+        card.innerHTML = '<img id="imgCard" class="backImg" src="../assets/img/cards/' + val + '.png"/>';
         if (memory_values.length === 0) {
             totalClick();
             memory_values.push(val);
@@ -202,9 +202,9 @@ function flip2Back() {
     // Flip the 2 cards back over
     var card_1 = document.getElementById(memory_card_ids[0]);
     var card_2 = document.getElementById(memory_card_ids[1]);
-    card_1.style.cssText = 'background: url(/assets/img/backLogoCard.png) no repeat, background-size: cover';
+    card_1.style.cssText = 'background: url(../assets/img/backLogoCard.png) no repeat, background-size: cover';
     card_1.innerHTML = "";
-    card_2.style.cssText = 'background: url(/assets/img/backLogoCard.png) no repeat, background-size: cover';
+    card_2.style.cssText = 'background: url(../assets/img/backLogoCard.png) no repeat, background-size: cover';
     card_2.innerHTML = "";
     // Clear both arrays
     memory_values = [];
@@ -234,7 +234,7 @@ function generateNewBoard() {
     if (level == 4) { //At the end of the level 4 it will add the script for my second half game setting the card to be 9 in the board
         num_cards = 9; 
         stopTimer();
-        $.getScript("/assets/js/threecardsboard.js", function() {
+        $.getScript("../assets/js/threecardsboard.js", function() {
             levelFiveBoard(num_cards);
         });
         $('#levelFiveModal').modal({ show: true });
@@ -243,7 +243,7 @@ function generateNewBoard() {
     }
     if (level > 4 && level < 8) {
         stopTimer();
-        $.getScript("/assets/js/threecardsboard.js", function() {
+        $.getScript("../assets/js/threecardsboard.js", function() {
             levelFiveBoard(num_cards);
         });
         num_cards += 3;
