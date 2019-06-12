@@ -2,7 +2,7 @@
 
 # [#HELPYOURBRAIN](https://gello94.github.io/first-milestone-antonio)
 
-![Page Logo](https://github.com/gello94/second-milestone-antonio/blob/master/assets/img/pagelogo2.jpg)
+![Page Logo](https://github.com/gello94/second-milestone-antonio/blob/master/assets/img/pagelogo.jpg)
 
 
 This Website was developed for Code Institute's Interactive Front End Development Project 2.
