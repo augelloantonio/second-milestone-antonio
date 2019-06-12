@@ -2,11 +2,6 @@
 
 # [#HELPYOURBRAIN](https://gello94.github.io/first-milestone-antonio)
 
-
-<h1 align="center">
-  <a href="" target="_blank"><img src="/assets/img/matchThreeExample.jpg" alt="#HELPYOURBRAIN logo"/></a>
-</h1>
-
 ![Page Logo](https://github.com/gello94/second-milestone-antonio/blob/master/assets/img/pagelogo2.jpg)
 
 
