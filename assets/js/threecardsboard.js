@@ -32,7 +32,7 @@ it will assign to the card i clicked the value */
 function memoryFlipThreeCard(card, val) {
     if (card.innerHTML == "" && memory_values.length < 3) {
         card.style.background = '#FFF';
-        card.innerHTML = '<img id="imgCard" class="backImg" src="/assets/img/cards/' + val + '.png"/>'
+        card.innerHTML = '<img id="imgCard" class="backImg" src="assets/img/cards/' + val + '.png"/>'
         if (memory_values.length == 0) {
             totalClick();
             memory_values.push(val);
