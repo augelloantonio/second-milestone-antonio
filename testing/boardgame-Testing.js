@@ -361,7 +361,7 @@ function levelUp() {
     previousLevel = level - 1;
     $("#nextLevelModalTitle").text("Well Done, you passed the level " + previousLevel);
 
-    console.log("player leves is " + level);
+    console.log("player level is " + level);
 }
 
 function totalScore(total) {
