@@ -225,7 +225,7 @@ function generateNewBoard() {
     if (level == 4) { //At the end of the level 4 it will add the script for my second half game setting the card to be 9 in the board
         num_cards = 9;
         stopTimer();
-        $.getScript("../assets/js/threecardsboard.js", function() {
+        $.getScript("../testing/threecardsboard-Testing.js", function() {
             levelFiveBoard(num_cards);
         });
         $('#levelFiveModal').modal({ show: true });
@@ -367,9 +367,8 @@ function totalScore(total) {
         score.push(totalGameScore); //create a new empty array where push my results, now i have to made the sum of them and show it
         total = score.reduce((acc, cur) => acc + cur, 0).toFixed(0); //taken from https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
         playerEndGameTotalScore = total - click; //calculate the final score
-        document.getElementById('totalScore').innerHTML = ("Total Score: " + total);
+        document.getElementById('totalScore').innerHTML = ("Total Score: " + playerEndGameTotalScore);
         $('#totalMatchScore').text(userName + " total score: " + playerEndGameTotalScore); //Assign to my end game modal the score
-
     }
     else {
         document.getElementById('totalScore').innerHTML = "Total Score: " + 0;
@@ -384,15 +383,17 @@ function endGame() {
     num_cards = 0;
     stopGame();
 
-    if (playerEndGameTotalScore >= 150 && playerEndGameTotalScore <= 250) {
+    if (playerEndGameTotalScore >= 450) {
         $("#endGameSentence").text("Congrats! Your memory is better than I thought!");
+        $("#lowScoreEndGame").hide();
+        $("#midScoreEndGame").hide();
     }
-    else if (playerEndGameTotalScore <= 100 && playerEndGameTotalScore >= 140) {
+    else if (playerEndGameTotalScore <= 500 && playerEndGameTotalScore >= 350) {
         $("#endGameSentence").text();
         $("#bestScoreEndGame").hide();
         $("#lowScoreEndGame").hide();
     }
-    else if (playerEndGameTotalScore < 100) {
+    else if (playerEndGameTotalScore < 350) {
         $("#endGameSentence").text("OPS! You should do better than this, your memory is not good enough !");
         $("#bestScoreEndGame").hide();
         $("#midScoreEndGame").hide();
