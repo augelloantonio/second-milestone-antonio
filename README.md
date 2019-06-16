@@ -192,7 +192,6 @@ I'm able this way to see as well all the other function that the function I call
 ### Validation Testings
 
 For HTML validation testing I used ["W3 Validator"](https://validator.w3.org/nu/?doc=https%3A%2F%2Fgello94.github.io%2Fsecond-milestone-antonio%2F) which shows the html documents to be valid.
-There is only one warning on a h5 element that is wanted by me to be empty.
 
 For CSS validation testing I used ["W3 CSS Validator"](http://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fgello94.github.io%2Fsecond-milestone-antonio%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=it) which shows no errors on my main.css style sheet.
 
