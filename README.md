@@ -168,7 +168,7 @@ Then I decided to use another JavaScript file sheet to made it clear and calling
 I could have done it adding a new div with hidden class as for the first board and showing it with the function, but I preferred to do this way to test as well using different JavaScript file sheet.
 
 Other small bugs are solved and it is all traceable on my GitHub page, under the "commit" section of my Milestone repository, available at the following  link:
--  ["https://github.com/gello94/second-milestone-antonio/commits/master"](https://gello94.github.io/first-milestone-antonio/gallery.html)
+-  ["https://github.com/gello94/second-milestone-antonio/commits/master"](https://github.com/gello94/second-milestone-antonio/commits/master)
 
 ### Testing
 Most of the JavaScript code has been tested with the Debug console with the command console.log() that allowed me to find if the function has been called at the right time and to show if the corresponding value was right.
