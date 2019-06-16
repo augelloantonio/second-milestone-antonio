@@ -9,7 +9,7 @@ var num_cards = 4;
 //Variable for my scores  
 var match = 0;
 var click = 0;
-var level = 6; //Set to 0 or my increment will set it to start from 1 level more
+var level = 0; //Set to 0 or my increment will set it to start from 1 level more
 var score = [];
 var playerLevel = 0;
 var scoreTotalLevelPoints = 0;
@@ -367,12 +367,12 @@ function endGame() {
     num_cards = 0;
     stopGame();
 
-    if (playerEndGameTotalScore >= 450) {
+    if (playerEndGameTotalScore >= 550) {
         $("#endGameSentence").text("Congrats! Your memory is better than I thought!");
         $("#lowScoreEndGame").hide();
         $("#midScoreEndGame").hide();
     }
-    else if (playerEndGameTotalScore <= 500 && playerEndGameTotalScore >= 350) {
+    else if (playerEndGameTotalScore <= 550 && playerEndGameTotalScore >= 350) {
         $("#endGameSentence").text();
         $("#bestScoreEndGame").hide();
         $("#lowScoreEndGame").hide();
