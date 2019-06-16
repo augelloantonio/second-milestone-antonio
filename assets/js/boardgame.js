@@ -9,7 +9,7 @@ var num_cards = 4;
 //Variable for my scores  
 var match = 0;
 var click = 0;
-var level = 0; //Set to 0 or my increment will set it to start from 1 level more
+var level = 6; //Set to 0 or my increment will set it to start from 1 level more
 var score = [];
 var playerLevel = 0;
 var scoreTotalLevelPoints = 0;
@@ -113,30 +113,22 @@ function newBoard(num_cards) {
 
     for (var i = 0; i < num_cards / 2; i++) {
 
-
-        // Try this to eliminate duplicate cards problems:
-
-        // while (cardAlreadyInShuffled === true) {
-        //     var card = getRandomInt(0, 11);
-        //     if (shuffled.indexOf(cardlist[card]) != -1) {
-        //         // pass
-        //     } else {
-        //         cardAlreadyInShuffled = false;
-        //         // Push the card into the list to be shuffled
-        //         // We must push it twice to make sure it has a match
-        //         shuffled.push(cardList[card]);
-        //         shuffled.push(cardList[card]);
-        //     }
-        // }
-
-        // Get a random card between 0 and 11 from the card list
-        var card = getRandomInt(0, 11);
-
-        // Push the card into the list to be shuffled
-        // We must push it twice to make sure it has a match
-        shuffled.push(cardList[card]);
-        shuffled.push(cardList[card]);
+        let cardAlreadyInShuffled = true;
+        while (cardAlreadyInShuffled === true) {
+            var card = getRandomInt(0, 11);
+            if (shuffled.indexOf(cardList[card]) != -1) {
+                // pass
+            }
+            else {
+                cardAlreadyInShuffled = false;
+                // Push the card into the list to be shuffled
+                // We must push it twice to make sure it has a match
+                shuffled.push(cardList[card]);
+                shuffled.push(cardList[card]);
+            }
+        }
     }
+
     shuffle(shuffled);
 
     for (var i = 0; i < shuffled.length; i++) {

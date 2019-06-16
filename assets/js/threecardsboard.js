@@ -6,14 +6,21 @@ function levelFiveBoard(num_cards) {
     shuffled = [];
 
     for (var i = 0; i < num_cards / 3; i++) {
-        // Get a random card between 0 and 11 from the card list
-        var card = getRandomInt(0, 11);
-
-        // Push the card into the list to be shuffled
-        // We must push it three times to be sure it has a match
-        shuffled.push(cardList[card]);
-        shuffled.push(cardList[card]);
-        shuffled.push(cardList[card]);
+        let cardAlreadyInShuffled = true;
+        while (cardAlreadyInShuffled === true) {
+            var card = getRandomInt(0, 11);
+            if (shuffled.indexOf(cardList[card]) != -1) {
+                // pass
+            }
+            else {
+                cardAlreadyInShuffled = false;
+                // Push the card into the list to be shuffled
+                // We must push it twice to make sure it has a match
+                shuffled.push(cardList[card]);
+                shuffled.push(cardList[card]);
+                shuffled.push(cardList[card]);
+            }
+        }
     }
     shuffle(shuffled);
 
