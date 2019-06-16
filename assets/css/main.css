@@ -25,7 +25,7 @@ body {
     padding-right: 0px; } }
 /*.....................................................................................Header*/
 .headerTab {
-  background-color: wheightte;
+  background-color: white;
   color: black;
   width: 100%;
   padding-top: 0px;
@@ -464,6 +464,10 @@ button.btn.btn-secondary.btnBody:active {
   max-width: 250px;
   margin: auto;
   background-color: darkmagenta; }
+
+/*......................................Next Level Modal*/
+.nextLevelModalTitle {
+  font-weight: 800; }
 
 /*................................Footer*/
 .footer {

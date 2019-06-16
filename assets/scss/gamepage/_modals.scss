@@ -1,49 +1,71 @@
 /*..........................................................................Modal Style*/
+
 button.btnBody {
   float: right;
-  background-color: orangered; }
+  background-color: orangered;
+}
 
 button.btn.btn-secondary.btnBody:hover {
-  background-color: #ff6a00; }
+  background-color: #ff6a00;
+}
 
 button.btn.btn-secondary.btnBody:active {
-  background-color: #ff6a00; }
+  background-color: #ff6a00;
+}
 
 @media (min-width: 1600px) {
   .modal-content {
-    min-width: 600px; } }
+    min-width: 600px;
+  }
+}
+
 /*.....................................................................On load Modal*/
+
 .alertPlayer {
-  display: none; }
+  display: none;
+}
 
 @media (max-width: 768px) {
   .alertPlayer {
     display: none;
-    margin-top: 5px; } }
+    margin-top: 5px;
+  }
+}
+
 .btnAssignName {
-  float: unset !important; }
+  float: unset !important;
+}
 
 .changenameRow {
   text-align: center;
-  padding: 3px; }
+  padding: 3px;
+}
 
 .changeNameCol {
-  padding: 2px; }
+  padding: 2px;
+}
 
 @media (max-width: 768px) {
   .changeNameCol {
-    padding-bottom: 5px; } }
+    padding-bottom: 5px;
+  }
+}
+
 .usernameInput {
   border: solid 0.5px;
-  padding: 5px; }
+  padding: 5px;
+}
 
 /*...................................................................Success Modal*/
+
 #successAlertModal {
-  background-color: transparent; }
+  background-color: transparent;
+}
 
 .modalSuccessContent {
   font-size: 50px;
-  text-align: center; }
+  text-align: center;
+}
 
 .faModalSuccess {
   font-family: "Font Awesome 5 Free";
@@ -54,60 +76,84 @@ button.btn.btn-secondary.btnBody:active {
   height: 120px;
   padding-top: 19px;
   padding-left: 7px;
-  box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55); }
+  box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55);
+}
 
 .faModalSuccess:hover {
-  box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55); }
+  box-shadow: 0 0 4px 8px rgba(27, 139, 0, 0.55);
+}
 
 /*......................................................Credits Modal*/
+
 .faPersonalIcons {
   border: 8px solid #941494;
   border-radius: 50px;
   background-color: darkmagenta;
   color: white;
-  font-size: 22px; }
+  font-size: 22px;
+}
 
 .socialsButtons {
   padding-left: 30px;
-  padding-right: 30px; }
+  padding-right: 30px;
+}
 
 .creditSocialLinks {
   text-align: center;
-  display: inline-block; }
+  display: inline-block;
+}
 
 .socialList {
-  display: inline-flex; }
+  display: inline-flex;
+}
 
 /*.................................................................Instruction Modal*/
+
 .example {
   width: 100%;
   max-width: 300px;
-  height: auto; }
+  height: auto;
+}
 
 /*...................................................................Reset Modal*/
+
 .resetModal {
-  flex-direction: inherit; }
+  flex-direction: inherit;
+}
 
 .resetModalTitle {
   color: red;
-  font-size: 28px; }
+  font-size: 28px;
+}
 
 .backResetBtn {
   background-color: green;
-  color: white; }
+  color: white;
+}
 
 .confirmResetBtn {
   background-color: red;
-  color: white; }
+  color: white;
+}
 
 /*..............................Win Modal*/
+
 .endGameSentence {
-  font-size: 30px; }
+  font-size: 30px;
+}
 
 .endGameImg {
-  max-width: 350px; }
+  max-width: 350px;
+}
 
 .endGameBtn {
   max-width: 250px;
   margin: auto;
-  background-color: darkmagenta; }
+  background-color: darkmagenta;
+}
+
+/*......................................Next Level Modal*/
+
+.nextLevelModalTitle {
+  font-weight: 800;
+}

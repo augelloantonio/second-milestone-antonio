@@ -346,7 +346,8 @@ function levelUp() {
     $('#level').text("Level " + level);
     playerLevel = level;
     previousLevel = level - 1;
-    $("#nextLevelModalTitle").text("Well Done, you passed the level " + previousLevel);
+
+    document.getElementById('nextLevelModalTitle').innerHTML = "Well Done, you passed the level " + previousLevel;
 }
 
 function totalScore(total) {

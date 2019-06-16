@@ -174,14 +174,14 @@ Other small bugs are solved and it is all traceable on my GitHub page, under the
 Most of the JavaScript code has been tested with the Debug console with the command console.log() that allowed me to find if the function has been called at the right time and to show if the corresponding value was right.
 A copy of the code with all the testing codes is available in my repository under the folder "testing".
 
-Have a look at the testing opening the following html file and open the Debug console of your Browser:
+Have a look at the testing html opening the following html file and opening the Debug console of your Browser:
 
 ["testing.html"](https://gello94.github.io/second-milestone-antonio/testing/testing.html)
 
-N.B.: I have not update the images link on the testing.html file because this file is only to demonstrate the testing I used to see if my code was working.
+N.B.: I have not updated the images links on the testing.html file because this file is only to demonstrate the testing I used to see if my code was working.
 
-Example of testing I did during the deployment of my javascript code:
-I want to check if my function startGame, called on click to the start button, is calling all the function I want to.
+Example of testing I did during the deployment of my JavaScript code:
+I want to check if my function "startGame", called on click to the start button, is calling all the function I want to.
 
 - Open the Debug console of your Browser
 - Click on the Play button
@@ -189,16 +189,18 @@ I want to check if my function startGame, called on click to the start button, i
 
 I'm able this way to see as well all the other function that the function I called is calling and the order of the execution.
 
-
 ### Validation Testings
 
-For HTML validation testing I used ["W3 Validator"](https://validator.w3.org/nu/?doc=https%3A%2F%2Fgello94.github.io%2Ffirst-milestone-antonio%2F) which shows the html documents to be valid.
+For HTML validation testing I used ["W3 Validator"](https://validator.w3.org/nu/?doc=https%3A%2F%2Fgello94.github.io%2Fsecond-milestone-antonio%2F) which shows the html documents to be valid.
+There is only one warning on a h5 element that is wanted by me to be empty.
 
-For CSS validation testing I used ["W3 CSS Validator"](http://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fgello94.github.io%2Ffirst-milestone-antonio%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=it) which shows the stylesheet to be valid CSS3.
+For CSS validation testing I used ["W3 CSS Validator"](http://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fgello94.github.io%2Ffirst-milestone-antonio%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=it) which shows the style sheet to be valid CSS3.
+
+For JavaScript validation testing I used ["JSHint"](https://gello94.github.io/second-milestone-antonio/) with whom I checked the presence of unused variable and code errors.
 
 ## Deployment
 
-This page has been deployed to ["Github Pages"](https://gello94.github.io/first-milestone-antonio/).
+This page has been deployed to ["Github Pages"](https://gello94.github.io/second-milestone-antonio/).
 
 GitHub is used to host the code and publish the pages.
 
@@ -206,7 +208,7 @@ A new repository was created in GitHub called: second-milestone-antonio.
 
 An initial commit has been done.
 
-Time by time the update files were pushed on GitHib and a proper commit has benn done:
+Time by time the update files were pushed on GitHib and a proper commit has been done:
 
 `$git add`
 
