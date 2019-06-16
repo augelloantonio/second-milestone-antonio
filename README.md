@@ -207,7 +207,7 @@ A new repository was created in GitHub called: second-milestone-antonio.
 
 An initial commit has been done.
 
-Time by time the update files were pushed on GitHib and a proper commit has been done:
+Time by time the update files were pushed on GitHub and a proper commit has been done:
 
 `$git add`
 
@@ -230,11 +230,14 @@ The pages were pushed to the GitHub repository
 `$Password`
 
 Under the Settings – GitHub Pages of the new repository, the master branch of the code is published to the url:
-"link of the master branch"
+["#HelpYourBrain"](https://gello94.github.io/second-milestone-antonio/)
+
 
 ## Credits
 
 Thanks to CodeInstitute Slack Community helping me to find extra material to study to improve my knowledges to develop this game.
+
+Thanks to the tutor Chris Zielinski that has been always available to help me to understand and clarify areas of this module that were difficult for me.
 
 ### Media
 
